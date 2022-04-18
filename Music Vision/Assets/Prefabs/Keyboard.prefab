@@ -45,6 +45,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: C3_octav
       objectReference: {fileID: 0}
+    - target: {fileID: 2527357802495937100, guid: d1332401ee30a114bad36eabfcac0aa6, type: 3}
+      propertyPath: m_TagString
+      value: O3
+      objectReference: {fileID: 0}
     - target: {fileID: 2527357802495937101, guid: d1332401ee30a114bad36eabfcac0aa6, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -106,6 +110,10 @@ PrefabInstance:
     - target: {fileID: 2527357802495937100, guid: d1332401ee30a114bad36eabfcac0aa6, type: 3}
       propertyPath: m_Name
       value: C5_octav
+      objectReference: {fileID: 0}
+    - target: {fileID: 2527357802495937100, guid: d1332401ee30a114bad36eabfcac0aa6, type: 3}
+      propertyPath: m_TagString
+      value: O5
       objectReference: {fileID: 0}
     - target: {fileID: 2527357802495937101, guid: d1332401ee30a114bad36eabfcac0aa6, type: 3}
       propertyPath: m_RootOrder
@@ -169,6 +177,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: C2_octav
       objectReference: {fileID: 0}
+    - target: {fileID: 2527357802495937100, guid: d1332401ee30a114bad36eabfcac0aa6, type: 3}
+      propertyPath: m_TagString
+      value: O2
+      objectReference: {fileID: 0}
     - target: {fileID: 2527357802495937101, guid: d1332401ee30a114bad36eabfcac0aa6, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -230,6 +242,10 @@ PrefabInstance:
     - target: {fileID: 2527357802495937100, guid: d1332401ee30a114bad36eabfcac0aa6, type: 3}
       propertyPath: m_Name
       value: C4_octav
+      objectReference: {fileID: 0}
+    - target: {fileID: 2527357802495937100, guid: d1332401ee30a114bad36eabfcac0aa6, type: 3}
+      propertyPath: m_TagString
+      value: O4
       objectReference: {fileID: 0}
     - target: {fileID: 2527357802495937101, guid: d1332401ee30a114bad36eabfcac0aa6, type: 3}
       propertyPath: m_RootOrder

@@ -69,6 +69,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Key_LeftIndent Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 9040323813317591620, guid: b046de382dc1cf2479d5e8451d95cebc, type: 3}
+      propertyPath: m_TagString
+      value: WhiteKey
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b046de382dc1cf2479d5e8451d95cebc, type: 3}
 --- !u!1 &6082542521439064824 stripped

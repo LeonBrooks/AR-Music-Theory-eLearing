@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - BlackKey
+  - WhiteKey
+  - O2
+  - O3
+  - O4
+  - O5
   layers:
   - Default
   - TransparentFX

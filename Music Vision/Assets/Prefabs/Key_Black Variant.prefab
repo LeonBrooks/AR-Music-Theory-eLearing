@@ -126,6 +126,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Key_Black Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 9040323813317591620, guid: b046de382dc1cf2479d5e8451d95cebc, type: 3}
+      propertyPath: m_TagString
+      value: BlackKey
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b046de382dc1cf2479d5e8451d95cebc, type: 3}
 --- !u!1 &1315306512506890045 stripped
