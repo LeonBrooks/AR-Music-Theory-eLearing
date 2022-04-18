@@ -60,4 +60,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b887f80df8d97449ae55e4dd12f2c4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  increment: 0.005
+  incrementDown: 0.001
+  incrementUp: 0.005
