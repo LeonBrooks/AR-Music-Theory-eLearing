@@ -54,11 +54,11 @@ public class KeyPressedHandler : MonoBehaviour
         if (!isActive && transform.position.y < activationPosVec.y)
         {
             isActive =  true;
-            MusicController.instance.keyPressed(keyID);
+            MusicController.instance.noteActivated(keyID);
         } else if(isActive && transform.position.y > activationPosVec.y)
         {
             isActive = false;
-            MusicController.instance.keyReleased(keyID);
+            MusicController.instance.noteDeactivated(keyID);
         }
     }
 

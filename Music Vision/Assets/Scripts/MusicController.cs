@@ -37,44 +37,44 @@ public class MusicController : MonoBehaviour
         
     }
 
-    public bool keyPressed(string key)
+    public bool noteActivated(string key)
     {
         Key k;
-        if (Enum.TryParse<Key>(key, out k))
+        if (Enum.TryParse<Key>(key, true, out k))
         {
-            keyPressed(k);
+            noteActivated(k);
             return true;
         } else 
         {
-            Debug.Log("keyPreessed: Key not found");
+            Debug.Log("MusicController.noteActivated: Key not found");
             return false;
         }
         
     }
 
-    public void keyPressed(Key key)
+    public void noteActivated(Key key)
     {
-
+        Debug.Log("MusicController: playing " + key.ToString());
     }
 
 
-    public bool keyReleased(string key)
+    public bool noteDeactivated(string key)
     {
         Key k;
-        if (Enum.TryParse<Key>(key, out k))
+        if (Enum.TryParse<Key>(key, true, out k))
         {
-            keyReleased(k);
+            noteDeactivated(k);
             return true;
         }
         else
         {
-            Debug.Log("keyReleased: Key not found");
+            Debug.Log("MusicController.noteDeactivated: Key not found");
             return false;
         }
     }
 
-    public void keyReleased(Key key)
+    public void noteDeactivated(Key key)
     {
-
+        Debug.Log("MusicController: stopped playing " + key.ToString());
     }
 }
