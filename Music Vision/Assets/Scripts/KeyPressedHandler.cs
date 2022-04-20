@@ -7,7 +7,7 @@ public class KeyPressedHandler : MonoBehaviour
     private Vector3 basePos;
     private Vector3 minPosVec;
     private Vector3 activationPosVec;
-    private bool blackKey;
+    public bool blackKey;
     private bool col;
     public bool isActive;
     private float incrementUp;

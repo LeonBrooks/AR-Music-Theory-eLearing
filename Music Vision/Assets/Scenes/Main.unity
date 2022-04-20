@@ -275,6 +275,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defautPiano: {fileID: 11400000, guid: 00634dd29cc006747a8f1ef0be4b4430, type: 2}
+  defaultPlayColor: 0
+  keyManager: {fileID: 1823383855}
 --- !u!4 &1345845218
 Transform:
   m_ObjectHideFlags: 0
@@ -527,6 +529,17 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1823383855 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4071744220054548882, guid: 70893cbe86c7f364482c445a59069a5a, type: 3}
+  m_PrefabInstance: {fileID: 1926563178}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee5b84c6905d654a967e649ae759455, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1926563178
 PrefabInstance:
   m_ObjectHideFlags: 0
