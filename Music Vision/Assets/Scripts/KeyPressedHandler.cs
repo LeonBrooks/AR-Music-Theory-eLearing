@@ -21,21 +21,21 @@ public class KeyPressedHandler : MonoBehaviour
         col = false;
         isActive = false;
         incrementUp = 0.008f;
-        minPosVec = transform.parent.TransformPoint(transform.localPosition + Vector3.up * minPos);
-        activationPosVec = transform.parent.TransformPoint(transform.localPosition + Vector3.up * activationPos);
 
-        if(gameObject.tag == "BlackKey")
+        if (gameObject.tag == "BlackKey")
         {
             blackKey = true;
             minPos = -1f;
             activationPos = -0.5f;
         }
-        else 
-        { 
+        else
+        {
             blackKey = false;
             minPos = -1.3f;
             activationPos = -0.8f;
         }
+        minPosVec = transform.parent.TransformPoint(transform.localPosition + Vector3.up * minPos);
+        activationPosVec = transform.parent.TransformPoint(transform.localPosition + Vector3.up * activationPos);
 
         keyID = gameObject.name + transform.parent.gameObject.tag[1];
 
