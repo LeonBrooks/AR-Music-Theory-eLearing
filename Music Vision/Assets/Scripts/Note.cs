@@ -15,4 +15,22 @@ public class Note : MonoBehaviour
     {
         
     }
+
+    public void makeSharp()
+    {
+        gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = true;
+    }
+
+    public void makeFlat()
+    {
+        gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        gameObject.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+    public void makeNeutral()
+    {
+        gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+    }
 }

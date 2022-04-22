@@ -72,11 +72,11 @@ public class KeyManager : MonoBehaviour
             else if (name.Length == 3) { target = "" + name[0] + name[1]; }
             else { Debug.Log("KeyManager.getKey: key not found");  return null; }
 
-            foreach (Transform octav in transform)
+            foreach (Transform octave in transform)
             {
-                if (octav.tag == "O" + name[name.Length -1])
+                if (octave.tag == "O" + name[name.Length -1])
                 {
-                    foreach(Transform note in octav)
+                    foreach(Transform note in octave)
                     {
                         if(note.gameObject.name == target)
                         {
