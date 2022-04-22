@@ -23,6 +23,18 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1799092697216877744, guid: 79cbdef9b2918ba4eacb068925752a79, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799092697216877744, guid: 79cbdef9b2918ba4eacb068925752a79, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3895256093874972409, guid: 79cbdef9b2918ba4eacb068925752a79, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 4799052107091313610, guid: 79cbdef9b2918ba4eacb068925752a79, type: 3}
       propertyPath: m_Name
       value: Quarter
