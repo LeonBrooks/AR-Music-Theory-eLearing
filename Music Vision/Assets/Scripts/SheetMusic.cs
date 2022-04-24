@@ -26,7 +26,7 @@ public class SheetMusic : MonoBehaviour
         basePosX = -3.5f;
         staffOffset = 0.957f;
 
-        drawNote(Key.D3, 0, 0);
+        drawNote(Key.D3, 0, 0).changeColor(Color.Red);
         drawNote(Key.E3, -1, 1);
         drawNote(Key.C4, 0, 0);
         drawNote(Key.B4, 0, 1);

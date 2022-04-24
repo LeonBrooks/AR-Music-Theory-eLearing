@@ -5,6 +5,7 @@ using UnityEngine;
 public class Note : MonoBehaviour
 {
     private List<GameObject> ledgerLines;
+    public string type;
 
     // Start is called before the first frame update
     void Awake()
@@ -46,6 +47,22 @@ public class Note : MonoBehaviour
         SpriteRenderer r = gameObject.GetComponent<SpriteRenderer>();
         r.flipX = !r.flipX;
         r.flipY = !r.flipY;
+    }
+
+    public void changeColor(Color color)
+    {
+        Sprite note = Resources.Load<Sprite>(type + "_" + color.ToString());
+        Sprite flat = Resources.Load<Sprite>("flat" + "_" + color.ToString());
+        Sprite sharp = Resources.Load<Sprite>("sharp" + "_" + color.ToString());
+
+        if(note == null || flat == null || sharp == null)
+        {
+            Debug.Log("Note: Sprites for the color " + color.ToString() + "not found");
+        }
+
+        gameObject.GetComponent<SpriteRenderer>().sprite = note;
+        gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = flat;
+        gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = sharp;
     }
 
     private void OnDestroy()
