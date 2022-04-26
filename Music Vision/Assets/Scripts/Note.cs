@@ -6,12 +6,14 @@ public class Note : MonoBehaviour
 {
     private List<GameObject> ledgerLines;
     public string type;
+    public bool isFlipped;
 
     // Start is called before the first frame update
     void Awake()
     {
         ledgerLines = new List<GameObject>();
-    }
+        isFlipped = false;
+}
 
     // Update is called once per frame
     void Update()
@@ -44,6 +46,7 @@ public class Note : MonoBehaviour
 
     public void flip()
     {
+        isFlipped = !isFlipped;
         SpriteRenderer r = gameObject.GetComponent<SpriteRenderer>();
         r.flipX = !r.flipX;
         r.flipY = !r.flipY;

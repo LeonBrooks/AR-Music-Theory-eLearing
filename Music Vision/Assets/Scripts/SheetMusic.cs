@@ -6,6 +6,7 @@ public class SheetMusic : MonoBehaviour
 {
     public static Camera mainCam { get; private set; }
     public GameObject defaultNote;
+    public GameObject noteHead;
     public GameObject ledgerLine;
 
     private float noteDistY;
@@ -26,13 +27,7 @@ public class SheetMusic : MonoBehaviour
         basePosX = -3.5f;
         staffOffset = 0.957f;
 
-        drawNote(Key.D3, 0, 0).changeColor(Color.Red);
-        drawNote(Key.E3, -1, 1);
-        drawNote(Key.C4, 0, 0);
-        drawNote(Key.B4, 0, 1);
-        drawNote(Key.C5, 0, 2);
-
-        
+        drawChord(0, (Key.E4, 0), (Key.F4, 0), (Key.G4, 0));        
     }
 
     private void LateUpdate()
@@ -56,9 +51,59 @@ public class SheetMusic : MonoBehaviour
         Destroy(note.gameObject);
     }
 
-    // -1 = flat, 0 = neutral, +1 = shap
-    public Note drawNote(Key key, int flatOrSharp, int offset)
+    public List<Note> drawChord(int offset, params (Key key, int flatOrSharp)[] notes)
     {
+        if(notes.Length == 0) { Debug.Log("SheetMusic.drawChord: no notes were given"); return null; }
+        List<Note> res = new List<Note>();
+
+        bool baseFlipped =false;
+        int basePos = (int) notes[0].key;
+        if ((basePos > 15 && basePos < 24) || basePos > 35) { baseFlipped = true; }
+
+        for(int i = 0; i < notes.Length; i++)
+        {
+            bool headOnly = true;
+            if((i == 0 && !baseFlipped) || (i == notes.Length-1 && baseFlipped)) { headOnly = false; }
+
+            Note n = drawNote(notes[i].key, notes[i].flatOrSharp, offset, headOnly);
+            if(n != null) { res.Add(n); }
+            if(n.isFlipped != baseFlipped) { n.flip(); }
+        }
+
+        int prev = -4;
+        for(int i=0; i<notes.Length; i++)
+        {
+            if(notes[i].key.ToString().Contains("F") || notes[i].key.ToString().Contains("C"))
+            {
+                if (((int)notes[i].key) == prev + 1)
+                {
+                    if (baseFlipped) { res[i-1].flip(); } else { res[i].flip(); } 
+                    prev = -4;
+                    continue;
+                }
+            }
+            else
+            {
+                if (((int)notes[i].key) == prev + 2)
+                {
+                    if (baseFlipped) { res[i - 1].flip(); } else { res[i].flip(); }
+                    prev = -4;
+                    continue;
+                }
+            }
+
+            prev = (int) notes[i].key;
+        }
+
+        return res;
+    }
+
+    // -1 = flat, 0 = neutral, +1 = shap
+    public Note drawNote(Key key, int flatOrSharp, int offset, bool headOnly = false)
+    {
+        GameObject type;
+        if (headOnly) { type = noteHead; } else { type = defaultNote; }
+
         string noteString = key.ToString();
         if (noteString.Length != 2) { Debug.Log("SheetMusic.drawNote: only neutral keys allowd as input. Use flatOrSharap to set accidental"); return null; }
 
@@ -110,8 +155,8 @@ public class SheetMusic : MonoBehaviour
         float finalPos = basePosY + noteDistY * pos;
         if(pos > 14) { finalPos += staffOffset; }
 
-        GameObject note = Instantiate<GameObject>(defaultNote, gameObject.transform);
-        note.transform.localPosition = new Vector3(basePosX + offset * noteDistX, finalPos, 0);
+        GameObject note = Instantiate<GameObject>(type, gameObject.transform);
+        note.transform.localPosition += new Vector3(basePosX + offset * noteDistX, finalPos, 0);
 
         Note n = note.GetComponent<Note>();
         if (flatOrSharp == -1) { n.makeFlat(); }
@@ -120,7 +165,7 @@ public class SheetMusic : MonoBehaviour
         foreach(float lpos in getLedgerLinePos(key))
         {
             GameObject l = Instantiate<GameObject>(ledgerLine, gameObject.transform);
-            l.transform.localPosition = new Vector3(basePosX + offset * noteDistX, lpos, 0);
+            l.transform.localPosition += new Vector3(basePosX + offset * noteDistX, lpos, 0);
             n.addLedgerLine(l);
         }
 

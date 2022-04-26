@@ -95,3 +95,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b8920948d840de44b0fbdd9a91f3edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultNote: {fileID: 3295825840428486292, guid: 6567253da9ce6f44cad345a4285d873a, type: 3}
+  noteHead: {fileID: 3495583974437750712, guid: 0b86e8213ca3e5d4dac67aab8d203397, type: 3}
+  ledgerLine: {fileID: 3258054667657769572, guid: 95c63e5426a33224891ce1bd49bd4a28, type: 3}
