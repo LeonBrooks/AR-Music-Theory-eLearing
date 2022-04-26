@@ -60,7 +60,7 @@ public class Note : MonoBehaviour
 
         if(note == null || flat == null || sharp == null)
         {
-            Debug.Log("Note: Sprites for the color " + color.ToString() + "not found");
+            Debug.Log("Note: Sprites for the color " + color.ToString() + " not found");
         }
 
         gameObject.GetComponent<SpriteRenderer>().sprite = note;

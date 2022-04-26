@@ -27,7 +27,8 @@ public class SheetMusic : MonoBehaviour
         basePosX = -3.5f;
         staffOffset = 0.957f;
 
-        drawChord(0, (Key.E4, 0), (Key.F4, 0), (Key.G4, 0));        
+        List<Note> l = drawChord(0, (Key.E4, 0), (Key.F4, 0), (Key.G4, 0));
+        l[1].changeColor(Color.Red);
     }
 
     private void LateUpdate()
