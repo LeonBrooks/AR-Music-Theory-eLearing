@@ -63,6 +63,7 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
     public void addLedgerLine(GameObject ledgerLine)
     {
         ledgerLines.Add(ledgerLine);
+        if (isFlipped) { flipLedgerLine(ledgerLine); }
     }
 
     public void clearLedgerLines()
@@ -74,10 +75,33 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
         ledgerLines.Clear();
     }
 
+    private void flipAllLedgerLines()
+    {
+        foreach (GameObject l in ledgerLines)
+        {
+            flipLedgerLine(l);
+        }
+    }
+
+    private void flipLedgerLine(GameObject ledgerLine)
+    {
+        ledgerLine.transform.localScale *= -1;
+    }
+
     public void flip()
     {
+        
         isFlipped = !isFlipped;
         transform.localScale *= -1;
+
+        Transform flat = gameObject.transform.GetChild(0).transform;
+        Transform sharp = gameObject.transform.GetChild(1).transform;
+        flat.localScale *= -1;
+        sharp.localScale *= -1;
+        flat.localPosition *= -1;
+        sharp.localPosition *= -1;
+
+        flipAllLedgerLines();
     }
 
     public void changeColor(Color color)

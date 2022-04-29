@@ -22,7 +22,7 @@ public class SheetMusic : MonoBehaviour
     {
         activeNotes = new List<Note>();
         noteDistY = 0.117f;
-        noteDistX = 0.8f;
+        noteDistX = 0.95f;
         mainCam = Camera.main;
         basePosY = -2.165f;
         basePosX = -3.5f;
