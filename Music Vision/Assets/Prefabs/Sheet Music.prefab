@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3281584302379052691}
   - component: {fileID: 8767750922716107191}
   - component: {fileID: -181190232721580313}
+  - component: {fileID: -7455847760060677801}
   m_Layer: 0
   m_Name: Sheet Music
   m_TagString: Untagged
@@ -98,3 +99,16 @@ MonoBehaviour:
   defaultNote: {fileID: 3295825840428486292, guid: 6567253da9ce6f44cad345a4285d873a, type: 3}
   noteHead: {fileID: 3495583974437750712, guid: 0b86e8213ca3e5d4dac67aab8d203397, type: 3}
   ledgerLine: {fileID: 3258054667657769572, guid: 95c63e5426a33224891ce1bd49bd4a28, type: 3}
+--- !u!65 &-7455847760060677801
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4071138685103766972}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 14.27, y: 2.7, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}

@@ -1,19 +1,37 @@
+using Microsoft.MixedReality.Toolkit.Input;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Note : MonoBehaviour
+public class Note : MonoBehaviour, IMixedRealityPointerHandler
 {
     private List<GameObject> ledgerLines;
     public string type;
     public bool isFlipped;
+    public Key key;
+    public int offset;
+    public int flatOrSharp { get; private set; }
+
+    private Vector3 basePosX;
+    private Vector3 basePosY;
+    private float thresholdX;
+    private float thresholdY;
+    private SheetMusic sheet;
 
     // Start is called before the first frame update
     void Awake()
     {
         ledgerLines = new List<GameObject>();
         isFlipped = false;
-}
+        basePosX = Vector3.zero;
+        basePosY = Vector3.zero;
+
+        thresholdX = 0.035f;
+        thresholdY = 0.025f;
+        flatOrSharp = 0;
+        key = Key.C4;
+        sheet = gameObject.GetComponentInParent<SheetMusic>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -25,18 +43,21 @@ public class Note : MonoBehaviour
     {
         gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        flatOrSharp = 1;
     }
 
     public void makeFlat()
     {
         gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = true;
         gameObject.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        flatOrSharp = -1;
     }
 
     public void makeNeutral()
     {
         gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        flatOrSharp = 0;
     }
 
     public void addLedgerLine(GameObject ledgerLine)
@@ -44,12 +65,19 @@ public class Note : MonoBehaviour
         ledgerLines.Add(ledgerLine);
     }
 
+    public void clearLedgerLines()
+    {
+        foreach (GameObject ledgerLine in ledgerLines)
+        {
+            Destroy(ledgerLine);
+        }
+        ledgerLines.Clear();
+    }
+
     public void flip()
     {
         isFlipped = !isFlipped;
-        SpriteRenderer r = gameObject.GetComponent<SpriteRenderer>();
-        r.flipX = !r.flipX;
-        r.flipY = !r.flipY;
+        transform.localScale *= -1;
     }
 
     public void changeColor(Color color)
@@ -68,11 +96,113 @@ public class Note : MonoBehaviour
         gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = sharp;
     }
 
+    public bool incrementKey()
+    {
+        if(key == Key.B5) { return false; }
+
+        string pitch = "" + key.ToString()[0];
+        switch (pitch)
+        {
+            case ("C"):
+            case ("D"):
+            case ("F"):
+            case ("G"):
+            case ("A"):
+                key += 2;
+                break;
+
+            case ("E"):
+            case ("B"):
+                key++;
+                break;
+        }
+
+        return true;
+    }
+
+    public bool decrementKey()
+    {
+        if (key == Key.C2) { return false; }
+
+        string pitch = "" + key.ToString()[0];
+        switch (pitch)
+        {
+            case ("D"):
+            case ("E"):
+            case ("G"):
+            case ("A"):
+            case ("B"):
+                key -= 2;
+                break;
+
+            case ("C"):
+            case ("F"):
+                key--;
+                break;
+        }
+        
+        return true;
+    }
+
+    public void adjustPos()
+    {
+        transform.localPosition = new Vector3(transform.localPosition.x, sheet.getNotePosByKey(key), transform.localPosition.z);
+        clearLedgerLines();
+        sheet.addLedgerLinesToNote(this);
+    }
+
     private void OnDestroy()
     {
-        foreach (GameObject ledgerLine in ledgerLines)
+        clearLedgerLines();
+    }
+
+    public void OnPointerDown(MixedRealityPointerEventData eventData)
+    {
+        basePosX = eventData.Pointer.Position;
+        basePosY = eventData.Pointer.Position;
+    }
+
+    public void OnPointerDragged(MixedRealityPointerEventData eventData)
+    {
+        Vector3 pointerPos = eventData.Pointer.Position;
+        float deltaY = pointerPos.y - basePosY.y;
+        float deltaX = pointerPos.x - basePosX.x;
+
+        if(deltaY > thresholdY)
         {
-            Destroy(ledgerLine);
+            if (incrementKey())
+            {
+                basePosY = eventData.Pointer.Position;
+                adjustPos();
+            }
+        }
+        else if(deltaY < -thresholdY)
+        {
+            if (decrementKey())
+            {
+                adjustPos();
+                basePosY = eventData.Pointer.Position;
+            }
+        }
+
+        if(deltaX > thresholdX)
+        {
+            if(flatOrSharp != 1) { makeSharp(); }
+        }
+        else if(deltaX < -thresholdX)
+        {
+            if(flatOrSharp != -1) { makeFlat(); }
+        }
+        else
+        {
+            if (flatOrSharp != 0) { makeNeutral(); }
         }
     }
+
+    public void OnPointerUp(MixedRealityPointerEventData eventData)
+    {
+
+    }
+
+    public void OnPointerClicked(MixedRealityPointerEventData eventData){}
 }

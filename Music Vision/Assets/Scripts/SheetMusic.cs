@@ -8,9 +8,10 @@ public class SheetMusic : MonoBehaviour
     public GameObject defaultNote;
     public GameObject noteHead;
     public GameObject ledgerLine;
+    public float noteDistY { get; private set; }
+    public float noteDistX { get; private set; }
 
-    private float noteDistY;
-    private float noteDistX;
+
     private float basePosY;
     private float basePosX;
     private float staffOffset;
@@ -29,6 +30,8 @@ public class SheetMusic : MonoBehaviour
 
         List<Note> l = drawChord(0, (Key.E4, 0), (Key.F4, 0), (Key.G4, 0));
         l[1].changeColor(Color.Red);
+        drawNote(Key.C4, 0, 1);
+        drawNote(Key.B5, 0, 2);
     }
 
     private void LateUpdate()
@@ -106,71 +109,22 @@ public class SheetMusic : MonoBehaviour
         if (headOnly) { type = noteHead; } else { type = defaultNote; }
 
         string noteString = key.ToString();
-        if (noteString.Length != 2) { Debug.Log("SheetMusic.drawNote: only neutral keys allowd as input. Use flatOrSharap to set accidental"); return null; }
+        if (noteString.Length != 2) { Debug.Log("SheetMusic.drawNote: only neutral keys allowed as input. Use flatOrSharap to set accidental"); return null; }
 
-        string pitch = "" + noteString[0];
-        string octave = "" + noteString[1];
-
-        float pos = 0;
-        switch (octave)
-        {
-            case ("3"):
-                pos = 7;
-                break;
-
-            case ("4"):
-                pos = 15;
-                break;
-
-            case("5"):
-                pos = 22;
-                break;
-        }
-
-        switch (pitch)
-        {
-            case ("D"):
-                pos += 1;
-                break;
-
-            case ("E"):
-                pos += 2;
-                break;
-
-            case ("F"):
-                pos += 3;
-                break;
-
-            case ("G"):
-                pos += 4;
-                break;
-
-            case ("A"):
-                pos += 5;
-                break;
-
-            case ("B"):
-                pos += 6;
-                break;
-        }
-        float finalPos = basePosY + noteDistY * pos;
-        if(pos > 14) { finalPos += staffOffset; }
+        
 
         GameObject note = Instantiate<GameObject>(type, gameObject.transform);
-        note.transform.localPosition += new Vector3(basePosX + offset * noteDistX, finalPos, 0);
+        note.transform.localPosition += new Vector3(basePosX + offset * noteDistX, getNotePosByKey(key), 0);
 
         Note n = note.GetComponent<Note>();
         if (flatOrSharp == -1) { n.makeFlat(); }
         if (flatOrSharp == 1) { n.makeSharp(); }
+        n.key = key;
+        n.offset = offset;
 
-        foreach(float lpos in getLedgerLinePos(key))
-        {
-            GameObject l = Instantiate<GameObject>(ledgerLine, gameObject.transform);
-            l.transform.localPosition += new Vector3(basePosX + offset * noteDistX, lpos, 0);
-            n.addLedgerLine(l);
-        }
+        addLedgerLinesToNote(n);
 
-        if((pos > 8 && pos < 15) || pos > 21) { n.flip(); }
+        if((key > Key.D3 && key < Key.C4) || key > Key.B4) { n.flip(); }
         activeNotes.Add(n);
 
         return n;
@@ -204,5 +158,76 @@ public class SheetMusic : MonoBehaviour
         }
 
         return res;
+    }
+
+    public float getNotePosByKey(Key key)
+    {
+        string noteString = key.ToString();
+        if (noteString.Length != 2) 
+        {
+            Debug.Log("SheetMusic.getNotePosByKey: only neutral keys allowed as input");
+            return 0;
+        }
+
+        string pitch = "" + noteString[0];
+        string octave = "" + noteString[1];
+
+        float pos = 0;
+        switch (octave)
+        {
+            case ("3"):
+                pos = 7;
+                break;
+
+            case ("4"):
+                pos = 15;
+                break;
+
+            case ("5"):
+                pos = 22;
+                break;
+        }
+
+        switch (pitch)
+        {
+            case ("D"):
+                pos += 1;
+                break;
+
+            case ("E"):
+                pos += 2;
+                break;
+
+            case ("F"):
+                pos += 3;
+                break;
+
+            case ("G"):
+                pos += 4;
+                break;
+
+            case ("A"):
+                pos += 5;
+                break;
+
+            case ("B"):
+                pos += 6;
+                break;
+        }
+        float finalPos = basePosY + noteDistY * pos;
+        if (pos > 14) { finalPos += staffOffset; }
+
+        return finalPos;
+    }
+
+    public void addLedgerLinesToNote(Note n) 
+    {
+        n.clearLedgerLines();
+        foreach (float lpos in getLedgerLinePos(n.key))
+        {
+            GameObject l = Instantiate<GameObject>(ledgerLine, gameObject.transform);
+            l.transform.localPosition += new Vector3(basePosX + n.offset * noteDistX, lpos, 0);
+            n.addLedgerLine(l);
+        }
     }
 }
