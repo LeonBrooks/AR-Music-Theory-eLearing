@@ -8,6 +8,7 @@ public class SheetMusic : MonoBehaviour
     public GameObject defaultNote;
     public GameObject noteHead;
     public GameObject ledgerLine;
+    public int maxOffset;
     public float noteDistY { get; private set; }
     public float noteDistX { get; private set; }
 
@@ -15,23 +16,22 @@ public class SheetMusic : MonoBehaviour
     private float basePosY;
     private float basePosX;
     private float staffOffset;
-    
-    private List<Note> activeNotes;
+
     // Start is called before the first frame update
     void Start()
     {
-        activeNotes = new List<Note>();
         noteDistY = 0.117f;
         noteDistX = 0.95f;
         mainCam = Camera.main;
         basePosY = -2.165f;
         basePosX = -3.5f;
         staffOffset = 0.957f;
+        maxOffset = 8;
 
-        List<Note> l = drawChord(0, (Key.E4, 0), (Key.F4, 0), (Key.G4, 0));
+        /*List<Note> l = drawChord(0, true, (Key.E4, 0), (Key.F4, 0), (Key.G4, 0));
         l[1].changeColor(Color.Red);
-        drawNote(Key.C4, 0, 1);
-        drawNote(Key.B5, 0, 2);
+        drawNote(Key.C4, 0, 1, interactive: true);
+        drawNote(Key.B5, 0, 2);*/
     }
 
     private void LateUpdate()
@@ -40,23 +40,22 @@ public class SheetMusic : MonoBehaviour
         transform.Rotate(new Vector3(0,180,0), Space.Self);
     }
 
-    public void removeAllNotes()
-    {
-        foreach(Note note in activeNotes)
-        {
-            Destroy(note.gameObject);
-        }
-        activeNotes.Clear();
-    }
-
     public void removeNote(Note note)
     {
-        activeNotes.Remove(note);
         Destroy(note.gameObject);
     }
 
-    public List<Note> drawChord(int offset, params (Key key, int flatOrSharp)[] notes)
+    public void removeNotes(List<Note> notes)
     {
+        foreach(Note note in notes)
+        {
+            if(note != null) { Destroy(note.gameObject); }
+        }
+    }
+
+    public List<Note> drawChord(int offset, bool interactive, params(Key key, int flatOrSharp)[] notes)
+    {
+        if(offset > maxOffset) { return null; }
         if(notes.Length == 0) { Debug.Log("SheetMusic.drawChord: no notes were given"); return null; }
         List<Note> res = new List<Note>();
 
@@ -69,7 +68,7 @@ public class SheetMusic : MonoBehaviour
             bool headOnly = true;
             if((i == 0 && !baseFlipped) || (i == notes.Length-1 && baseFlipped)) { headOnly = false; }
 
-            Note n = drawNote(notes[i].key, notes[i].flatOrSharp, offset, headOnly);
+            Note n = drawNote(notes[i].key, notes[i].flatOrSharp, offset, interactive, headOnly);
             if(n != null) { res.Add(n); }
             if(n.isFlipped != baseFlipped) { n.flip(); }
         }
@@ -103,8 +102,9 @@ public class SheetMusic : MonoBehaviour
     }
 
     // -1 = flat, 0 = neutral, +1 = shap
-    public Note drawNote(Key key, int flatOrSharp, int offset, bool headOnly = false)
+    public Note drawNote(Key key, int flatOrSharp, int offset, bool interactive = false, bool headOnly = false)
     {
+        if (offset > maxOffset) { return null; }
         GameObject type;
         if (headOnly) { type = noteHead; } else { type = defaultNote; }
 
@@ -121,11 +121,11 @@ public class SheetMusic : MonoBehaviour
         if (flatOrSharp == 1) { n.makeSharp(); }
         n.key = key;
         n.offset = offset;
+        n.isInteractive = interactive;
 
         addLedgerLinesToNote(n);
 
         if((key > Key.D3 && key < Key.C4) || key > Key.B4) { n.flip(); }
-        activeNotes.Add(n);
 
         return n;
     }

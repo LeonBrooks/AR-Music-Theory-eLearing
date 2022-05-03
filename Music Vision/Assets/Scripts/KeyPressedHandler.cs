@@ -54,11 +54,11 @@ public class KeyPressedHandler : MonoBehaviour
         if (!isActive && transform.position.y < activationPosVec.y)
         {
             isActive =  true;
-            MusicController.instance.noteActivated(keyID);
-        } else if(isActive && transform.position.y > activationPosVec.y)
+            MusicController.instance.keyPressed(keyID);
+        } else if(isActive && transform.position.y >= activationPosVec.y)
         {
             isActive = false;
-            MusicController.instance.noteDeactivated(keyID);
+            MusicController.instance.keyReleased(keyID);
         }
     }
 
@@ -80,6 +80,10 @@ public class KeyPressedHandler : MonoBehaviour
         if (targetPos.y < minPosVec.y)
         {
             targetPos = minPosVec;
+        }
+        else if (targetPos.y > basePos.y)
+        {
+            targetPos = basePos;
         }
         transform.position = targetPos;
 

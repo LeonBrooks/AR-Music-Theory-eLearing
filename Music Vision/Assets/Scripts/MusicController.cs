@@ -18,9 +18,16 @@ public class MusicController : MonoBehaviour
     public PianoVariant defautPiano;
     public Color defaultPlayColor;
     public KeyManager keyManager;
+    public SheetMusic sheet;
+
+    public bool inputEnabled;
+    public bool linger;
+    public bool drawAsSharp;
+    public int offset;
 
     private AudioSource[] audioPlayers;
     private bool[] keyActive;
+    public List<Note> activeNotes;
     private Coroutine[] stoppers;
     private float baseVolume = 1;
 
@@ -34,37 +41,32 @@ public class MusicController : MonoBehaviour
         else
         {
             instance = this;
+
+            audioPlayers = new AudioSource[48];
+            for (int i = 0; i < audioPlayers.Length; i++)
+            {
+                AudioSource s = gameObject.AddComponent<AudioSource>();
+                s.playOnAwake = false;
+                s.clip = defautPiano.keySounds[i];
+                audioPlayers[i] = s;
+            }
+
+            keyActive = new bool[48];
+            stoppers = new Coroutine[48];
+            activeNotes = new List<Note>(new Note[49]);
+            initializeFreeMode();
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        audioPlayers = new AudioSource[48];
-        for (int i = 0; i < audioPlayers.Length; i++)
-        {
-            AudioSource s = gameObject.AddComponent<AudioSource>();
-            s.playOnAwake = false;
-            s.clip = defautPiano.keySounds[i];
-            audioPlayers[i] = s;
-        }
-
-        keyActive = new bool[48];
-        stoppers = new Coroutine[48];
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public bool noteActivated(string key, Color color = Color.Black)
+    public bool keyPressed(string key)
     {
         Key k;
         if (Enum.TryParse<Key>(key, true, out k))
         {
-            noteActivated(k, color);
+            if (inputEnabled)
+            {
+                noteActivated(k);
+            }
             return true;
         } else 
         {
@@ -76,7 +78,28 @@ public class MusicController : MonoBehaviour
 
     public void noteActivated(Key key, Color color = Color.Black)
     {
-        keyActive[(int)key] = true;
+        keyActive[(int)key] = true;        
+
+        playSound(key);
+
+        if (color == Color.Black) { color = defaultPlayColor; }
+        if (!(color == Color.Black || color == Color.White)) { keyManager.changeColor(color, key.ToString()); }
+
+        int flatOrSharp = 0;
+        Key insertKey = key;
+        if (drawAsSharp)
+        {
+            if(key.ToString().Length == 3) { insertKey--;  flatOrSharp = 1; }
+        } else if (key.ToString().Length == 3) { insertKey++; flatOrSharp = -1; }
+
+
+        Note n = sheet.drawNote(insertKey, flatOrSharp, offset, linger);
+        if (linger){ activeNotes.Insert(48, n); offset++; }
+        else { activeNotes[(int)key] = n;}
+    }
+
+    public void playSound(Key key)
+    {
         if (stoppers[(int)key] != null)
         {
             StopCoroutine(stoppers[(int)key]);
@@ -86,18 +109,20 @@ public class MusicController : MonoBehaviour
         s.Stop();
         s.volume = baseVolume;
         s.Play();
-
-        if (color == Color.Black) { color = defaultPlayColor; }
-        if (!(color == Color.Black || color == Color.White)) { keyManager.changeColor(color, key.ToString()); }
     }
 
+    
 
-    public bool noteDeactivated(string key, bool resetColor = true)
+
+    public bool keyReleased(string key)
     {
         Key k;
         if (Enum.TryParse<Key>(key, true, out k))
         {
-            noteDeactivated(k, resetColor);
+            if (inputEnabled)
+            {
+                noteDeactivated(k, !linger);
+            }
             return true;
         }
         else
@@ -110,18 +135,53 @@ public class MusicController : MonoBehaviour
     public void noteDeactivated(Key key, bool resetColor = true)
     {
         keyActive[(int)key] = false;
-        stoppers[(int) key] = StartCoroutine(stopKey(key));
+        stopSound(key);
 
         if (resetColor) { keyManager.resetKey(key.ToString()); }
+
+        if(!linger) 
+        { 
+            if(activeNotes[(int) key] != null)
+            {
+                sheet.removeNote(activeNotes[(int)key]);
+                
+            }
+        }
     }
 
-    public void resetAllColors()
+    public void stopSound(Key key)
     {
-        keyManager.resetColors();
+        stoppers[(int)key] = StartCoroutine(stopKey(key));
     }
+    
+    public void deactivateAllKeys()
+    {
+        keyActive = new bool[48];
+        sheet.removeNotes(activeNotes);
+        activeNotes = new List<Note>(new Note[49]);
+    }
+
+    public void initializeTutorialMode ()
+    {
+        deactivateAllKeys();
+        inputEnabled = false;
+        linger = false;
+        drawAsSharp = true;
+        offset = 0;
+    }
+
+    public void initializeFreeMode()
+    {
+        deactivateAllKeys();
+        inputEnabled = true;
+        linger = false;
+        drawAsSharp = true;
+        offset = 0;
+    }
+
 
     //https://forum.unity.com/threads/fade-out-audio-source.335031/
-    public IEnumerator stopKey(Key key)
+    private IEnumerator stopKey(Key key)
     {
         AudioSource audioSource = audioPlayers[(int) key];
         float startVolume = audioSource.volume;

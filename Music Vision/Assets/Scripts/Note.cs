@@ -10,6 +10,7 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
     public bool isFlipped;
     public Key key;
     public int offset;
+    public bool isInteractive;
     public int flatOrSharp { get; private set; }
 
     private Vector3 basePosX;
@@ -188,6 +189,7 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
 
     public void OnPointerDragged(MixedRealityPointerEventData eventData)
     {
+        if (!isInteractive) { return; }
         Vector3 pointerPos = eventData.Pointer.Position;
         float deltaY = pointerPos.y - basePosY.y;
         float deltaX = pointerPos.x - basePosX.x;
