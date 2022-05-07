@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 5934992809046651862}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 16.576155, y: 16.576155, z: 16.576155}
   m_Children:
   - {fileID: 915270058998190228}
   - {fileID: 2602155760927802423}
@@ -53,6 +53,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 33a9543ee2bec754eac21631158b3e30, type: 2}
   - {fileID: 2100000, guid: faa8fcdd112056a4694f4954e5e9d7bd, type: 2}
   - {fileID: 2100000, guid: b6a65d6d7f64b65489e7fd9e21fef3f0, type: 2}
+  keyboard: {fileID: 0}
 --- !u!1001 &508427814584946298
 PrefabInstance:
   m_ObjectHideFlags: 0

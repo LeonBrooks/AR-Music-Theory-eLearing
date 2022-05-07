@@ -28,10 +28,10 @@ public class SheetMusic : MonoBehaviour
         staffOffset = 0.957f;
         maxOffset = 8;
 
-        /*List<Note> l = drawChord(0, true, (Key.E4, 0), (Key.F4, 0), (Key.G4, 0));
+        List<Note> l = drawChord(0, true, (Key.E4, 0), (Key.F4, 0), (Key.G4, 0));
         l[1].changeColor(Color.Red);
         drawNote(Key.C4, 0, 1, interactive: true);
-        drawNote(Key.B5, 0, 2);*/
+        drawNote(Key.B5, 0, 2);
     }
 
     private void LateUpdate()

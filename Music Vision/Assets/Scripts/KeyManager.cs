@@ -1,3 +1,4 @@
+using Microsoft.MixedReality.Toolkit.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -94,5 +95,10 @@ public class KeyManager : MonoBehaviour
     private void changeMaterial(Material mat, GameObject key)
     {
         key.GetComponentInChildren<Renderer>().material = mat;
+    }
+
+    public void setScale(SliderEventData d)
+    {
+        transform.localScale = new Vector3(0.025f * d.NewValue, 0.025f * d.NewValue, 0.025f * d.NewValue);
     }
 }
