@@ -99,6 +99,6 @@ public class KeyManager : MonoBehaviour
 
     public void setScale(SliderEventData d)
     {
-        transform.localScale = new Vector3(0.025f * d.NewValue, 0.025f * d.NewValue, 0.025f * d.NewValue);
+        transform.localScale = new Vector3(0.02f * d.NewValue, 0.02f * d.NewValue, 0.02f * d.NewValue);
     }
 }

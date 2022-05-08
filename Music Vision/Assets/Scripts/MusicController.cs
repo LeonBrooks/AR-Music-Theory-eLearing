@@ -15,10 +15,12 @@ public enum Key
 public class MusicController : MonoBehaviour
 {
     public static MusicController instance { get; private set; }
-    public PianoVariant defautPiano;
-    public Color defaultPlayColor;
-    public KeyManager keyManager;
-    public SheetMusic sheet;
+    [SerializeField]
+    private PianoVariant defautPiano;
+    [SerializeField]
+    private Color defaultPlayColor;
+    private KeyManager keyManager;
+    private SheetMusic sheet;
 
     public bool inputEnabled;
     public bool linger;
@@ -27,7 +29,7 @@ public class MusicController : MonoBehaviour
 
     private AudioSource[] audioPlayers;
     private bool[] keyActive;
-    public List<Note> activeNotes;
+    private List<Note> activeNotes;
     private Coroutine[] stoppers;
     private float baseVolume = 1;
 
@@ -50,6 +52,9 @@ public class MusicController : MonoBehaviour
                 s.clip = defautPiano.keySounds[i];
                 audioPlayers[i] = s;
             }
+
+            keyManager = GameObject.Find("Keyboard").GetComponent<KeyManager>();
+            sheet = GameObject.Find("Sheet Music").GetComponent<SheetMusic>();
 
             keyActive = new bool[48];
             stoppers = new Coroutine[48];
