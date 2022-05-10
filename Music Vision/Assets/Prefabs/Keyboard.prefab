@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5241034195310188552}
   - component: {fileID: 4071744220054548882}
+  - component: {fileID: 4309679849024895909}
   m_Layer: 6
   m_Name: Keyboard
   m_TagString: Untagged
@@ -58,6 +59,18 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 33a9543ee2bec754eac21631158b3e30, type: 2}
   - {fileID: 2100000, guid: faa8fcdd112056a4694f4954e5e9d7bd, type: 2}
   - {fileID: 2100000, guid: b6a65d6d7f64b65489e7fd9e21fef3f0, type: 2}
+--- !u!114 &4309679849024895909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5934992809046651862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6af620d8f6996a544933b6908cffc306, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &508427814584946298
 PrefabInstance:
   m_ObjectHideFlags: 0

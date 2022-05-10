@@ -16,6 +16,7 @@ public class SheetMusic : MonoBehaviour
     private float basePosX;
     private float staffOffset;
 
+
     // Start is called before the first frame update
     void Start()
     {

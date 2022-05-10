@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -7455847760060677801}
   - component: {fileID: 487320263541818661}
   - component: {fileID: -181190232721580313}
+  - component: {fileID: 6532112465808068147}
   m_Layer: 0
   m_Name: Sheet Music
   m_TagString: Untagged
@@ -126,3 +127,15 @@ MonoBehaviour:
   noteHead: {fileID: 3495583974437750712, guid: 0b86e8213ca3e5d4dac67aab8d203397, type: 3}
   ledgerLine: {fileID: 3258054667657769572, guid: 95c63e5426a33224891ce1bd49bd4a28, type: 3}
   maxOffset: 0
+--- !u!114 &6532112465808068147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4071138685103766972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6af620d8f6996a544933b6908cffc306, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

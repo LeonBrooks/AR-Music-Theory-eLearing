@@ -53,8 +53,8 @@ public class MusicController : MonoBehaviour
                 audioPlayers[i] = s;
             }
 
-            keyManager = GameObject.Find("Keyboard").GetComponent<KeyManager>();
-            sheet = GameObject.Find("Sheet Music").GetComponent<SheetMusic>();
+            keyManager = GameObject.Find("KeyboardPlacer/RotationOffsetContainer/Keyboard").GetComponent<KeyManager>();
+            sheet = GameObject.Find("SheetMusicContainer/SheetMusic").GetComponent<SheetMusic>();
 
             keyActive = new bool[48];
             stoppers = new Coroutine[48];
