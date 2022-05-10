@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SheetMusic : MonoBehaviour
 {
-    public static Camera mainCam { get; private set; }
     public GameObject defaultNote;
     public GameObject noteHead;
     public GameObject ledgerLine;
@@ -22,7 +21,6 @@ public class SheetMusic : MonoBehaviour
     {
         noteDistY = 0.117f;
         noteDistX = 0.95f;
-        mainCam = Camera.main;
         basePosY = -2.165f;
         basePosX = -3.5f;
         staffOffset = 0.957f;
@@ -34,11 +32,7 @@ public class SheetMusic : MonoBehaviour
         drawNote(Key.B5, 0, 2);
     }
 
-    private void LateUpdate()
-    {
-        transform.LookAt(mainCam.transform);
-        transform.Rotate(new Vector3(0,180,0), Space.Self);
-    }
+    
 
     public void removeNote(Note note)
     {

@@ -12,11 +12,13 @@ public class KeyManager : MonoBehaviour
 {
     public Material[] materials = new Material[5];
     private List<GameObject> nonDefaultKeys;
+    private Vector3 baseScale;
 
     // Start is called before the first frame update
     void Start()
     {
         nonDefaultKeys = new List<GameObject>();
+        baseScale = 2 * transform.localScale;
     }
 
     public void changeColor(Color color, string key)
@@ -99,6 +101,11 @@ public class KeyManager : MonoBehaviour
 
     public void setScale(SliderEventData d)
     {
-        transform.localScale = new Vector3(0.02f * d.NewValue, 0.02f * d.NewValue, 0.02f * d.NewValue);
+        transform.localScale = new Vector3(baseScale.x * d.NewValue, baseScale.y * d.NewValue, baseScale.z * d.NewValue);
+    }
+
+    public void setYRotation(SliderEventData d)
+    {
+        transform.localRotation = Quaternion.Euler(0, 360f * d.NewValue, 0);
     }
 }

@@ -14,26 +14,30 @@ public class SurfaceFinder : MonoBehaviour
     private GameObject lookPrompt;
     [SerializeField]
     private GameObject confirmPrompt;
+    [SerializeField]
+    private Vector3 rotationOffset = new Vector3(-90,0,0);
     //private AudioSource locationFoundSound;
 
     private float delayMoment;
     private float initTime;
     private Vector3? foundPosition = null;
-    private Vector3 previousPosition = Vector3.positiveInfinity;
-    private Vector3 basePos;
     private SolverHandler solverHandler;
-    private bool initialized;
+    private RadialView radialView;
     private bool locked;
 
     private void Awake()
     {
         surfaceMagnet = GetComponent<SurfaceMagnetism>();
         solverHandler = surfaceMagnet.GetComponent<SolverHandler>();
-        surfaceMagnet.enabled = false;
+        radialView = surfaceMagnet.GetComponent<RadialView>();
         initTime = Time.time + 2;
-        initialized = false;
         locked = false;
-        basePos = transform.position;
+    }
+
+    private void Start()
+    {
+        surfaceMagnet.enabled = false;
+        radialView.enabled = true;
     }
 
     private void OnEnable()
@@ -48,7 +52,6 @@ public class SurfaceFinder : MonoBehaviour
 
     public void Reset()
     {
-        previousPosition = Vector3.positiveInfinity;
         delayMoment = Time.time + 0.5f;
         foundPosition = null;
         lookPrompt.SetActive(true);
@@ -68,17 +71,16 @@ public class SurfaceFinder : MonoBehaviour
 
     private void CheckLocationOnSurface()
     {
-        if (Time.time > initTime && !initialized)
+        if (Time.time > initTime && radialView.enabled)
         {
-            transform.position = basePos;
+            radialView.enabled = false;
+            transform.GetChild(0).Rotate(rotationOffset);
             surfaceMagnet.enabled = true;
             delayMoment = Time.time + 2;
-            initialized = true;
         }
 
         if (foundPosition == null && Time.time > delayMoment)
         {
-            Debug.Log("surfaceFinder: " + surfaceMagnet.OnSurface.ToString());
             if (surfaceMagnet.OnSurface)
             {
                 foundPosition = surfaceMagnet.transform.position;
@@ -86,7 +88,6 @@ public class SurfaceFinder : MonoBehaviour
 
             if (foundPosition != null)
             {
-                previousPosition = foundPosition.Value;
                 if (locked)
                 {
                     solverHandler.enabled = false;
