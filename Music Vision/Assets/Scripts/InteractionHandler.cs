@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Microsoft.MixedReality.Toolkit.UI;
 
-public class SliderHandler : MonoBehaviour
+public class InteractionHandler : MonoBehaviour
 {
     private Vector3 baseScale;
     void Awake()
@@ -19,5 +19,10 @@ public class SliderHandler : MonoBehaviour
     public void setYRotation(SliderEventData d)
     {
         transform.localRotation = Quaternion.Euler(0, 360f * d.NewValue, 0);
+    }
+
+    public void toggleIsActive()
+    {
+        gameObject.SetActive(!gameObject.activeSelf);
     }
 }

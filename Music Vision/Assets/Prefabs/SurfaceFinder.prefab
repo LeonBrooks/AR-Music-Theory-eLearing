@@ -122,7 +122,7 @@ MonoBehaviour:
     m_Bits: 2147483648
   maxRaycastDistance: 50
   closestDistance: 0.5
-  surfaceNormalOffset: 0.01
+  surfaceNormalOffset: 0.005
   surfaceRayOffset: 0
   raycastMode: 0
   boxRaysPerEdge: 3
@@ -308,6 +308,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Placement_Confirmation_ Promt
       objectReference: {fileID: 0}
+    - target: {fileID: 1311760508459609118, guid: c6a254249a9a43d4f9191315c93b8b77, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8668475938605209098, guid: c6a254249a9a43d4f9191315c93b8b77, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -335,6 +339,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7597978445773723165}
     m_Modifications:
+    - target: {fileID: 488985802220147262, guid: b6a97422599aafc428fa09ef5f3a955c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 488985802220147262, guid: b6a97422599aafc428fa09ef5f3a955c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 613340301913477397, guid: b6a97422599aafc428fa09ef5f3a955c, type: 3}
       propertyPath: m_Name
       value: Placement_Look_Promt
@@ -378,6 +390,18 @@ PrefabInstance:
     - target: {fileID: 4834018484929196445, guid: b6a97422599aafc428fa09ef5f3a955c, type: 3}
       propertyPath: m_SizeDelta.y
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4834018484929196445, guid: b6a97422599aafc428fa09ef5f3a955c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4834018484929196445, guid: b6a97422599aafc428fa09ef5f3a955c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4834018484929196445, guid: b6a97422599aafc428fa09ef5f3a955c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 4834018484929196445, guid: b6a97422599aafc428fa09ef5f3a955c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -426,6 +450,14 @@ PrefabInstance:
     - target: {fileID: 4834018484929196445, guid: b6a97422599aafc428fa09ef5f3a955c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6835322575752880106, guid: b6a97422599aafc428fa09ef5f3a955c, type: 3}
+      propertyPath: m_margin.x
+      value: -16.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6835322575752880106, guid: b6a97422599aafc428fa09ef5f3a955c, type: 3}
+      propertyPath: m_margin.z
+      value: -4.75
       objectReference: {fileID: 0}
     - target: {fileID: 7028484535092394620, guid: b6a97422599aafc428fa09ef5f3a955c, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
