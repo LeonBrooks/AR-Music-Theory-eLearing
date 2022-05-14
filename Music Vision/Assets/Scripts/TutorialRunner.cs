@@ -7,6 +7,7 @@ public class TutorialRunner : MonoBehaviour
     [SerializeField]
     private List<Tutorial> tutorials;
     private Coroutine runningTutorial;
+    private bool continueInput = false;
 
     public bool isRunning { get; private set; }
 
@@ -34,5 +35,24 @@ public class TutorialRunner : MonoBehaviour
         {
             startTutorial(index);
         }
+    }
+
+    public bool waitForContinue()
+    {
+        if (continueInput)
+        {
+            continueInput = false;
+            return true;
+        } else {  return false; }
+    }
+
+    public void continueReset()
+    {
+        continueInput = false;
+    }
+
+    public void continueInputEntered()
+    {
+        continueInput = true;
     }
 }

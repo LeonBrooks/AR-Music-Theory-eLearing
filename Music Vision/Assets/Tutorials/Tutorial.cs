@@ -6,6 +6,7 @@ using UnityEngine;
 public abstract class Tutorial
 {
     public TutorialRunner runner;
+    protected MusicController mc = MusicController.instance;
 
 
     public Coroutine startTutorial(TutorialRunner runner)

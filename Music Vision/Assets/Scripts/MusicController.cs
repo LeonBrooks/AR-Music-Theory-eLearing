@@ -159,16 +159,21 @@ public class MusicController : MonoBehaviour
         stoppers[(int)key] = StartCoroutine(stopKey(key));
     }
     
-    public void deactivateAllKeys()
+    public void resetAllKeys()
     {
         keyActive = new bool[48];
+        for(int i = 0; i < keyActive.Length; i++)
+        {
+            if (keyActive[i]) { stopSound((Key) i); }
+        }
+        keyManager.resetColors();
         sheet.removeNotes(activeNotes);
         activeNotes = new List<Note>(new Note[49]);
     }
 
     public void initializeTutorialMode ()
     {
-        deactivateAllKeys();
+        resetAllKeys();
         inputEnabled = false;
         linger = false;
         drawAsSharp = true;
@@ -177,7 +182,7 @@ public class MusicController : MonoBehaviour
 
     public void initializeFreeMode()
     {
-        deactivateAllKeys();
+        resetAllKeys();
         inputEnabled = true;
         linger = false;
         drawAsSharp = true;
