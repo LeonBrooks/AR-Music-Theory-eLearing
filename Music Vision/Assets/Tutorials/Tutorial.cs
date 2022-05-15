@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public abstract class Tutorial
 {
     public TutorialRunner runner;
-    protected MusicController mc = MusicController.instance;
+    protected MusicController mc;
 
+    public Tutorial()
+    {
+        mc = MusicController.instance;
+    }
 
     public Coroutine startTutorial(TutorialRunner runner)
     {

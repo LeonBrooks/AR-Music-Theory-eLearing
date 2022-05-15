@@ -14,7 +14,7 @@ public class KeyManager : MonoBehaviour
     private List<GameObject> nonDefaultKeys;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         nonDefaultKeys = new List<GameObject>();
     }

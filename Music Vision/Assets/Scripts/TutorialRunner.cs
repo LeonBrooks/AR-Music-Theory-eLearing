@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class TutorialRunner : MonoBehaviour
 {
-    [SerializeField]
     private List<Tutorial> tutorials;
+    [SerializeField]
+    private GameObject continuePrompt;
     private Coroutine runningTutorial;
+    [SerializeField]
     private bool continueInput = false;
 
     public bool isRunning { get; private set; }
 
+    void Start()
+    {
+        tutorials = new List<Tutorial>();
+        tutorials.Add(new tSemitones());
+    }
 
     private void startTutorial(int index)
     {
@@ -41,6 +48,7 @@ public class TutorialRunner : MonoBehaviour
     {
         if (continueInput)
         {
+            continuePrompt.SetActive(false);
             continueInput = false;
             return true;
         } else {  return false; }
@@ -54,5 +62,10 @@ public class TutorialRunner : MonoBehaviour
     public void continueInputEntered()
     {
         continueInput = true;
+    }
+
+    public void displayContinuePrompt()
+    {
+        continuePrompt.SetActive(true);
     }
 }
