@@ -30,6 +30,7 @@ public class MusicController : MonoBehaviour
     private AudioSource[] audioPlayers;
     private bool[] keyActive;
     private List<Note> activeNotes;
+    private HashSet<Key> fixedKeys;
     private Coroutine[] stoppers;
     private float baseVolume = 1;
 
@@ -59,6 +60,7 @@ public class MusicController : MonoBehaviour
             keyActive = new bool[48];
             stoppers = new Coroutine[48];
             activeNotes = new List<Note>(new Note[49]);
+            fixedKeys = new HashSet<Key>();
             initializeFreeMode();
         }
     }
@@ -68,7 +70,7 @@ public class MusicController : MonoBehaviour
         Key k;
         if (Enum.TryParse<Key>(key, true, out k))
         {
-            if (inputEnabled)
+            if (inputEnabled && !fixedKeys.Contains(k))
             {
                 noteActivated(k);
             }
@@ -81,8 +83,9 @@ public class MusicController : MonoBehaviour
         
     }
 
-    public void noteActivated(Key key, Color color = Color.Black)
+    public void noteActivated(Key key, Color color = Color.Black, bool fix = false)
     {
+        if (fix) { fixedKeys.Add(key); }
         keyActive[(int)key] = true;        
 
         playSound(key);
@@ -124,7 +127,7 @@ public class MusicController : MonoBehaviour
         Key k;
         if (Enum.TryParse<Key>(key, true, out k))
         {
-            if (inputEnabled)
+            if (inputEnabled && !fixedKeys.Contains(k))
             {
                 noteDeactivated(k, !linger);
             }
@@ -161,6 +164,7 @@ public class MusicController : MonoBehaviour
     
     public void resetAllKeys()
     {
+        fixedKeys.Clear();
         keyActive = new bool[48];
         for(int i = 0; i < keyActive.Length; i++)
         {
@@ -205,5 +209,17 @@ public class MusicController : MonoBehaviour
 
         audioSource.Stop();
         audioSource.volume = baseVolume;
+    }
+
+    public bool areActive(Key key, params Key[] otherKeys)
+    {
+        if(!keyActive[(int)key]) { return false; }
+
+        foreach(Key oKey in otherKeys)
+        {
+            if (!keyActive[(int)oKey]) { return false; }
+        }
+
+        return true;
     }
 }

@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TutorialRunner : MonoBehaviour
 {
     private List<Tutorial> tutorials;
     [SerializeField]
-    private GameObject continuePrompt;
+    private GameObject prompt;
     private Coroutine runningTutorial;
-    [SerializeField]
     private bool continueInput = false;
+    private bool skipInput = false;
 
     public bool isRunning { get; private set; }
 
@@ -48,15 +49,27 @@ public class TutorialRunner : MonoBehaviour
     {
         if (continueInput)
         {
-            continuePrompt.SetActive(false);
+            prompt.SetActive(false);
             continueInput = false;
             return true;
         } else {  return false; }
     }
 
-    public void continueReset()
+    public bool waitForSkip()
     {
-        continueInput = false;
+        if (skipInput)
+        {
+            prompt.SetActive(false);
+            skipInput = false;
+            return true;
+        }
+        else { return false; }
+    }
+
+    public void displayPrompt(string text)
+    {
+        prompt.GetComponentInChildren<TextMeshProUGUI>().text = text;
+        prompt.SetActive(true);
     }
 
     public void continueInputEntered()
@@ -64,8 +77,20 @@ public class TutorialRunner : MonoBehaviour
         continueInput = true;
     }
 
-    public void displayContinuePrompt()
+    public void skipInputEntered()
     {
-        continuePrompt.SetActive(true);
+        skipInput = true;
+    }
+
+    public void resetSkip()
+    {
+        prompt.SetActive(false);
+        skipInput = false;
+    } 
+    
+    public void resetContinue()
+    {
+        prompt.SetActive(false);
+        continueInput = false;
     }
 }
