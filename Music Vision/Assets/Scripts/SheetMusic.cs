@@ -8,9 +8,12 @@ public class SheetMusic : MonoBehaviour
     public GameObject noteHead;
     public GameObject ledgerLine;
     public int maxOffset;
+    public Transform topStaffAnchor;
+    public Transform bottomStaffAnchor;
+    public Transform trebleClefAnchor;
+    public Transform bassClefAnchor;
     public float noteDistY { get; private set; }
     public float noteDistX { get; private set; }
-
 
     private float basePosY;
     private float basePosX;
@@ -26,11 +29,6 @@ public class SheetMusic : MonoBehaviour
         basePosX = -3.5f;
         staffOffset = 0.957f;
         maxOffset = 8;
-
-        List<Note> l = drawChord(0, true, (Key.E4, 0), (Key.F4, 0), (Key.G4, 0));
-        l[1].changeColor(Color.Red);
-        drawNote(Key.C4, 0, 1, interactive: true);
-        drawNote(Key.B5, 0, 2);
     }
 
     

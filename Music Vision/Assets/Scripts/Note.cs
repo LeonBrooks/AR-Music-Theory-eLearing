@@ -11,6 +11,7 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
     public Key key;
     public int offset;
     public bool isInteractive;
+    public Color color;
     public int flatOrSharp { get; private set; }
 
     private Vector3 basePosX;
@@ -32,6 +33,7 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
         flatOrSharp = 0;
         key = Key.C4;
         sheet = gameObject.GetComponentInParent<SheetMusic>();
+        color = Color.Black;
     }
 
     // Update is called once per frame
@@ -40,25 +42,31 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
         
     }
 
-    public void makeSharp()
+    public void makeSharp(bool propagateToMC = false)
     {
+        if(propagateToMC) { MusicController.instance.noteDeactivated(key + flatOrSharp, draw: false); }
         gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = true;
         flatOrSharp = 1;
+        if(propagateToMC) { MusicController.instance.noteActivated(key + flatOrSharp, color, draw: false); }
     }
 
-    public void makeFlat()
+    public void makeFlat(bool propagateToMC = false)
     {
+        if (propagateToMC) { MusicController.instance.noteDeactivated(key + flatOrSharp, draw: false); }
         gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = true;
         gameObject.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
         flatOrSharp = -1;
+        if (propagateToMC) { MusicController.instance.noteActivated(key + flatOrSharp, color, draw: false); }
     }
 
-    public void makeNeutral()
+    public void makeNeutral(bool propagateToMC = false)
     {
+        if (propagateToMC) { MusicController.instance.noteDeactivated(key + flatOrSharp, draw: false); }
         gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
         flatOrSharp = 0;
+        if (propagateToMC) { MusicController.instance.noteActivated(key + flatOrSharp, color, draw: false); }
     }
 
     public void addLedgerLine(GameObject ledgerLine)
@@ -114,8 +122,10 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
         if(note == null || flat == null || sharp == null)
         {
             Debug.Log("Note: Sprites for the color " + color.ToString() + " not found");
+            return;
         }
 
+        this.color = color;
         gameObject.GetComponent<SpriteRenderer>().sprite = note;
         gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = flat;
         gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = sharp;
@@ -125,6 +135,7 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
     {
         if(key == Key.B5) { return false; }
 
+        MusicController.instance.noteDeactivated(key + flatOrSharp, draw: false);
         string pitch = "" + key.ToString()[0];
         switch (pitch)
         {
@@ -141,6 +152,7 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
                 key++;
                 break;
         }
+        MusicController.instance.noteActivated(key + flatOrSharp, color, draw: false);
 
         return true;
     }
@@ -149,6 +161,7 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
     {
         if (key == Key.C2) { return false; }
 
+        MusicController.instance.noteDeactivated(key + flatOrSharp, draw: false);
         string pitch = "" + key.ToString()[0];
         switch (pitch)
         {
@@ -165,7 +178,8 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
                 key--;
                 break;
         }
-        
+        MusicController.instance.noteActivated(key + flatOrSharp, color, draw: false);
+
         return true;
     }
 
@@ -189,7 +203,7 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
 
     public void OnPointerDragged(MixedRealityPointerEventData eventData)
     {
-        if (!isInteractive) { return; }
+        if (!isInteractive || !MusicController.instance.inputEnabled) { return; }
         Vector3 pointerPos = eventData.Pointer.Position;
         float deltaY = pointerPos.y - basePosY.y;
         float deltaX = pointerPos.x - basePosX.x;
@@ -213,21 +227,22 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
 
         if(deltaX > thresholdX)
         {
-            if(flatOrSharp != 1) { makeSharp(); }
+            if(flatOrSharp != 1) { makeSharp(true); }
         }
         else if(deltaX < -thresholdX)
         {
-            if(flatOrSharp != -1) { makeFlat(); }
+            if(flatOrSharp != -1) { makeFlat(true); }
         }
         else
         {
-            if (flatOrSharp != 0) { makeNeutral(); }
+            if (flatOrSharp != 0) { makeNeutral(true); }
         }
     }
 
     public void OnPointerUp(MixedRealityPointerEventData eventData)
     {
-
+        if (!isInteractive || !MusicController.instance.inputEnabled) { return; }
+        MusicController.instance.noteDeactivated(key + flatOrSharp, false, false);
     }
 
     public void OnPointerClicked(MixedRealityPointerEventData eventData){}

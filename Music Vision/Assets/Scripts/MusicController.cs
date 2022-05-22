@@ -83,7 +83,7 @@ public class MusicController : MonoBehaviour
         
     }
 
-    public void noteActivated(Key key, Color color = Color.Black, bool fix = false)
+    public void noteActivated(Key key, Color color = Color.Black, bool fix = false, bool draw = true)
     {
         if (fix) { fixedKeys.Add(key); }
         keyActive[(int)key] = true;        
@@ -93,17 +93,21 @@ public class MusicController : MonoBehaviour
         if (color == Color.Black) { color = defaultPlayColor; }
         if (!(color == Color.Black || color == Color.White)) { keyManager.changeColor(color, key.ToString()); }
 
-        int flatOrSharp = 0;
-        Key insertKey = key;
-        if (drawAsSharp)
+        if (draw)
         {
-            if(key.ToString().Length == 3) { insertKey--;  flatOrSharp = 1; }
-        } else if (key.ToString().Length == 3) { insertKey++; flatOrSharp = -1; }
+            int flatOrSharp = 0;
+            Key insertKey = key;
+            if (drawAsSharp)
+            {
+                if (key.ToString().Length == 3) { insertKey--; flatOrSharp = 1; }
+            }
+            else if (key.ToString().Length == 3) { insertKey++; flatOrSharp = -1; }
 
 
-        Note n = sheet.drawNote(insertKey, flatOrSharp, offset, linger);
-        if (linger){ activeNotes.Insert(48, n); offset++; }
-        else { activeNotes[(int)key] = n;}
+            Note n = sheet.drawNote(insertKey, flatOrSharp, offset, linger);
+            if (linger) { activeNotes.Insert(48, n); offset++; }
+            else { activeNotes[(int)key] = n; }
+        }
     }
 
     public void playSound(Key key)
@@ -140,14 +144,15 @@ public class MusicController : MonoBehaviour
         }
     }
 
-    public void noteDeactivated(Key key, bool resetColor = true)
+    public void noteDeactivated(Key key, bool resetColor = true, bool draw = true)
     {
         keyActive[(int)key] = false;
         stopSound(key);
+        if (fixedKeys.Contains(key)) { return; }
 
         if (resetColor) { keyManager.resetKey(key.ToString()); }
 
-        if(!linger) 
+        if(!linger && draw) 
         { 
             if(activeNotes[(int) key] != null)
             {
