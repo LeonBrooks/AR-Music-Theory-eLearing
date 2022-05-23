@@ -13,13 +13,10 @@ public class TutorialRunner : MonoBehaviour
     private GameObject taskPrompt;
     [SerializeField]
     private GameObject exitDialogPrefab;
-    [SerializeField]
-    private GameObject tootipPrefab;
 
     private Coroutine runningTutorial;
     private bool continueInput = false;
     private bool skipInput = false;
-    private Vector3 defaultTooltipScale;
 
     public bool isRunning { get; private set; }
 
@@ -28,7 +25,6 @@ public class TutorialRunner : MonoBehaviour
         tutorials = new List<Tutorial>();
         tutorials.Add(new tSemitones());
         tutorials.Add(new tNotation());
-        defaultTooltipScale = new Vector3(0.03f, 0.03f, 0.03f);
     }
 
     private void startTutorial(int index)
@@ -142,15 +138,6 @@ public class TutorialRunner : MonoBehaviour
     {
         textPrompt.SetActive(false);
         continueInput = false;
-    }
-
-    public GameObject instantiateTooltip(Transform parent, Vector3 pos, string text, Vector3? scale = null)
-    {
-        GameObject tooltip = Instantiate(tootipPrefab, parent, false);
-        tooltip.transform.localPosition = pos;
-        tooltip.transform.localScale = scale ?? defaultTooltipScale;
-        tooltip.GetComponentInChildren<TextMeshPro>().text = text;
-        return tooltip;
     }
 
 }

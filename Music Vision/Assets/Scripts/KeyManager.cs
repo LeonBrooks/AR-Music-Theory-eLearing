@@ -2,6 +2,7 @@ using Microsoft.MixedReality.Toolkit.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public enum Color
 {
@@ -61,6 +62,26 @@ public class KeyManager : MonoBehaviour
         }
 
         nonDefaultKeys.Clear();
+    }
+
+    public void showNameplate(string keyName)
+    {
+        GameObject key = getKey(keyName);
+
+        if(key != null)
+        {
+            key.GetComponentInChildren<TextMeshPro>().enabled = true;
+        }
+    }
+
+    public void hideNameplate(string keyName)
+    {
+        GameObject key = getKey(keyName);
+
+        if (key != null)
+        {
+            key.GetComponentInChildren<TextMeshPro>().enabled = false;
+        }
     }
 
     private GameObject getKey(string name)

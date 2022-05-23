@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class KeyPressedHandler : MonoBehaviour
 {
@@ -41,6 +42,7 @@ public class KeyPressedHandler : MonoBehaviour
 
         keyID = gameObject.name + transform.parent.gameObject.tag[1];
 
+        GetComponentInChildren<TextMeshPro>().text = gameObject.name;
     }
 
     // Update is called once per frame

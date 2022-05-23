@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class tNotation : Tutorial
 {
+    private KeyManager km;
+
+    public tNotation() :base()
+    {
+        km = GameObject.Find("KeyboardPlacer/RotationOffsetContainer/Keyboard").GetComponent<KeyManager>();
+    }
     public override IEnumerator tutorial()
     {
         yield return speakAndWait(@"
@@ -15,8 +21,8 @@ public class tNotation : Tutorial
         yield return speakAndWait(@"Let's dicuss what you can see on the sheet music first. As you can see there are two similar sections of lines.
                         Each one is called a staff.");
 
-        tooltips.Add(runner.instantiateTooltip(sheet.topStaffAnchor, new Vector3(2, -1, 0), "top staff"));
-        tooltips.Add(runner.instantiateTooltip(sheet.bottomStaffAnchor, new Vector3(-2, 1, 0), "bottom staff"));
+        instantiateTooltip(sheet.topStaffAnchor, new Vector3(2, -1, 0), "top staff", new Vector3(0.03f, 0.03f, 0.03f));
+        instantiateTooltip(sheet.bottomStaffAnchor, new Vector3(-2, 1, 0), "bottom staff", new Vector3(0.03f, 0.03f, 0.03f));
         yield return waitForContinue();
 
 
@@ -73,6 +79,12 @@ public class tNotation : Tutorial
         mc.resetAllKeys();
         yield return speakAndWait(@"Ok, now let's take a look at how the different notes are named.
             The first thing to know is that only the white keys have individual names. Don't worry about the black keys for now, we will talk about them later.
-            ");
+            The first note we are going to look at is the C.");
+
+        Note nC = sheet.drawNote(Key.C4,0,0);
+        yield return hitKey(Key.C4, draw:false);
+        km.showNameplate(Key.C4.ToString());
+        instantiateTooltip(nC.gameObject.transform, new Vector3(-20,-15,0), "C");
+        yield return waitForContinue();
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public abstract class Tutorial
 {
@@ -10,22 +11,36 @@ public abstract class Tutorial
     protected float deacWaitTime = 2f;
     protected List<GameObject> tooltips;
     protected static SheetMusic sheet;
+    protected Vector3 defaultTooltipScale;
+    protected GameObject tootipPrefab;
 
     public Tutorial()
     {
         mc = MusicController.instance;
-        if(sheet == null)
+        if (sheet == null)
         {
             sheet = GameObject.Find("SheetMusicContainer/SheetMusic").GetComponent<SheetMusic>();
         }
         skipped = false;
         tooltips = new List<GameObject>();
+        defaultTooltipScale = new Vector3(0.8f, 0.8f, 0.8f);
+        tootipPrefab = Resources.Load("Tooltip") as GameObject;
     }
 
     public Coroutine startTutorial(TutorialRunner runner)
     {
         this.runner = runner;
         return runner.StartCoroutine(tutorial());
+    }
+
+    protected GameObject instantiateTooltip(Transform parent, Vector3 pos, string text, Vector3? scale = null)
+    {
+        GameObject tooltip = Object.Instantiate(tootipPrefab, parent, false);
+        tooltip.transform.localPosition = pos;
+        tooltip.transform.localScale = scale ?? defaultTooltipScale;
+        tooltip.GetComponentInChildren<TextMeshPro>().text = text;
+        tooltips.Add(tooltip);
+        return tooltip;
     }
 
     public void clearTooltips()
