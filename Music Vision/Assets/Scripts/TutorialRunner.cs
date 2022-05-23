@@ -14,9 +14,10 @@ public class TutorialRunner : MonoBehaviour
     [SerializeField]
     private GameObject exitDialogPrefab;
 
-    private Coroutine runningTutorial;
+    private int runningTutorial = -1;
     private bool continueInput = false;
     private bool skipInput = false;
+    private bool exitDialogOpen = false;
 
     public bool isRunning { get; private set; }
 
@@ -29,19 +30,21 @@ public class TutorialRunner : MonoBehaviour
 
     private void startTutorial(int index)
     {
-        runningTutorial = tutorials[index].startTutorial(this);
+        tutorials[index].startTutorial(this);
+        runningTutorial = index;
         isRunning = true;
     }
 
     private void stopTutorial()
     {
         StopAllCoroutines();
-        runningTutorial = null;
+        runningTutorial = -1;
         isRunning = false;
     }
 
     private void exitTutorial()
     {
+        tutorials[runningTutorial].exitCleanup();
         stopTutorial();
         TTS.stopTTS();
         MusicController.instance.initializeFreeMode();
@@ -60,7 +63,8 @@ public class TutorialRunner : MonoBehaviour
             resetContinue();
             resetSkip();
             hideTaskPrompt();
-            runningTutorial = tutorials[index].startTutorial(this);
+            tutorials[index].startTutorial(this);
+            runningTutorial = index;
         } else
         {
             startTutorial(index);
@@ -117,13 +121,14 @@ public class TutorialRunner : MonoBehaviour
 
     public void exitInputEntered()
     {
-        if (!isRunning) { return; }
+        if (!isRunning || exitDialogOpen) { return; }
         Dialog dialog = Dialog.Open(exitDialogPrefab, DialogButtonType.Yes | DialogButtonType.No,
                                     "Exit Tutorial", "Are you sure you want to exit the tutorial?", false);
         if(dialog != null)
         {
+            exitDialogOpen = true;
             dialog.OnClosed += (DialogResult res) => {
-                if(res.Result == DialogButtonType.Yes) { exitTutorial(); }
+                if(res.Result == DialogButtonType.Yes) { exitTutorial(); exitDialogOpen = false; }
             };
         }
         

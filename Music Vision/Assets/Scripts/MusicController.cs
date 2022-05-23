@@ -177,7 +177,7 @@ public class MusicController : MonoBehaviour
         {
             if (keyActive[i]) { stopSound((Key) i); }
         }
-        keyManager.resetColors();
+        keyManager.resetAllKeys();
         sheet.removeNotes(activeNotes);
         activeNotes = new List<Note>(new Note[49]);
         offset = 0;

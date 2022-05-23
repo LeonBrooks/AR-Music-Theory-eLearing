@@ -10,6 +10,7 @@ public class tNotation : Tutorial
     {
         km = GameObject.Find("KeyboardPlacer/RotationOffsetContainer/Keyboard").GetComponent<KeyManager>();
     }
+
     public override IEnumerator tutorial()
     {
         yield return speakAndWait(@"

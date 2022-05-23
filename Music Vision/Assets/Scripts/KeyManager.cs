@@ -48,7 +48,7 @@ public class KeyManager : MonoBehaviour
         }
     }
 
-    public void resetColors()
+    public void resetAllKeys()
     {
         foreach (GameObject target in nonDefaultKeys)
         {
@@ -59,6 +59,8 @@ public class KeyManager : MonoBehaviour
             {
                 changeMaterial(materials[1], target);
             }
+
+            target.GetComponentInChildren<TextMeshPro>().enabled = false;
         }
 
         nonDefaultKeys.Clear();
@@ -71,6 +73,7 @@ public class KeyManager : MonoBehaviour
         if(key != null)
         {
             key.GetComponentInChildren<TextMeshPro>().enabled = true;
+            nonDefaultKeys.Add(key);
         }
     }
 

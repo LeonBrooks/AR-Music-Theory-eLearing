@@ -43,13 +43,18 @@ public abstract class Tutorial
         return tooltip;
     }
 
-    public void clearTooltips()
+    protected void clearTooltips()
     {
         foreach (GameObject tooltip in tooltips)
         {
             Object.Destroy(tooltip);
         }
         tooltips.Clear();
+    }
+
+    public virtual void exitCleanup() 
+    {
+        clearTooltips();
     }
 
     private IEnumerator waitForKeyOrSkipCoroutine(Key key,string taskPromptText, bool showSkipPrompt, bool resetUserInput, params Key[] otherKeys)
