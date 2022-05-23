@@ -28,7 +28,16 @@ public abstract class Tutorial
         return runner.StartCoroutine(tutorial());
     }
 
-    protected IEnumerator waitForKeyOrSkip(Key key,string taskPromptText, bool showSkipPrompt = true, bool resetUserInput = true, params Key[] otherKeys)
+    public void clearTooltips()
+    {
+        foreach (GameObject tooltip in tooltips)
+        {
+            Object.Destroy(tooltip);
+        }
+        tooltips.Clear();
+    }
+
+    private IEnumerator waitForKeyOrSkipCoroutine(Key key,string taskPromptText, bool showSkipPrompt, bool resetUserInput, params Key[] otherKeys)
     {
         bool pressed = false;
         skipped = false;
@@ -64,20 +73,52 @@ public abstract class Tutorial
         }
     }
 
-    protected IEnumerator waitForContinue(bool showPrompt = true)
+    protected Coroutine waitForKeyOrSkip(Key key, string taskPromptText, bool showSkipPrompt = true, bool resetUserInput = true, params Key[] otherKeys)
+    {
+        return runner.StartCoroutine(waitForKeyOrSkipCoroutine(key, taskPromptText, showSkipPrompt, resetUserInput, otherKeys));
+    }
+
+    private IEnumerator waitForContinueCoroutine(bool showPrompt)
     {
         runner.resetContinue();
         if(showPrompt) { runner.displayTextPrompt("Say continue to move on"); }
         yield return new WaitUntil(() => runner.waitForContinue());
     }
 
-    protected IEnumerator nextTutorialOrExit(int successor)
+    protected Coroutine waitForContinue(bool showPrompt = true)
+    {
+        return runner.StartCoroutine(waitForContinueCoroutine(showPrompt));
+    }
+
+    private IEnumerator nextTutorialOrExitCoroutine(int successor)
     {
         TTS.speakText("If you want to go on to the next tutorial say continue. If you want to quit inestead, say exit.");
         runner.displayTaskPrompt("Say exit to quit");
-        yield return runner.StartCoroutine(waitForContinue());
+        yield return waitForContinue();
         runner.switchTutorial(successor);
     }
 
+    protected Coroutine nextTutorialOrExit(int successor)
+    {
+        return runner.StartCoroutine(nextTutorialOrExitCoroutine(successor));
+    }
+
+    private IEnumerator hitKeyCoroutine(Key key, Color color, bool draw, bool fix, bool resetColor)
+    {
+        mc.noteActivated(key,color, fix, draw);
+        yield return new WaitForSeconds(deacWaitTime);
+        mc.noteDeactivated(key,resetColor, draw);
+    }
+
+    protected Coroutine hitKey(Key key, Color color = Color.Black, bool draw = true, bool fix = false, bool resetColor = false) 
+    {
+        return runner.StartCoroutine(hitKeyCoroutine(key, color, draw, fix, resetColor));
+    }
+
+    protected WaitWhile speakAndWait(string text)
+    {
+        TTS.speakText(text);
+        return new WaitWhile(() => TTS.isSpeaking());
+    }
     public abstract IEnumerator tutorial();
 }

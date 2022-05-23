@@ -18,10 +18,11 @@ public class SheetMusic : MonoBehaviour
     private float basePosY;
     private float basePosX;
     private float staffOffset;
+    private List<Note> allNotes;
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         noteDistY = 0.117f;
         noteDistX = 0.95f;
@@ -29,13 +30,26 @@ public class SheetMusic : MonoBehaviour
         basePosX = -3.5f;
         staffOffset = 0.957f;
         maxOffset = 8;
+        allNotes = new List<Note>();
     }
 
-    
+    public void clearAllNotes()
+    {
+        Note[] rmList = allNotes.ToArray();
+        foreach(Note note in rmList)
+        {
+            removeNote(note);
+        }
+        allNotes.Clear();
+    }
 
     public void removeNote(Note note)
     {
-        Destroy(note.gameObject);
+        allNotes.Remove(note);
+        if(note != null)
+        {
+            Destroy(note.gameObject);
+        }
     }
 
     public void removeNotes(List<Note> notes)
@@ -119,6 +133,8 @@ public class SheetMusic : MonoBehaviour
         addLedgerLinesToNote(n);
 
         if((key > Key.D3 && key < Key.C4) || key > Key.B4) { n.flip(); }
+
+        allNotes.Add(n);
 
         return n;
     }

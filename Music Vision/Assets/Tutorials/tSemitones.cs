@@ -11,7 +11,7 @@ public class tSemitones : Tutorial
                         The sheet music won't be relevant for this tutorial so you can ignore it for now.
                         Take a look at the keyboard and say continue when you are ready to move on.");
         yield return new WaitWhile(() => TTS.isSpeaking());
-        yield return runner.StartCoroutine(waitForContinue());
+        yield return waitForContinue();
 
 
         TTS.speakText("Every key on the keyboard is excatly one semitone away from the next. The distance between these keys is one semitone step.");
@@ -40,7 +40,7 @@ public class tSemitones : Tutorial
         mc.noteDeactivated(Key.GS4, false);
         mc.noteDeactivated(Key.A4, false);
 
-        yield return runner.StartCoroutine(waitForContinue());
+        yield return waitForContinue();
 
         mc.resetAllKeys();
         TTS.speakText("Two semitone-steps make up a make up a whole tone step. Here are some examples for whole tone steps.");
@@ -63,7 +63,7 @@ public class tSemitones : Tutorial
         mc.noteDeactivated(Key.GS4, false);
         mc.noteDeactivated(Key.AS4, false);
 
-        yield return runner.StartCoroutine(waitForContinue());
+        yield return waitForContinue();
 
         mc.resetAllKeys();
         TTS.speakText(@"As you can see, semitiones are not directly connected to black or whithe keys on a keyboard.
@@ -94,7 +94,7 @@ public class tSemitones : Tutorial
                         especially when looking at music from different cultures that didn't evolve from European classical music.");
         yield return new WaitWhile(() => TTS.isSpeaking());
 
-        yield return runner.StartCoroutine(waitForContinue());
+        yield return waitForContinue();
 
         mc.resetAllKeys();
         TTS.speakText("Now let's move on to some simple excercises. Given is this tone.");
@@ -105,7 +105,7 @@ public class tSemitones : Tutorial
 
         TTS.speakText("Now press and hold the key one semitone above. You can always say skip to reveal the answer");
         yield return new WaitWhile(() => TTS.isSpeaking());
-        yield return runner.StartCoroutine(waitForKeyOrSkip(Key.DS4, "press and hold the key one semitone above"));
+        yield return waitForKeyOrSkip(Key.DS4, "press and hold the key one semitone above");
         mc.resetAllKeys();
         if (skipped) { TTS.speakText(" The correct answer would have been this:"); }
         else { TTS.speakText(" Correct, these keys are one semitone apart."); }
@@ -116,7 +116,7 @@ public class tSemitones : Tutorial
         mc.noteDeactivated(Key.D4, false);
         mc.noteDeactivated(Key.DS4, false);
 
-        yield return runner.StartCoroutine(waitForContinue());
+        yield return waitForContinue();
 
         mc.resetAllKeys();
         TTS.speakText("Now for this tone");
@@ -127,7 +127,7 @@ public class tSemitones : Tutorial
 
         TTS.speakText("Press and hold the key one whole tone step above");
         yield return new WaitWhile(() => TTS.isSpeaking());
-        yield return runner.StartCoroutine(waitForKeyOrSkip(Key.FS4, "press and hold the key one whole tone step above"));
+        yield return waitForKeyOrSkip(Key.FS4, "press and hold the key one whole tone step above");
         mc.resetAllKeys();
         if (skipped) { TTS.speakText(" The correct answer would have been this:"); }
         else { TTS.speakText(" Correct, these keys are one whole tone step apart."); }
@@ -138,7 +138,7 @@ public class tSemitones : Tutorial
         mc.noteDeactivated(Key.E4, false);
         mc.noteDeactivated(Key.FS4, false);
 
-        yield return runner.StartCoroutine(waitForContinue());
+        yield return waitForContinue();
 
         mc.resetAllKeys();
         TTS.speakText("Now for the final exercise. Given this tone");
@@ -149,7 +149,7 @@ public class tSemitones : Tutorial
 
         TTS.speakText("Press and hold the key two and a half whole tone steps below");
         yield return new WaitWhile(() => TTS.isSpeaking());
-        yield return runner.StartCoroutine(waitForKeyOrSkip(Key.E4, "press and hold the key two and a half whole tone steps below"));
+        yield return waitForKeyOrSkip(Key.E4, "press and hold the key two and a half whole tone steps below");
         mc.resetAllKeys();
         if (skipped) { TTS.speakText(" The correct answer would have been this:"); }
         else { TTS.speakText(" Correct, these keys are two and a half whole tone steps apart."); }
@@ -160,12 +160,12 @@ public class tSemitones : Tutorial
         mc.noteDeactivated(Key.A4, false);
         mc.noteDeactivated(Key.E4, false);
 
-        yield return runner.StartCoroutine(waitForContinue());
+        yield return waitForContinue();
 
         mc.resetAllKeys();
         TTS.speakText("This concludes the first tutorial");
         yield return new WaitWhile(() => TTS.isSpeaking());
 
-        yield return runner.StartCoroutine(nextTutorialOrExit(1));
+        yield return nextTutorialOrExit(1);
     }
 }

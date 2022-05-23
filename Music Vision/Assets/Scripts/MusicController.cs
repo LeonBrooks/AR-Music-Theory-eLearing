@@ -90,7 +90,8 @@ public class MusicController : MonoBehaviour
 
         playSound(key);
 
-        if (color == Color.Black) { color = defaultPlayColor; }
+        bool defaultColor = false;
+        if (color == Color.Black) { color = defaultPlayColor;  defaultColor = true; }
         if (!(color == Color.Black || color == Color.White)) { keyManager.changeColor(color, key.ToString()); }
 
         if (draw)
@@ -105,6 +106,7 @@ public class MusicController : MonoBehaviour
 
 
             Note n = sheet.drawNote(insertKey, flatOrSharp, offset, linger);
+            if(!defaultColor) { n.changeColor(color); }
             if (linger) { activeNotes.Insert(48, n); offset++; }
             else { activeNotes[(int)key] = n; }
         }
@@ -178,6 +180,7 @@ public class MusicController : MonoBehaviour
         keyManager.resetColors();
         sheet.removeNotes(activeNotes);
         activeNotes = new List<Note>(new Note[49]);
+        offset = 0;
     }
 
     public void initializeTutorialMode ()
@@ -187,6 +190,7 @@ public class MusicController : MonoBehaviour
         linger = false;
         drawAsSharp = true;
         offset = 0;
+        sheet.clearAllNotes();
     }
 
     public void initializeFreeMode()
@@ -196,6 +200,7 @@ public class MusicController : MonoBehaviour
         linger = false;
         drawAsSharp = true;
         offset = 0;
+        sheet.clearAllNotes();
     }
 
 
