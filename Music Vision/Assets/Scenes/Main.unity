@@ -219,8 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textPrompt: {fileID: 934017119}
   taskPrompt: {fileID: 1880730270}
-  exitDialogPrefab: {fileID: 2680377478557818543, guid: 8e686c90124b8e14cbf8093893109e9a, type: 3}
-  tootipPrefab: {fileID: 4190644254480768927, guid: 9213801c38a93b54c9f980a22dde2e22, type: 3}
+  exitDialogPrefab: {fileID: 5412326808007545907, guid: 5e17b3dcc6d491f4bb1856add249d796, type: 3}
 --- !u!4 &1636307
 Transform:
   m_ObjectHideFlags: 0
@@ -603,7 +602,7 @@ GameObject:
   - component: {fileID: 242855564}
   - component: {fileID: 242855566}
   - component: {fileID: 242855565}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -676,8 +675,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23
-  m_fontSizeBase: 23
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1160,7 +1159,7 @@ GameObject:
   - component: {fileID: 934017124}
   - component: {fileID: 934017123}
   - component: {fileID: 934017122}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: TextPrompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1236,16 +1235,16 @@ Canvas:
   m_GameObject: {fileID: 934017119}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_RenderMode: 1
+  m_Camera: {fileID: 1374493512}
+  m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_AdditionalShaderChannelsFlag: 1
+  m_SortingLayerID: -1660947329
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!1001 &1152260461
@@ -1335,6 +1334,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 287787272898715503, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
+      propertyPath: enforceFrontPush
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 569958636886365182, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
       propertyPath: iconQuadTexture
       value: 
@@ -1349,6 +1352,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1333129552543361702, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1480668763170725162, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
+      propertyPath: enforceFrontPush
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1630636061323851062, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
@@ -1487,6 +1494,10 @@ PrefabInstance:
       propertyPath: m_HorizontalAlignment
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3169063512150721553, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
+      propertyPath: enforceFrontPush
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3741428002213068870, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
       propertyPath: iconQuadTexture
       value: 
@@ -1495,6 +1506,10 @@ PrefabInstance:
       propertyPath: iconQuadTexture
       value: 
       objectReference: {fileID: 2800000, guid: 0bee624b4074e5445929e56287795085, type: 3}
+    - target: {fileID: 5533224338041270348, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
+      propertyPath: enforceFrontPush
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5684875915651602478, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
       propertyPath: m_text
       value: Not Implemented
@@ -1534,6 +1549,14 @@ PrefabInstance:
     - target: {fileID: 6475768286833687537, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6625857510599201773, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
+      propertyPath: enforceFrontPush
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7301045313964007909, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
+      propertyPath: enforceFrontPush
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390458442456827998, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1631,6 +1654,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8067944613367087189, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
+      propertyPath: enforceFrontPush
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8118008111837553796, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
       propertyPath: m_Name
       value: SemitoneTutorialButton
@@ -1654,6 +1681,14 @@ PrefabInstance:
     - target: {fileID: 8118008112290837876, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252212875703950614, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
+      propertyPath: enforceFrontPush
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8806603437482837512, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
+      propertyPath: minDistance
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8806603437482837512, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
       propertyPath: fixedVerticalPosition
@@ -1695,7 +1730,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1242708108
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2152,7 +2187,7 @@ GameObject:
   - component: {fileID: 1485394533}
   - component: {fileID: 1485394535}
   - component: {fileID: 1485394534}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2225,8 +2260,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23
-  m_fontSizeBase: 23
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2361,9 +2396,25 @@ PrefabInstance:
       propertyPath: onHandDeactivate.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5541073341807777649, guid: 9ef654312d26a6743af904631a9c1b8e, type: 3}
+      propertyPath: enforceFrontPush
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541073341927897427, guid: 9ef654312d26a6743af904631a9c1b8e, type: 3}
+      propertyPath: enforceFrontPush
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541073342433956777, guid: 9ef654312d26a6743af904631a9c1b8e, type: 3}
+      propertyPath: enforceFrontPush
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5676948297122246371, guid: 9ef654312d26a6743af904631a9c1b8e, type: 3}
       propertyPath: m_Name
       value: SheetMusicMenuButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5676948297122246397, guid: 9ef654312d26a6743af904631a9c1b8e, type: 3}
+      propertyPath: InteractableOnClick
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5676948297304211649, guid: 9ef654312d26a6743af904631a9c1b8e, type: 3}
       propertyPath: m_Name
@@ -2493,6 +2544,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMenuButton
       objectReference: {fileID: 0}
+    - target: {fileID: 5977728170604951115, guid: 9ef654312d26a6743af904631a9c1b8e, type: 3}
+      propertyPath: eventsToReceive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6956195943766601765, guid: 9ef654312d26a6743af904631a9c1b8e, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -2516,6 +2571,10 @@ PrefabInstance:
     - target: {fileID: 6956195943766601819, guid: 9ef654312d26a6743af904631a9c1b8e, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7107830182703011897, guid: 9ef654312d26a6743af904631a9c1b8e, type: 3}
+      propertyPath: enforceFrontPush
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ef654312d26a6743af904631a9c1b8e, type: 3}
@@ -3010,7 +3069,7 @@ GameObject:
   - component: {fileID: 1880730274}
   - component: {fileID: 1880730273}
   - component: {fileID: 1880730272}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: TaskPrompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3086,15 +3145,15 @@ Canvas:
   m_GameObject: {fileID: 1880730270}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_RenderMode: 1
+  m_Camera: {fileID: 1374493512}
+  m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -3116,7 +3175,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &2053716672
 MeshCollider:
   m_ObjectHideFlags: 0

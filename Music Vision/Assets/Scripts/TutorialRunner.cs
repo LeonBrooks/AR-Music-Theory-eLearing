@@ -123,7 +123,7 @@ public class TutorialRunner : MonoBehaviour
     {
         if (!isRunning || exitDialogOpen) { return; }
         Dialog dialog = Dialog.Open(exitDialogPrefab, DialogButtonType.Yes | DialogButtonType.No,
-                                    "Exit Tutorial", "Are you sure you want to exit the tutorial?", false);
+                                    "Exit Tutorial", "Are you sure you want to exit the tutorial?", true);
         if(dialog != null)
         {
             exitDialogOpen = true;

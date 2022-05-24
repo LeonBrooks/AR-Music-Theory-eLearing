@@ -18,7 +18,7 @@ TagManager:
   - Water
   - UI
   - Keys
-  - MagnetTest
+  - Overlay
   - 
   - 
   - 
@@ -52,4 +52,7 @@ TagManager:
     locked: 0
   - name: Line Renderer
     uniqueID: 3399931089
+    locked: 0
+  - name: Overlay
+    uniqueID: 2634019967
     locked: 0
