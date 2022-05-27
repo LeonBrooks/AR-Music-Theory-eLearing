@@ -9,7 +9,7 @@ public abstract class Tutorial
     protected MusicController mc;
     protected bool skipped;
     protected float deacWaitTime = 2f;
-    protected List<GameObject> tooltips;
+    protected List<Tooltip> tooltips;
     protected static SheetMusic sheet;
     protected Vector3 defaultTooltipScale;
     protected GameObject tootipPrefab;
@@ -22,7 +22,7 @@ public abstract class Tutorial
             sheet = GameObject.Find("SheetMusicContainer/SheetMusic").GetComponent<SheetMusic>();
         }
         skipped = false;
-        tooltips = new List<GameObject>();
+        tooltips = new List<Tooltip>();
         defaultTooltipScale = new Vector3(0.8f, 0.8f, 0.8f);
         tootipPrefab = Resources.Load("Tooltip") as GameObject;
     }
@@ -33,21 +33,21 @@ public abstract class Tutorial
         return runner.StartCoroutine(tutorial());
     }
 
-    protected GameObject instantiateTooltip(Transform parent, Vector3 pos, string text, Vector3? scale = null)
+    protected Tooltip instantiateTooltip(Transform parent, Vector3 pos, string text, Vector3? scale = null)
     {
-        GameObject tooltip = Object.Instantiate(tootipPrefab, parent, false);
+        Tooltip tooltip = Object.Instantiate(tootipPrefab, parent, false).GetComponent<Tooltip>();
         tooltip.transform.localPosition = pos;
         tooltip.transform.localScale = scale ?? defaultTooltipScale;
-        tooltip.GetComponentInChildren<TextMeshPro>().text = text;
+        tooltip.changeText(text);
         tooltips.Add(tooltip);
         return tooltip;
     }
 
     protected void clearTooltips()
     {
-        foreach (GameObject tooltip in tooltips)
+        foreach (Tooltip tooltip in tooltips)
         {
-            Object.Destroy(tooltip);
+            Object.Destroy(tooltip.gameObject);
         }
         tooltips.Clear();
     }
@@ -137,6 +137,7 @@ public abstract class Tutorial
 
     protected WaitWhile speakAndWait(string text)
     {
+        if(TTS.isSpeaking()) { TTS.stopTTS(); }
         TTS.speakText(text);
         return new WaitWhile(() => TTS.isSpeaking());
     }

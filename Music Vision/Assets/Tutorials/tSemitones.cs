@@ -6,7 +6,7 @@ public class tSemitones : Tutorial
 {
     public override IEnumerator tutorial()
     {
-        TTS.speakText(@"Hello. Welcome to the first tutorial. Here we will cover one of the baisc concepts of classical music theory: The semitone.
+        TTS.speakText(@"Hello. Welcome to the first tutorial. Here we will cover one of the basic concepts of classical music theory: The semitone.
                         The smitone is the smallest unit in classical music theory and bulids the foundation to understanding more complex concepts.
                         The sheet music won't be relevant for this tutorial so you can ignore it for now.
                         Take a look at the keyboard and say continue when you are ready to move on.");
@@ -43,7 +43,7 @@ public class tSemitones : Tutorial
         yield return waitForContinue();
 
         mc.resetAllKeys();
-        TTS.speakText("Two semitone-steps make up a make up a whole tone step. Here are some examples for whole tone steps.");
+        TTS.speakText("Two semitone steps make up a make up a whole tone step. Here are some examples for whole tone steps.");
         yield return new WaitWhile(() => TTS.isSpeaking());
         mc.noteActivated(Key.C4, Color.Blue);
         mc.noteActivated(Key.D4, Color.Blue);
@@ -66,7 +66,7 @@ public class tSemitones : Tutorial
         yield return waitForContinue();
 
         mc.resetAllKeys();
-        TTS.speakText(@"As you can see, semitiones are not directly connected to black or whithe keys on a keyboard.
+        TTS.speakText(@"As you can see, semitones are not directly connected to black or whithe keys on a keyboard.
                         Sometimes a semitone step can be between two white keys, like here.");
         yield return new WaitWhile(() => TTS.isSpeaking());
         mc.noteActivated(Key.E4, Color.Blue);
@@ -85,10 +85,10 @@ public class tSemitones : Tutorial
 
 
         TTS.speakText(@"Now you are probably wondering why the keyboard is set up that way.
-                        The short answer and somewhat simplified is that the keyboard evolved over a long period of time 
-                        and was adapted to fit the need of more complex music.
-                        It started out with only white keys to work for simple church choire music. As music got more complex the need for extra tones
-                        in between the existing ones was realized and over time more and more black keys were added in.
+                        The short and somewhat simplified answer is that the keyboard evolved over a long period of time " +
+                        @"and was adapted to fit the need of more complex music.
+                        It started out with only white keys to accompany simple church choire music. As music got more complex the need for extra tones" +
+                        @"in between the existing ones was realized and over time more and more black keys were added in.
                         As the keyboard works quite well for most western music and it is widely spread it has become the current standard.
                         In theory however there is no reason why a keyboard couldn't be set up differently, 
                         especially when looking at music from different cultures that didn't evolve from European classical music.");
@@ -97,7 +97,7 @@ public class tSemitones : Tutorial
         yield return waitForContinue();
 
         mc.resetAllKeys();
-        TTS.speakText("Now let's move on to some simple excercises. Given is this tone.");
+        TTS.speakText("Now let's move on to some simple exercises. Given is this tone.");
         yield return new WaitWhile(() => TTS.isSpeaking());
         mc.noteActivated(Key.D4, Color.Green, true);
         yield return new WaitForSeconds(deacWaitTime);
@@ -107,8 +107,8 @@ public class tSemitones : Tutorial
         yield return new WaitWhile(() => TTS.isSpeaking());
         yield return waitForKeyOrSkip(Key.DS4, "press and hold the key one semitone above");
         mc.resetAllKeys();
-        if (skipped) { TTS.speakText(" The correct answer would have been this:"); }
-        else { TTS.speakText(" Correct, these keys are one semitone apart."); }
+        if (skipped) { TTS.speakText("The correct answer would have been this:"); }
+        else { TTS.speakText("Correct, these keys are one semitone apart."); }
         yield return new WaitWhile(() => TTS.isSpeaking());
         mc.noteActivated(Key.D4, Color.Green, true);
         mc.noteActivated(Key.DS4, Color.Blue, true);
@@ -129,8 +129,8 @@ public class tSemitones : Tutorial
         yield return new WaitWhile(() => TTS.isSpeaking());
         yield return waitForKeyOrSkip(Key.FS4, "press and hold the key one whole tone step above");
         mc.resetAllKeys();
-        if (skipped) { TTS.speakText(" The correct answer would have been this:"); }
-        else { TTS.speakText(" Correct, these keys are one whole tone step apart."); }
+        if (skipped) { TTS.speakText("The correct answer would have been this:"); }
+        else { TTS.speakText("Correct, these keys are one whole tone step apart."); }
         yield return new WaitWhile(() => TTS.isSpeaking());
         mc.noteActivated(Key.E4, Color.Green, true);
         mc.noteActivated(Key.FS4, Color.Blue, true);
@@ -151,8 +151,8 @@ public class tSemitones : Tutorial
         yield return new WaitWhile(() => TTS.isSpeaking());
         yield return waitForKeyOrSkip(Key.E4, "press and hold the key two and a half whole tone steps below");
         mc.resetAllKeys();
-        if (skipped) { TTS.speakText(" The correct answer would have been this:"); }
-        else { TTS.speakText(" Correct, these keys are two and a half whole tone steps apart."); }
+        if (skipped) { TTS.speakText("The correct answer would have been this:"); }
+        else { TTS.speakText("Correct, these keys are two and a half whole tone steps apart."); }
         yield return new WaitWhile(() => TTS.isSpeaking());
         mc.noteActivated(Key.A4, Color.Green, true);
         mc.noteActivated(Key.E4, Color.Blue, true);
