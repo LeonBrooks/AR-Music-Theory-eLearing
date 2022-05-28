@@ -17,64 +17,183 @@ MonoBehaviour:
   recognitionConfidenceLevel: 1
   speechCommands:
   - localizationKey: 
-    keyword: Menu
-    keyCode: 51
-    action:
-      id: 2
-      description: Menu
-      axisConstraint: 2
-  - localizationKey: 
     keyword: Select
-    keyCode: 49
+    keyCode: 282
     action:
       id: 1
       description: Select
       axisConstraint: 2
   - localizationKey: 
-    keyword: Toggle Diagnostics
-    keyCode: 48
-    action:
-      id: 14
-      description: Toggle Diagnostics
-      axisConstraint: 0
-  - localizationKey: 
-    keyword: Toggle Profiler
-    keyCode: 57
-    action:
-      id: 15
-      description: Toggle Profiler
-      axisConstraint: 0
-  - localizationKey: 
-    keyword: Make Planes
-    keyCode: 52
-    action:
-      id: 0
-      description: None
-      axisConstraint: 0
-  - localizationKey: 
     keyword: Continue
-    keyCode: 256
+    keyCode: 275
     action:
       id: 0
       description: None
       axisConstraint: 0
   - localizationKey: 
     keyword: Skip
-    keyCode: 257
+    keyCode: 273
     action:
       id: 0
       description: None
       axisConstraint: 0
   - localizationKey: 
     keyword: Exit
-    keyCode: 258
+    keyCode: 274
     action:
       id: 0
       description: None
       axisConstraint: 0
   - localizationKey: 
     keyword: Repeat
+    keyCode: 276
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: A
+    keyCode: 97
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: B
+    keyCode: 98
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: C
+    keyCode: 99
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: D
+    keyCode: 100
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: E
+    keyCode: 101
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: F
+    keyCode: 102
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: G
+    keyCode: 103
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: A Sharp
+    keyCode: 262
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: B Sharp
+    keyCode: 263
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: C Sharp
+    keyCode: 257
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: D Sharp
+    keyCode: 258
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: E Sharp
     keyCode: 259
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: F Sharp
+    keyCode: 260
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: G Sharp
+    keyCode: 261
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: A Flat
+    keyCode: 54
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: B Flat
+    keyCode: 55
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: C Flat
+    keyCode: 49
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: D Flat
+    keyCode: 50
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: E Flat
+    keyCode: 51
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: F Flat
+    keyCode: 52
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: G Flat
+    keyCode: 53
     action:
       id: 0
       description: None

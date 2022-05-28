@@ -221,15 +221,17 @@ public class MusicController : MonoBehaviour
         audioSource.volume = baseVolume;
     }
 
-    public bool areActive(Key key, params Key[] otherKeys)
+    public bool areActive(Key key, bool alternative = false, params Key[] otherKeys)
     {
-        if(!keyActive[(int)key]) { return false; }
+        if (alternative && keyActive[(int) key]) { return true; }
+        if (!alternative && !keyActive[(int)key]) { return false; }
 
-        foreach(Key oKey in otherKeys)
+        foreach (Key oKey in otherKeys)
         {
-            if (!keyActive[(int)oKey]) { return false; }
+            if (alternative && keyActive[(int)oKey]) { return true; }
+            if (!alternative && !keyActive[(int)oKey]) { return false; }  
         }
 
-        return true;
+        if(alternative) { return false; } else { return true; }
     }
 }

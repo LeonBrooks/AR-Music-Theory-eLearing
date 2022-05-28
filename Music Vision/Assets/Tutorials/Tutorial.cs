@@ -7,7 +7,7 @@ public abstract class Tutorial
 {
     public TutorialRunner runner;
     protected MusicController mc;
-    protected bool skipped;
+    protected bool correctAnswer;
     protected float deacWaitTime = 2f;
     protected List<Tooltip> tooltips;
     protected static SheetMusic sheet;
@@ -37,7 +37,7 @@ public abstract class Tutorial
         {
             sheet = GameObject.Find("SheetMusicContainer/SheetMusic").GetComponent<SheetMusic>();
         }
-        skipped = false;
+        correctAnswer = false;
         tooltips = new List<Tooltip>();
         defaultTooltipScale = new Vector3(0.8f, 0.8f, 0.8f);
         tootipPrefab = Resources.Load("Tooltip") as GameObject;
@@ -66,7 +66,10 @@ public abstract class Tutorial
     {
         foreach (Tooltip tooltip in tooltips)
         {
-            Object.Destroy(tooltip.gameObject);
+            if(tooltip != null)
+            {
+                Object.Destroy(tooltip.gameObject);
+            }
         }
         tooltips.Clear();
     }
@@ -83,10 +86,9 @@ public abstract class Tutorial
         initRepeat();
     }
 
-    private IEnumerator waitForKeyOrSkipCoroutine(Key key,string taskPromptText, bool showSkipPrompt, bool resetUserInput, params Key[] otherKeys)
+    private IEnumerator waitForKeyCoroutine(Key key,string taskPromptText, bool showSkipPrompt, bool resetUserInput, bool alternative, params Key[] otherKeys)
     {
         bool pressed = false;
-        skipped = false;
         runner.resetSkip();
         runner.resetRepeat();
         mc.inputEnabled = true;
@@ -98,7 +100,7 @@ public abstract class Tutorial
             if(runner.waitForSkip()) 
             { 
                 mc.inputEnabled = resetUserInput ? false : true;
-                skipped = true;
+                correctAnswer = false;
                 runner.hideTaskPrompt();
                 initRepeat();
                 yield break;
@@ -109,12 +111,12 @@ public abstract class Tutorial
                 yield return repeat();
             }
 
-            if (mc.areActive(key, otherKeys)) 
+            if (mc.areActive(key, alternative,otherKeys)) 
             { 
                 if(pressed)
                 {
                     mc.inputEnabled = resetUserInput ? false : true;
-                    runner.resetSkip();
+                    correctAnswer = true;
                     runner.hideTaskPrompt();
                     initRepeat();
                     yield break;
@@ -127,9 +129,54 @@ public abstract class Tutorial
         }
     }
 
-    protected Coroutine waitForKeyOrSkip(Key key, string taskPromptText, bool showSkipPrompt = true, bool resetUserInput = true, params Key[] otherKeys)
+    protected Coroutine waitForKey(Key key, string taskPromptText, bool showSkipPrompt = true, bool resetUserInput = true,
+        bool alternative = false, params Key[] otherKeys)
     {
-        return runner.StartCoroutine(waitForKeyOrSkipCoroutine(key, taskPromptText, showSkipPrompt, resetUserInput, otherKeys));
+        return runner.StartCoroutine(waitForKeyCoroutine(key, taskPromptText, showSkipPrompt, resetUserInput, alternative, otherKeys));
+    }
+
+    private IEnumerator waitForNameCoroutine(Key key, int flatOrSharp, string taskPromptText, bool showSkipPrompt)
+    {
+        runner.resetSkip();
+        runner.resetRepeat();
+        runner.resetNameInput();
+        if (showSkipPrompt) { runner.displayTextPrompt("Say skip to reveal the answer"); }
+        runner.displayTaskPrompt(taskPromptText);
+
+        while (true)
+        {
+            if (runner.waitForSkip())
+            {
+                correctAnswer = false;
+                runner.hideTaskPrompt();
+                initRepeat();
+                yield break;
+            }
+
+            if (runner.waitForRepeat())
+            {
+                yield return repeat();
+            }
+
+            if (runner.waitForName())
+            {
+                if(flatOrSharp != 0) { flatOrSharp = flatOrSharp < 0 ? 1 : 2; }
+                if(runner.nameInput[0] == key.ToString()[0] && flatOrSharp == int.Parse("" + runner.nameInput[1]))
+                {
+                    correctAnswer = true;
+                } else { correctAnswer = false; }
+
+                runner.hideTaskPrompt();
+                initRepeat();
+                yield break;
+            }
+            yield return null;
+        }
+    }
+
+    protected Coroutine waitForName(Key key, int flatOrSharp, string taskPromptText, bool showSkipPrompt = true)
+    {
+        return runner.StartCoroutine(waitForNameCoroutine(key, flatOrSharp, taskPromptText, showSkipPrompt));
     }
 
     private IEnumerator waitForContinueCoroutine(bool showPrompt)

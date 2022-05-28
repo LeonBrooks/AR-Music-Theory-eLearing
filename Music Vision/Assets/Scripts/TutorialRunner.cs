@@ -14,6 +14,8 @@ public class TutorialRunner : MonoBehaviour
     [SerializeField]
     private GameObject exitDialogPrefab;
 
+    public string nameInput { get; private set; } = "";
+
     private int runningTutorial = -1;
     private bool continueInput = false;
     private bool skipInput = false;
@@ -27,6 +29,7 @@ public class TutorialRunner : MonoBehaviour
         tutorials = new List<Tutorial>();
         tutorials.Add(new tSemitones());
         tutorials.Add(new tNotation());
+        tutorials.Add(new tBlackKeys());
     }
 
     private void startTutorial(int index)
@@ -102,6 +105,14 @@ public class TutorialRunner : MonoBehaviour
         } else { return false; }
     }
 
+    public bool waitForName()
+    {
+        if(nameInput != "")
+        {
+            return true;
+        } else { return false; }
+    }
+
     public void displayTextPrompt(string text)
     {
         textPrompt.GetComponentInChildren<TextMeshProUGUI>().text = text;
@@ -149,6 +160,11 @@ public class TutorialRunner : MonoBehaviour
         repeatInput = true;
     }
 
+    public void nameInputEntered(string key)
+    {
+        nameInput = key;
+    }
+
     public void exitInputEntered()
     {
         if (!isRunning || exitDialogOpen) { return; }
@@ -178,5 +194,10 @@ public class TutorialRunner : MonoBehaviour
     public void resetRepeat()
     {
         repeatInput = false;
+    }
+
+    public void resetNameInput()
+    {
+        nameInput = "";
     }
 }

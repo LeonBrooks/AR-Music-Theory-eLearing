@@ -70,9 +70,9 @@ public class tSemitones : Tutorial
         yield return hitKey(Key.D4, Color.Green, fix: true, wait: true);
 
         yield return speakAndWait("Now press and hold the key one semitone above. You can always say skip to reveal the answer");
-        yield return waitForKeyOrSkip(Key.DS4, "press and hold the key one semitone above");
+        yield return waitForKey(Key.DS4, "press and hold the key one semitone above");
         mc.resetAllKeys();
-        if (skipped) { yield return speakAndWait("The correct answer would have been this:"); }
+        if (!correctAnswer) { yield return speakAndWait("The correct answer would have been this:"); }
         else { yield return speakAndWait("Correct, these keys are one semitone apart."); }
         hitKey(Key.D4, Color.Green);
         yield return hitKey(Key.DS4, Color.Blue, wait: true);
@@ -84,9 +84,9 @@ public class tSemitones : Tutorial
         yield return hitKey(Key.E4, Color.Green, fix: true, wait: true);
 
         yield return speakAndWait("Press and hold the key one whole tone step above");
-        yield return waitForKeyOrSkip(Key.FS4, "press and hold the key one whole tone step above");
+        yield return waitForKey(Key.FS4, "press and hold the key one whole tone step above");
         mc.resetAllKeys();
-        if (skipped) { yield return speakAndWait("The correct answer would have been this:"); }
+        if (!correctAnswer) { yield return speakAndWait("The correct answer would have been this:"); }
         else { yield return speakAndWait("Correct, these keys are one whole tone step apart."); }
         hitKey(Key.E4, Color.Green);
         yield return hitKey(Key.FS4, Color.Blue, wait: true);
@@ -98,9 +98,9 @@ public class tSemitones : Tutorial
         yield return hitKey(Key.A4, Color.Green, fix: true, wait: true);
 
         yield return speakAndWait("Press and hold the key two and a half whole tone steps below");
-        yield return waitForKeyOrSkip(Key.E4, "press and hold the key two and a half whole tone steps below");
+        yield return waitForKey(Key.E4, "press and hold the key two and a half whole tone steps below");
         mc.resetAllKeys();
-        if (skipped) { yield return speakAndWait("The correct answer would have been this:"); }
+        if (!correctAnswer) { yield return speakAndWait("The correct answer would have been this:"); }
         else { yield return speakAndWait("Correct, these keys are two and a half whole tone steps apart."); }
         hitKey(Key.A4, Color.Green);
         yield return hitKey(Key.E4, Color.Blue, wait: true);

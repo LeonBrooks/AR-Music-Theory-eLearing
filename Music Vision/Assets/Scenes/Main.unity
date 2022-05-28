@@ -219,6 +219,342 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - keyword: A
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1636306}
+          m_TargetAssemblyTypeName: TutorialRunner, Assembly-CSharp
+          m_MethodName: nameInputEntered
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: A0
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: B
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1636306}
+          m_TargetAssemblyTypeName: TutorialRunner, Assembly-CSharp
+          m_MethodName: nameInputEntered
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: B0
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: C
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1636306}
+          m_TargetAssemblyTypeName: TutorialRunner, Assembly-CSharp
+          m_MethodName: nameInputEntered
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: C0
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: D
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1636306}
+          m_TargetAssemblyTypeName: TutorialRunner, Assembly-CSharp
+          m_MethodName: nameInputEntered
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: D0
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: E
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1636306}
+          m_TargetAssemblyTypeName: TutorialRunner, Assembly-CSharp
+          m_MethodName: nameInputEntered
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: E0
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: F
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1636306}
+          m_TargetAssemblyTypeName: TutorialRunner, Assembly-CSharp
+          m_MethodName: nameInputEntered
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: F0
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: G
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1636306}
+          m_TargetAssemblyTypeName: TutorialRunner, Assembly-CSharp
+          m_MethodName: nameInputEntered
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: G0
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: A Flat
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1636306}
+          m_TargetAssemblyTypeName: TutorialRunner, Assembly-CSharp
+          m_MethodName: nameInputEntered
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: A1
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: B Flat
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1636306}
+          m_TargetAssemblyTypeName: TutorialRunner, Assembly-CSharp
+          m_MethodName: nameInputEntered
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: B1
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: C Flat
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1636306}
+          m_TargetAssemblyTypeName: TutorialRunner, Assembly-CSharp
+          m_MethodName: nameInputEntered
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: C1
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: D Flat
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1636306}
+          m_TargetAssemblyTypeName: TutorialRunner, Assembly-CSharp
+          m_MethodName: nameInputEntered
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: D1
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: E Flat
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1636306}
+          m_TargetAssemblyTypeName: TutorialRunner, Assembly-CSharp
+          m_MethodName: nameInputEntered
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: E1
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: F Flat
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1636306}
+          m_TargetAssemblyTypeName: TutorialRunner, Assembly-CSharp
+          m_MethodName: nameInputEntered
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: F1
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: G Flat
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1636306}
+          m_TargetAssemblyTypeName: TutorialRunner, Assembly-CSharp
+          m_MethodName: nameInputEntered
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: G1
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: A Sharp
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1636306}
+          m_TargetAssemblyTypeName: TutorialRunner, Assembly-CSharp
+          m_MethodName: nameInputEntered
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: A2
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: B Sharp
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1636306}
+          m_TargetAssemblyTypeName: TutorialRunner, Assembly-CSharp
+          m_MethodName: nameInputEntered
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: B2
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: C Sharp
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1636306}
+          m_TargetAssemblyTypeName: TutorialRunner, Assembly-CSharp
+          m_MethodName: nameInputEntered
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: C2
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: D Sharp
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1636306}
+          m_TargetAssemblyTypeName: TutorialRunner, Assembly-CSharp
+          m_MethodName: nameInputEntered
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: D2
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: E Sharp
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1636306}
+          m_TargetAssemblyTypeName: TutorialRunner, Assembly-CSharp
+          m_MethodName: nameInputEntered
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: E2
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: F Sharp
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1636306}
+          m_TargetAssemblyTypeName: TutorialRunner, Assembly-CSharp
+          m_MethodName: nameInputEntered
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: F2
+            m_BoolArgument: 0
+          m_CallState: 2
+  - keyword: G Sharp
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1636306}
+          m_TargetAssemblyTypeName: TutorialRunner, Assembly-CSharp
+          m_MethodName: nameInputEntered
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: G2
+            m_BoolArgument: 0
+          m_CallState: 2
   persistentKeywords: 0
   speechConfirmationTooltipPrefab: {fileID: 0}
 --- !u!114 &1636306
@@ -544,6 +880,10 @@ PrefabInstance:
     - target: {fileID: 6742094791873819759, guid: 64790b91b91094d49942373c4e83c237, type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898936025705274381, guid: 64790b91b91094d49942373c4e83c237, type: 3}
+      propertyPath: enforceFrontPush
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8495876841678131188, guid: 64790b91b91094d49942373c4e83c237, type: 3}
       propertyPath: m_IsActive
@@ -1332,7 +1672,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 131490876616161037, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
       propertyPath: m_text
-      value: Tutorial 2 Notation
+      value: 'Tutorial 2
+
+        Notation'
       objectReference: {fileID: 0}
     - target: {fileID: 131490876616161037, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
       propertyPath: m_textAlignment
@@ -1358,6 +1700,10 @@ PrefabInstance:
       propertyPath: iconQuadTexture
       value: 
       objectReference: {fileID: 2800000, guid: 0bee624b4074e5445929e56287795085, type: 3}
+    - target: {fileID: 695247785251967738, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
+      propertyPath: enforceFrontPush
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 958555039328662094, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
       propertyPath: iconQuadTexture
       value: 
@@ -1496,7 +1842,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3015033265155075187, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
       propertyPath: m_text
-      value: Not Implemented
+      value: 'Tutorial 3
+
+        The Black Keys'
       objectReference: {fileID: 0}
     - target: {fileID: 3015033265155075187, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
       propertyPath: m_textAlignment
@@ -1510,6 +1858,10 @@ PrefabInstance:
       propertyPath: m_HorizontalAlignment
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3015033265741987203, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
+      propertyPath: m_Name
+      value: BlackKeysTutorialButton
+      objectReference: {fileID: 0}
     - target: {fileID: 3169063512150721553, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
       propertyPath: enforceFrontPush
       value: 0
@@ -1521,10 +1873,62 @@ PrefabInstance:
     - target: {fileID: 4892378986071971770, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
       propertyPath: iconQuadTexture
       value: 
-      objectReference: {fileID: 2800000, guid: 0bee624b4074e5445929e56287795085, type: 3}
+      objectReference: {fileID: 2800000, guid: ea677436af9004848a7f20878e38257c, type: 3}
     - target: {fileID: 5533224338041270348, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
       propertyPath: enforceFrontPush
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662296087584166688, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662296087584166688, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662296087584166688, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662296087584166688, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1636306}
+    - target: {fileID: 5662296087584166688, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1648217348}
+    - target: {fileID: 5662296087584166688, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662296087584166688, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: switchTutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662296087584166688, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662296087584166688, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TutorialRunner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662296087584166688, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662296087584166688, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662296087584166688, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662296087584166688, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5684875915651602478, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
       propertyPath: m_text
@@ -1684,7 +2088,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8118008112290837876, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
       propertyPath: m_text
-      value: Tutorial 1 Semitones
+      value: 'Tutorial 1
+
+        Semitones'
       objectReference: {fileID: 0}
     - target: {fileID: 8118008112290837876, guid: 6dfc5f0a5fe04f94ab15177720f4bf05, type: 3}
       propertyPath: m_textAlignment

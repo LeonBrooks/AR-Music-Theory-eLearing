@@ -77,7 +77,7 @@ public class tNotation : Tutorial
         yield return hitKey(Key.B4, wait: true);
         yield return waitForContinue();
 
-        mc.resetAllKeys();*/
+        mc.resetAllKeys();
         yield return speakAndWait("Ok, now let's take a look at how the different notes are named." +
             "The first thing to know is that only the white keys have individual names. Don't worry about the black keys for now, we will talk about them later." +
             "The first note we are going to look at is the C.");
@@ -212,7 +212,7 @@ public class tNotation : Tutorial
         mc.resetAllKeys();
         yield return speakAndWait("Ok, that was already quite a bit of information. So let's recap.");
         yield return waitForContinue();
-        yield return speakAndWait("Notes in sheet music are based on the white key of the keyboard. The can be either a semitone or a whole tone apart");
+        yield return speakAndWait("Notes in sheet music are based on the white keys of the keyboard. The can be either a semitone or a whole tone apart");
         km.showNameplate(Key.C4.ToString());
         km.showNameplate(Key.D4.ToString());
         km.showNameplate(Key.E4.ToString());
@@ -257,5 +257,107 @@ public class tNotation : Tutorial
         instantiateTooltip(nC.gameObject.transform, new Vector3(75, -90, 0), "Octave");
         tooltips[6].activateSecondLine(nC2.gameObject);
         yield return waitForContinue();
+
+        clearTooltips();
+        sheet.clearAllNotes();
+        mc.resetAllKeys();
+        yield return speakAndWait("Ok now let's move on to some exercises.", false);
+        yield return speakAndWait("Look at this note:");
+        Note nC = sheet.drawNote(Key.C4, 0, 0);
+        yield return hitKey(Key.C4, fix: true, wait: true, draw: false);
+        yield return speakAndWait("What is it's name? Say it out loud.");
+        yield return waitForName(Key.C4, 0, "Say out the notes name loud");
+        km.showNameplate(Key.C4.ToString());
+        instantiateTooltip(nC.gameObject.transform, new Vector3(30, 15, 0), "C");
+        if (correctAnswer) { yield return speakAndWait("Yes, this is a C"); }
+        else { yield return speakAndWait("Not quite right. This is a C"); }
+        yield return waitForContinue();
+
+        sheet.removeNote(nC);
+        mc.resetAllKeys();
+        yield return speakAndWait("Now let's do it the other way around. Press an E on the keyboard.");
+        yield return waitForKey(Key.E4, "Press and hold an E on the keyboard.", alternative: true, otherKeys: new Key[] { Key.E2, Key.E3, Key.E5 });
+        if (correctAnswer) { yield return speakAndWait("Yes, this is an E. Other options would have been:"); }
+        else { yield return speakAndWait("No, that was not an E. This are all Es on the keyboard."); }
+        mc.linger = true;
+        hitKey(Key.E2);
+        hitKey(Key.E3);
+        hitKey(Key.E4);
+        yield return hitKey(Key.E5, wait: true);
+        mc.linger = false;
+        yield return waitForContinue();
+
+        clearTooltips();
+        sheet.clearAllNotes();
+        mc.resetAllKeys();*/
+        yield return speakAndWait("Now one last thing before we wrap up this tutorial." +
+            "As you may have already noticed the top and bottom staff don't work in the exact same way." +
+            "Where a note is drawn into a staff is determined by the sign at the beginning. Those signs are called clefs.");
+        instantiateTooltip(sheet.trebleClefAnchor, new Vector3(2, 0.5f, 0), "clef", new Vector3(0.03f, 0.03f, 0.03f)) ;
+        instantiateTooltip(sheet.bassClefAnchor, new Vector3(2,0.5f,0), "clef", new Vector3(0.03f, 0.03f, 0.03f));
+        yield return waitForContinue();
+        yield return speakAndWait("The two clefs here are the treble clef and the bass clef");
+        tooltips[0].changeText("treble clef");
+        tooltips[1].changeText("base clef");
+        yield return waitForContinue();
+
+        yield return speakAndWait("These are the clefs typially used in piano sheet music. Although other instruments may use different clefs." +
+            "To explain how the treble and base clef work with a piano we have to take a closer look at how the keyboard is set up.");
+        yield return waitForContinue();
+        clearTooltips();
+        yield return speakAndWait("As you may have noticed our keyboard only has four octaves.");
+        Note nC = sheet.drawNote(Key.C2, 0, 0);
+        Note nD = sheet.drawNote(Key.C3, 0, 1);
+        Note nE = sheet.drawNote(Key.C4, 0, 2);
+        Note nF = sheet.drawNote(Key.C5, 0, 3);
+        instantiateTooltip(nC.transform, new Vector3(25, 12,0), "C2");
+        instantiateTooltip(nD.transform, new Vector3(30, 20, 0), "C3");
+        instantiateTooltip(nE.transform, new Vector3(-30, 20, 0), "C4");
+        instantiateTooltip(nF.transform, new Vector3(30, 20, 0), "C5");
+        hitKey(Key.C2, draw: false, addToRepeat: false);
+        hitKey(Key.C3, draw: false, addToRepeat: false);
+        hitKey(Key.C4, draw: false, addToRepeat: false);
+        yield return hitKey(Key.C5, draw: false, wait: true, addToRepeat: false);
+        yield return waitForContinue();
+        yield return speakAndWait("A normal piano has one more octave below our keyboard and two more octaves above, as well as some extra keys on each end." +
+            "That is why our lowest octave is the C2 octave. For our purposes however this is more than sufficient.");
+        yield return waitForContinue();
+
+        clearTooltips();
+        sheet.clearAllNotes();
+        mc.resetAllKeys();
+        yield return speakAndWait("The C4 is also know as the middle C");
+        nC = sheet.drawNote(Key.C4, 0, 1);
+        instantiateTooltip(nC.transform, new Vector3(30, -15, 0), "middle C");
+        yield return hitKey(Key.C4, draw: false, wait: true);
+        yield return waitForContinue();
+        yield return speakAndWait("It is the connection point between the treble clef and the bass clef." +
+            "Notes below it naturally continue downwards in the base clef,whiles notes above it naturally continue upwards in the treble clef.");
+        nE = sheet.drawNote(Key.B3, 0, 0);
+        nE.changeColor(Color.Green);
+        yield return hitKey(Key.B3, Color.Green, draw: false, wait: true);
+        nF = sheet.drawNote(Key.D4, 0, 2);
+        nF.changeColor(Color.Red);
+        yield return hitKey(Key.D4, Color.Red, draw: false, wait: true);
+        yield return waitForContinue();
+        clearTooltips();
+        sheet.clearAllNotes();
+        mc.resetAllKeys();
+        yield return speakAndWait("More formally the treble clef is defined as having the inner spiral crossing the G4 line");
+        nC = sheet.drawNote(Key.G4, 0, 0);
+        instantiateTooltip(nC.transform, new Vector3(30, 20, 0), "G4");
+        yield return hitKey(Key.G4, draw: false, wait: true);
+        yield return speakAndWait("And the bass clef is defined as having the dot on the F3 line.");
+        nD = sheet.drawNote(Key.F3, 0, 0);
+        instantiateTooltip(nD.transform, new Vector3(30, 20, 0), "F3");
+        yield return hitKey(Key.F3, draw: false, wait: true);
+        yield return waitForContinue();
+        yield return speakAndWait("Although we won't be doing that, theoretically any note can be written in any clef by adding enough ledger lines.");
+        yield return waitForContinue();
+        yield return speakAndWait("For piano generally the top saff is written in the treble clef and contains the notes for the right hand," +
+            "while the bottom staff is written in the bass cleff with notes for the left hand.");
+        yield return waitForContinue();
+        yield return speakAndWait("That concludes the second tutorial.");
+        yield return nextTutorialOrExit(2);
     }
 }
