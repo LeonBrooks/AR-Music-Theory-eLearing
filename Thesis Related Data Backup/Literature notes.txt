@@ -1,0 +1,124 @@
+Important names:
+	AR: Azuma (1997) http://cierto.org/pdf/ARpresence.pdf provides AR def
+	Learning with AR: Keebler, Patzer, D.C. Smith
+
+
+
+Developing Music Harmony Awareness in Young Students through an Augmented Reality Approach (2020)
+https://air.unimi.it/retrieve/handle/2434/784905/1827640/CHIRA2020_cottin_reduced.pdf
+
+most tools require prior knowledge
+
+
+
+
+Using Context Awareness and Augmented Reality to Build an Instruction System for the Fundamental Music Theories (2017)
+https://www.airitilibrary.com/Publication/alDetailedMesh?docid=P20141110001-201709-201709190001-201709190001-137-150
+
+smart questions based on time spent reading
+
+
+
+
+
+ChordAR: An Educational AR Game Design for Children’s Music Theory Learning (2022)
+https://www.hindawi.com/journals/wcmc/2022/5268586/
+
+set up: synthesia does not teach music theory
+physical vs virtual
+less rigid inputs
+
+
+
+
+
+
+Augmented reality: Examining its value in a music technology classroom. Practice and potential (2019)
+https://wje.org.nz/index.php/WJE/article/view/687
+
+AR may show higher retention in learning
+important names Keebler, Patzer, D.C. Smith
+
+
+
+
+
+Teaching and Learning Undergraduate Music Theory at the Keyboard: Challenges, Solutions, and Impacts (2015)
+https://mtosmt.org/issues/mto.15.21.3/mto.15.21.3.callahan.html
+
+Take/Recording feature has padagogic value
+vary Tempo, loop, metronome
+Fill in the blanks
+Hear Results
+Practical exercise helps motivation
+
+
+
+
+
+Learning Sequences in Music: A Contemporary Learning Theory (1980)
+https://books.google.de/books?hl=en&lr=&id=F2zQQZXNj6oC&oi=fnd&pg=PR7&dq=music+theory+learning&ots=V1s2egtWDq&sig=SQ8glbp-nruHMZmVctQmMBJ_b3s&redir_esc=y#v=onepage&q=music%20theory%20learning&f=true
+
+Just a Theory
+
+
+
+
+
+Augmented Reality Learning Experiences: Survey of Prototype Design and Evaluation (2014)
+https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6681863
+
+advantages of AR defined (4.1)
+moderate effect found
+design strategies (4.2)
+learning benefit hypothesises (6.1)
+Multimedia learning theory for AR (6.2.2)
+annotation, Contextual Visualization and Vision-Haptic Visualization (6)
+
+
+
+
+
+
+Summary of Usability Evaluations of an Educational Augmented Reality Applicatio (2007)
+https://link.springer.com/content/pdf/10.1007/978-3-540-73335-5_71.pdf
+
+keep intrfaces/menus simple
+check motion sickness
+constructivism and activity theory
+
+
+
+
+
+Design Principles for Augmented Reality Learning (2013)
+https://link.springer.com/content/pdf/10.1007/s11528-013-0717-2.pdf
+
+1. Enable and then challenge (challenge)
+2. Drive by gamified story (fantasy)
+3. See the unseen (curiosity)
+
+
+
+
+
+
+Pedagogy embedded in educational software design: report of a case study
+https://reader.elsevier.com/reader/sd/pii/S036013150100032X?token=A0E19C30472A3E188EE6CF2FC6169603C35CC35B11E793852CF5063A363A097CC67C4AC8890856EDC5B35C1E12D72B0C&originRegion=eu-west-1&originCreation=20220415153822
+
+browsing structure
+
+
+
+
+Piano samples:
+https://www.ivyaudio.com/Piano-in-162 acessed 19.04.22
+https://freesound.org/people/jobro/packs/2489/
+https://theremin.music.uiowa.edu/MISpiano.html
+
+Music Symbols:
+blank sheet: https://www.musicaneo.com/blank_sheet_music.html 21.4.22
+flat: https://www.pngegg.com/en/png-bhddv
+sharp: https://www.pngegg.com/en/png-nhqtz
+quarter: https://www.pngegg.com/en/png-nunqs
+ledger line: https://www.pngwing.com/en/free-png-dxlff	22.4.22

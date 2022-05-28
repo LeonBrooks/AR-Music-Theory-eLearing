@@ -1,0 +1,25 @@
+1. Literaturrecherche
+
+AR-Feature:
+Display Klaviatur ink. Coloring => done
+Handtracking Input		=> done
+Playing Sounds			=> done
+Display Text			=> done
+(Display Sheet Music)		=> done
+Font Generation			=> not required
+
+
+Learning Feature:
+TTS repeat
+Recherche zu Didaktik beim Klavierlernen -> "Spielmodi"
+Tonleitern
+Akkorde
+T,SD,D
+(Transposition, Umkehrung)
+(weitere Harmonielehre) 
+
+
+Evalution?
+Schreiben
+1.Abgabversion Fertig
+Midi-Export Feature
