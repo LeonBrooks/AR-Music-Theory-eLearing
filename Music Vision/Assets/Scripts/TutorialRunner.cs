@@ -18,6 +18,7 @@ public class TutorialRunner : MonoBehaviour
     private bool continueInput = false;
     private bool skipInput = false;
     private bool exitDialogOpen = false;
+    private bool repeatInput;
 
     public bool isRunning { get; private set; }
 
@@ -92,15 +93,39 @@ public class TutorialRunner : MonoBehaviour
         else { return false; }
     }
 
+    public bool waitForRepeat() 
+    {
+        if (repeatInput)
+        {
+            repeatInput = false;
+            return true;
+        } else { return false; }
+    }
+
     public void displayTextPrompt(string text)
     {
         textPrompt.GetComponentInChildren<TextMeshProUGUI>().text = text;
         textPrompt.SetActive(true);
     }
 
+    public void displayTextPrompt()
+    {
+        textPrompt.SetActive(true);
+    }
+
+    public void hideTextPrompt()
+    {
+        textPrompt.SetActive(false);
+    }
+
     public void displayTaskPrompt(string text)
     {
         taskPrompt.GetComponentInChildren<TextMeshProUGUI>().text = text;
+        taskPrompt.SetActive(true);
+    }
+
+    public void displayTaskPrompt()
+    {
         taskPrompt.SetActive(true);
     }
 
@@ -117,6 +142,11 @@ public class TutorialRunner : MonoBehaviour
     public void skipInputEntered()
     {
         skipInput = true;
+    }
+
+    public void repeatInputEntered()
+    {
+        repeatInput = true;
     }
 
     public void exitInputEntered()
@@ -145,4 +175,8 @@ public class TutorialRunner : MonoBehaviour
         continueInput = false;
     }
 
+    public void resetRepeat()
+    {
+        repeatInput = false;
+    }
 }

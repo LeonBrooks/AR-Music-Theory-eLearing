@@ -13,6 +13,22 @@ public abstract class Tutorial
     protected static SheetMusic sheet;
     protected Vector3 defaultTooltipScale;
     protected GameObject tootipPrefab;
+    protected string repeatText;
+    protected HashSet<RepeatData> repeatKeys;
+
+    protected struct RepeatData
+    {
+        public Key key;
+        public Color color;
+        public bool wait;
+
+        public RepeatData(Key key, Color color, bool wait)
+        {
+            this.key = key;
+            this.color = color;
+            this.wait = wait;
+        }
+    }
 
     public Tutorial()
     {
@@ -25,8 +41,11 @@ public abstract class Tutorial
         tooltips = new List<Tooltip>();
         defaultTooltipScale = new Vector3(0.8f, 0.8f, 0.8f);
         tootipPrefab = Resources.Load("Tooltip") as GameObject;
+        repeatText = "";
+        repeatKeys = new HashSet<RepeatData>();
     }
 
+    public abstract IEnumerator tutorial();
     public Coroutine startTutorial(TutorialRunner runner)
     {
         this.runner = runner;
@@ -52,9 +71,16 @@ public abstract class Tutorial
         tooltips.Clear();
     }
 
+    protected void initRepeat()
+    {
+        repeatKeys.Clear();
+        repeatText = "";
+    }
+
     public virtual void exitCleanup() 
     {
         clearTooltips();
+        initRepeat();
     }
 
     private IEnumerator waitForKeyOrSkipCoroutine(Key key,string taskPromptText, bool showSkipPrompt, bool resetUserInput, params Key[] otherKeys)
@@ -62,6 +88,7 @@ public abstract class Tutorial
         bool pressed = false;
         skipped = false;
         runner.resetSkip();
+        runner.resetRepeat();
         mc.inputEnabled = true;
         if (showSkipPrompt) { runner.displayTextPrompt("Say skip to reveal the answer"); }
         runner.displayTaskPrompt(taskPromptText);
@@ -73,16 +100,23 @@ public abstract class Tutorial
                 mc.inputEnabled = resetUserInput ? false : true;
                 skipped = true;
                 runner.hideTaskPrompt();
+                initRepeat();
                 yield break;
             }
-            
-            if(mc.areActive(key, otherKeys)) 
+
+            if (runner.waitForRepeat())
+            {
+                yield return repeat();
+            }
+
+            if (mc.areActive(key, otherKeys)) 
             { 
                 if(pressed)
                 {
                     mc.inputEnabled = resetUserInput ? false : true;
                     runner.resetSkip();
                     runner.hideTaskPrompt();
+                    initRepeat();
                     yield break;
                 } else
                 {
@@ -101,8 +135,23 @@ public abstract class Tutorial
     private IEnumerator waitForContinueCoroutine(bool showPrompt)
     {
         runner.resetContinue();
+        runner.resetRepeat();
         if(showPrompt) { runner.displayTextPrompt("Say continue to move on"); }
-        yield return new WaitUntil(() => runner.waitForContinue());
+
+        while (true)
+        {
+            if (runner.waitForRepeat())
+            {
+                yield return repeat();
+            }
+
+            if (runner.waitForContinue())
+            {
+                initRepeat();
+                yield break;
+            }
+            yield return null;
+        }
     }
 
     protected Coroutine waitForContinue(bool showPrompt = true)
@@ -130,16 +179,41 @@ public abstract class Tutorial
         mc.noteDeactivated(key,resetColor, draw);
     }
 
-    protected Coroutine hitKey(Key key, Color color = Color.Black, bool draw = true, bool fix = false, bool resetColor = false) 
+    protected Coroutine hitKey(Key key, Color color = Color.Black, bool draw = true, bool fix = false, bool resetColor = false, 
+        bool addToRepeat = true, bool wait = false) 
     {
+        if (addToRepeat) { repeatKeys.Add(new RepeatData(key, color, wait)); }
         return runner.StartCoroutine(hitKeyCoroutine(key, color, draw, fix, resetColor));
     }
 
-    protected WaitWhile speakAndWait(string text)
+    protected WaitWhile speakAndWait(string text, bool addToRepeat = true)
     {
         if(TTS.isSpeaking()) { TTS.stopTTS(); }
         TTS.speakText(text);
+        if(addToRepeat) { repeatText += text; }
         return new WaitWhile(() => TTS.isSpeaking());
     }
-    public abstract IEnumerator tutorial();
+
+    private IEnumerator repeatCoroutine()
+    {
+        runner.hideTaskPrompt();
+        runner.hideTextPrompt();
+        if (TTS.isSpeaking()) { TTS.stopTTS(); }
+        TTS.speakText(repeatText);
+        yield return new WaitWhile(() => TTS.isSpeaking());
+        foreach (RepeatData d in repeatKeys)
+        {
+            if (d.wait)
+            {
+                yield return hitKey(d.key, d.color, draw: false, addToRepeat: false);
+            }
+            else { hitKey(d.key, d.color, draw: false, addToRepeat: false); }
+        }
+        runner.displayTaskPrompt();
+        runner.displayTextPrompt();
+    }
+    private Coroutine repeat()
+    {
+        return runner.StartCoroutine(repeatCoroutine());
+    }
 }
