@@ -103,6 +103,7 @@ public abstract class Tutorial
                 correctAnswer = false;
                 runner.hideTaskPrompt();
                 initRepeat();
+                mc.resetAllKeys();
                 yield break;
             }
 
@@ -119,6 +120,7 @@ public abstract class Tutorial
                     correctAnswer = true;
                     runner.hideTaskPrompt();
                     initRepeat();
+                    mc.resetAllKeys();
                     yield break;
                 } else
                 {

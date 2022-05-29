@@ -23,6 +23,7 @@ public class MusicController : MonoBehaviour
     private SheetMusic sheet;
 
     public bool inputEnabled;
+    public bool drawUserInput;
     public bool linger;
     public bool drawAsSharp;
     public int offset;
@@ -94,7 +95,7 @@ public class MusicController : MonoBehaviour
         if (color == Color.Black) { color = defaultPlayColor;  defaultColor = true; }
         if (!(color == Color.Black || color == Color.White)) { keyManager.changeColor(color, key.ToString()); }
 
-        if (draw)
+        if (draw && drawUserInput)
         {
             int flatOrSharp = 0;
             Key insertKey = key;
@@ -154,7 +155,7 @@ public class MusicController : MonoBehaviour
 
         if (resetColor) { keyManager.resetKey(key.ToString()); }
 
-        if(!linger && draw) 
+        if(!linger && draw && drawUserInput) 
         { 
             if(activeNotes[(int) key] != null)
             {
@@ -187,6 +188,7 @@ public class MusicController : MonoBehaviour
     {
         resetAllKeys();
         inputEnabled = false;
+        drawUserInput = true;
         linger = false;
         drawAsSharp = true;
         offset = 0;
@@ -197,6 +199,7 @@ public class MusicController : MonoBehaviour
     {
         resetAllKeys();
         inputEnabled = true;
+        drawUserInput = true;
         linger = false;
         drawAsSharp = true;
         offset = 0;

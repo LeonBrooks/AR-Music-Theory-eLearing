@@ -13,7 +13,7 @@ public class tNotation : Tutorial
 
     public override IEnumerator tutorial()
     {
-        /*yield return speakAndWait("Welcome to the second tutorial." +
+        yield return speakAndWait("Welcome to the second tutorial." +
             "In this  tutorial we will take a look at how the notes on the keyboard are named and how they are written down in sheet music." +
             "So make sure that you have the music sheet and the keybaord positioned in a way that you can easily look at both." +
             "If you are ready to move on, say continue.");
@@ -257,13 +257,16 @@ public class tNotation : Tutorial
         instantiateTooltip(nC.gameObject.transform, new Vector3(75, -90, 0), "Octave");
         tooltips[6].activateSecondLine(nC2.gameObject);
         yield return waitForContinue();
+        yield return speakAndWait("One thing to keep in mind while counting intervals is that you alwas start off by counting the base tone as one." +
+            "As you can see in the example C is one, D is two, E is three and so on.");
+        yield return waitForContinue();
 
         clearTooltips();
         sheet.clearAllNotes();
         mc.resetAllKeys();
         yield return speakAndWait("Ok now let's move on to some exercises.", false);
         yield return speakAndWait("Look at this note:");
-        Note nC = sheet.drawNote(Key.C4, 0, 0);
+        nC = sheet.drawNote(Key.C4, 0, 0);
         yield return hitKey(Key.C4, fix: true, wait: true, draw: false);
         yield return speakAndWait("What is it's name? Say it out loud.");
         yield return waitForName(Key.C4, 0, "Say out the notes name loud");
@@ -287,9 +290,48 @@ public class tNotation : Tutorial
         mc.linger = false;
         yield return waitForContinue();
 
+        mc.resetAllKeys();
+        yield return speakAndWait("For the next exercise, look at this note.");
+        nC = sheet.drawNote(Key.A4, 0, 0);
+        yield return speakAndWait("Can you press the corresponding key?");
+        mc.drawUserInput = false;
+        yield return waitForKey(Key.A4, "Prees and hold the key matching the note");
+        if (correctAnswer) { yield return speakAndWait("Correct this note is an A."); }
+        else { yield return speakAndWait("Wrongk key. This note is an A."); }
+        mc.drawUserInput = true;
+        instantiateTooltip(nC.transform, new Vector3(30,20,0), "A");
+        km.showNameplate(Key.A4.ToString());
+        yield return hitKey(Key.A4,wait: true);
+        yield return waitForContinue();
+
+        sheet.removeNote(nC);
+        mc.resetAllKeys();
+        yield return speakAndWait("Ok, now let's practice some intervals. If you look at this tone.");
+        yield return hitKey(Key.F4, wait: true, fix: true);
+        yield return speakAndWait("Which tone is a second above it?");
+        mc.drawUserInput = false;
+        yield return waitForKey(Key.G4, "Prees and hold the key one second above");
+        if (correctAnswer) { yield return speakAndWait("Right, G is a scond above F."); }
+        else { yield return speakAndWait("The correct answer would have been G. Remember to always count the base tone as one"); }
+        mc.drawUserInput = true;
+        mc.resetAllKeys();
+        nC = sheet.drawNote(Key.F4, 0, 0);
+        nD = sheet.drawNote(Key.G4, 0, 1);
+        nD.changeColor(Color.Green);
+        instantiateTooltip(nC.transform, new Vector3(-35, 12, 0), "F");
+        instantiateTooltip(nD.transform, new Vector3(35, 12, 0), "G");
+        var t =instantiateTooltip(nC.transform, new Vector3(30, -30, 0), "Second");
+        t.activateSecondLine(nD.gameObject);
+        km.showNameplate(Key.F4.ToString());
+        km.showNameplate(Key.G4.ToString());
+        hitKey(Key.F4);
+        yield return hitKey(Key.G4,Color.Green, wait: true);
+        yield return waitForContinue();
+
+
         clearTooltips();
         sheet.clearAllNotes();
-        mc.resetAllKeys();*/
+        mc.resetAllKeys();
         yield return speakAndWait("Now one last thing before we wrap up this tutorial." +
             "As you may have already noticed the top and bottom staff don't work in the exact same way." +
             "Where a note is drawn into a staff is determined by the sign at the beginning. Those signs are called clefs.");
@@ -306,10 +348,10 @@ public class tNotation : Tutorial
         yield return waitForContinue();
         clearTooltips();
         yield return speakAndWait("As you may have noticed our keyboard only has four octaves.");
-        Note nC = sheet.drawNote(Key.C2, 0, 0);
-        Note nD = sheet.drawNote(Key.C3, 0, 1);
-        Note nE = sheet.drawNote(Key.C4, 0, 2);
-        Note nF = sheet.drawNote(Key.C5, 0, 3);
+        nC = sheet.drawNote(Key.C2, 0, 0);
+        nD = sheet.drawNote(Key.C3, 0, 1);
+        nE = sheet.drawNote(Key.C4, 0, 2);
+        nF = sheet.drawNote(Key.C5, 0, 3);
         instantiateTooltip(nC.transform, new Vector3(25, 12,0), "C2");
         instantiateTooltip(nD.transform, new Vector3(30, 20, 0), "C3");
         instantiateTooltip(nE.transform, new Vector3(-30, 20, 0), "C4");
