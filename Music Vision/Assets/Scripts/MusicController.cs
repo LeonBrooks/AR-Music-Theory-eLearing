@@ -106,7 +106,7 @@ public class MusicController : MonoBehaviour
             else if (key.ToString().Length == 3) { insertKey++; flatOrSharp = -1; }
 
 
-            Note n = sheet.drawNote(insertKey, flatOrSharp, offset, linger);
+            Note n = sheet.drawNote(insertKey, flatOrSharp, offset, interactive: linger);
             if(!defaultColor) { n.changeColor(color); }
             if (linger) { activeNotes.Insert(48, n); offset++; }
             else { activeNotes[(int)key] = n; }

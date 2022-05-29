@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public abstract class Tutorial
 {
@@ -54,7 +55,7 @@ public abstract class Tutorial
 
     protected Tooltip instantiateTooltip(Transform parent, Vector3 pos, string text, Vector3? scale = null)
     {
-        Tooltip tooltip = Object.Instantiate(tootipPrefab, parent, false).GetComponent<Tooltip>();
+        Tooltip tooltip = UnityEngine.Object.Instantiate(tootipPrefab, parent, false).GetComponent<Tooltip>();
         tooltip.transform.localPosition = pos;
         tooltip.transform.localScale = scale ?? defaultTooltipScale;
         tooltip.changeText(text);
@@ -68,7 +69,7 @@ public abstract class Tutorial
         {
             if(tooltip != null)
             {
-                Object.Destroy(tooltip.gameObject);
+                UnityEngine.Object.Destroy(tooltip.gameObject);
             }
         }
         tooltips.Clear();
@@ -179,6 +180,64 @@ public abstract class Tutorial
     protected Coroutine waitForName(Key key, int flatOrSharp, string taskPromptText, bool showSkipPrompt = true)
     {
         return runner.StartCoroutine(waitForNameCoroutine(key, flatOrSharp, taskPromptText, showSkipPrompt));
+    }
+
+    private IEnumerator waitForNoteInputCoroutine(Note[] notes, Key[] goalPostions, int[] goalFlatOrSharp, string taskPromptText, bool showSkipPrompt)
+    {
+        if(notes.Length != goalPostions.Length || notes.Length != goalFlatOrSharp.Length)
+        {
+            Debug.Log("Goal arrays must have the same length as note array");
+            yield break;
+        }
+        runner.resetSkip();
+        runner.resetRepeat();
+        runner.resetConfirm();
+        if (showSkipPrompt) { runner.displayTextPrompt("Say confirm when you are done or skip to reveal the answer"); }
+        runner.displayTaskPrompt(taskPromptText);
+        mc.inputEnabled = true;
+
+        while (true)
+        {
+            if (runner.waitForSkip())
+            {
+                correctAnswer = false;
+                runner.hideTaskPrompt();
+                initRepeat();
+                yield break;
+            }
+
+            if (runner.waitForRepeat())
+            {
+                yield return repeat();
+            }
+
+            if (runner.waitForConfirm())
+            {
+                mc.inputEnabled = false;
+                for (int i = 0; i < goalPostions.Length; i++)
+                {
+                    if(!Array.Exists(notes, n => n.key == goalPostions[i] && n.flatOrSharp == goalFlatOrSharp[i]))
+                    {
+                        correctAnswer = false;
+                        runner.hideTaskPrompt();
+                        initRepeat();
+                        yield break;
+                    }
+                }
+
+                correctAnswer = true;
+                runner.hideTaskPrompt();
+                initRepeat();
+                yield break;
+            }
+
+            yield return null;
+        }
+    }
+
+    protected Coroutine waitForNoteInput(Note[] notes, Key[] goalPostions, int[] goalFlatOrSharp, string taskPromptText, bool showSkipPrompt = true)
+    {
+        return runner.StartCoroutine(waitForNoteInputCoroutine(notes, goalPostions, goalFlatOrSharp, taskPromptText, showSkipPrompt));
     }
 
     private IEnumerator waitForContinueCoroutine(bool showPrompt)

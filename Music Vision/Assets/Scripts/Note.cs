@@ -5,20 +5,21 @@ using UnityEngine;
 
 public class Note : MonoBehaviour, IMixedRealityPointerHandler
 {
-    private List<GameObject> ledgerLines;
-    public string type;
-    public bool isFlipped;
+    public bool isInteractive;
     public Key key;
     public int offset;
-    public bool isInteractive;
-    public Color color;
-    public int flatOrSharp { get; private set; }
 
+    public bool isFlipped { get; private set; }
+    public int flatOrSharp { get; private set; }
+    public string type{ get; private set; }
+
+    private Color color;
     private Vector3 basePosX;
     private Vector3 basePosY;
     private float thresholdX;
     private float thresholdY;
     private SheetMusic sheet;
+    private List<GameObject> ledgerLines;
 
     // Start is called before the first frame update
     void Awake()

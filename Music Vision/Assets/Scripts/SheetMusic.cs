@@ -60,7 +60,7 @@ public class SheetMusic : MonoBehaviour
         }
     }
 
-    public List<Note> drawChord(int offset, bool interactive, params(Key key, int flatOrSharp)[] notes)
+    public List<Note> drawChord(int offset, Color color = Color.Black, bool interactive = false, params(Key key, int flatOrSharp)[] notes)
     {
         if(offset > maxOffset) { return null; }
         if(notes.Length == 0) { Debug.Log("SheetMusic.drawChord: no notes were given"); return null; }
@@ -75,7 +75,7 @@ public class SheetMusic : MonoBehaviour
             bool headOnly = true;
             if((i == 0 && !baseFlipped) || (i == notes.Length-1 && baseFlipped)) { headOnly = false; }
 
-            Note n = drawNote(notes[i].key, notes[i].flatOrSharp, offset, interactive, headOnly);
+            Note n = drawNote(notes[i].key, notes[i].flatOrSharp, offset, color, interactive, headOnly);
             if(n != null) { res.Add(n); }
             if(n.isFlipped != baseFlipped) { n.flip(); }
         }
@@ -109,7 +109,7 @@ public class SheetMusic : MonoBehaviour
     }
 
     // -1 = flat, 0 = neutral, +1 = shap
-    public Note drawNote(Key key, int flatOrSharp, int offset, bool interactive = false, bool headOnly = false)
+    public Note drawNote(Key key, int flatOrSharp, int offset, Color color = Color.Black, bool interactive = false, bool headOnly = false)
     {
         if (offset > maxOffset) { return null; }
         GameObject type;
@@ -133,6 +133,8 @@ public class SheetMusic : MonoBehaviour
         addLedgerLinesToNote(n);
 
         if((key > Key.D3 && key < Key.C4) || key > Key.B4) { n.flip(); }
+
+        if(color != Color.Black) {n.changeColor(color); }
 
         allNotes.Add(n);
 

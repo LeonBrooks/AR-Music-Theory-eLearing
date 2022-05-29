@@ -198,3 +198,10 @@ MonoBehaviour:
       id: 0
       description: None
       axisConstraint: 0
+  - localizationKey: 
+    keyword: Confirm
+    keyCode: 13
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0

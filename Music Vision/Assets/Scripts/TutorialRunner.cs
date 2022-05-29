@@ -18,6 +18,7 @@ public class TutorialRunner : MonoBehaviour
 
     private int runningTutorial = -1;
     private bool continueInput = false;
+    private bool confirmInput = false;
     private bool skipInput = false;
     private bool exitDialogOpen = false;
     private bool repeatInput;
@@ -113,6 +114,16 @@ public class TutorialRunner : MonoBehaviour
         } else { return false; }
     }
 
+    public bool waitForConfirm()
+    {
+        if (confirmInput)
+        {
+            confirmInput = false;
+            return true;
+        }
+        else { return false; }
+    }
+
     public void displayTextPrompt(string text)
     {
         textPrompt.GetComponentInChildren<TextMeshProUGUI>().text = text;
@@ -165,6 +176,11 @@ public class TutorialRunner : MonoBehaviour
         nameInput = key;
     }
 
+    public void confirmInputEntered()
+    {
+        confirmInput = true;
+    }
+
     public void exitInputEntered()
     {
         if (!isRunning || exitDialogOpen) { return; }
@@ -199,5 +215,10 @@ public class TutorialRunner : MonoBehaviour
     public void resetNameInput()
     {
         nameInput = "";
+    }
+
+    public void resetConfirm()
+    {
+        confirmInput = false;
     }
 }
