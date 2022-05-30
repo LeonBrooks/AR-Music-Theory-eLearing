@@ -8,6 +8,7 @@ public abstract class Tutorial
 {
     public TutorialRunner runner;
     protected MusicController mc;
+    protected KeyManager km;
     protected bool correctAnswer;
     protected float deacWaitTime = 2f;
     protected List<Tooltip> tooltips;
@@ -44,6 +45,7 @@ public abstract class Tutorial
         tootipPrefab = Resources.Load("Tooltip") as GameObject;
         repeatText = "";
         repeatKeys = new HashSet<RepeatData>();
+        km = GameObject.Find("KeyboardPlacer/RotationOffsetContainer/Keyboard").GetComponent<KeyManager>();
     }
 
     public abstract IEnumerator tutorial();
@@ -59,6 +61,7 @@ public abstract class Tutorial
         tooltip.transform.localPosition = pos;
         tooltip.transform.localScale = scale ?? defaultTooltipScale;
         tooltip.changeText(text);
+        tooltips.RemoveAll(t => t == null);
         tooltips.Add(tooltip);
         return tooltip;
     }

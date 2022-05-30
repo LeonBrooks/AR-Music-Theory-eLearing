@@ -9,7 +9,8 @@ public class tSemitones : Tutorial
         yield return speakAndWait("Hello. Welcome to the first tutorial. Here we will cover one of the basic concepts of classical music theory: The semitone." +
             "The smitone is the smallest unit in classical music theory and bulids the foundation to understanding more complex concepts." +
             "The sheet music won't be relevant for this tutorial so you can ignore it for now." +
-            "Take a look at the keyboard and say continue when you are ready to move on.");
+            "Take a look at the keyboard and say continue when you are ready to move on. " +
+            "Also you can always say repeat to hear the previous text again or exit to quit the tutorial");
         yield return waitForContinue();
 
 

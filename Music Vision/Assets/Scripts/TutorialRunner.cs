@@ -30,7 +30,8 @@ public class TutorialRunner : MonoBehaviour
         tutorials = new List<Tutorial>();
         tutorials.Add(new tSemitones());
         tutorials.Add(new tNotation());
-        tutorials.Add(new tBlackKeys());
+        tutorials.Add(new tAccidentals());
+        tutorials.Add(new tScales());
     }
 
     private void startTutorial(int index)

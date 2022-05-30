@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class tNotation : Tutorial
 {
-    private KeyManager km;
-
-    public tNotation() :base()
-    {
-        km = GameObject.Find("KeyboardPlacer/RotationOffsetContainer/Keyboard").GetComponent<KeyManager>();
-    }
-
     public override IEnumerator tutorial()
     {
         yield return speakAndWait("Welcome to the second tutorial." +

@@ -11,7 +11,9 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
 
     public bool isFlipped { get; private set; }
     public int flatOrSharp { get; private set; }
-    public string type{ get; private set; }
+
+    [SerializeField]
+    private string type;
 
     private Color color;
     private Vector3 basePosX;
@@ -114,7 +116,7 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
         flipAllLedgerLines();
     }
 
-    public void changeColor(Color color)
+    public void changeColor(Color color, int changeOnlyFlatOrSharp = 0)
     {
         Sprite note = Resources.Load<Sprite>(type + "_" + color.ToString());
         Sprite flat = Resources.Load<Sprite>("flat" + "_" + color.ToString());
@@ -126,10 +128,15 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
             return;
         }
 
-        this.color = color;
-        gameObject.GetComponent<SpriteRenderer>().sprite = note;
-        gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = flat;
-        gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = sharp;
+        if(changeOnlyFlatOrSharp == -1) { gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = flat; }
+        else if(changeOnlyFlatOrSharp == 1) { gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = sharp; }
+        else
+        {
+            this.color = color;
+            gameObject.GetComponent<SpriteRenderer>().sprite = note;
+            gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = flat;
+            gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = sharp;
+        }
     }
 
     public bool incrementKey()
