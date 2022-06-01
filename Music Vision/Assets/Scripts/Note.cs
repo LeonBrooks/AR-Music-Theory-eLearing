@@ -18,6 +18,7 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
     private Color color;
     private Vector3 basePosX;
     private Vector3 basePosY;
+    private float flipXOffset = 0.2375f;
     private float thresholdX;
     private float thresholdY;
     private SheetMusic sheet;
@@ -102,12 +103,23 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
 
     public void flip()
     {
-        
-        isFlipped = !isFlipped;
-        transform.localScale *= -1;
-
         Transform flat = gameObject.transform.GetChild(0).transform;
         Transform sharp = gameObject.transform.GetChild(1).transform;
+        if (isFlipped)
+        {
+            transform.localPosition += new Vector3(flipXOffset, 0, 0);
+            flat.localPosition = new Vector3(flat.localPosition.x * 2, flat.localPosition.y, flat.localPosition.z);
+            sharp.localPosition = new Vector3(sharp.localPosition.x * 2, sharp.localPosition.y, sharp.localPosition.z);
+        }
+        else
+        {
+            transform.localPosition -= new Vector3(flipXOffset, 0, 0);
+            flat.localPosition = new Vector3(flat.localPosition.x / 2, flat.localPosition.y, flat.localPosition.z);
+            sharp.localPosition = new Vector3(sharp.localPosition.x / 2, sharp.localPosition.y, sharp.localPosition.z);
+        }
+
+        isFlipped = !isFlipped;
+        transform.localScale *= -1;
         flat.localScale *= -1;
         sharp.localScale *= -1;
         flat.localPosition *= -1;
