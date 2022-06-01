@@ -99,6 +99,14 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
     private void flipLedgerLine(GameObject ledgerLine)
     {
         ledgerLine.transform.localScale *= -1;
+        if(isFlipped)
+        {
+            ledgerLine.transform.localPosition += new Vector3(flipXOffset, 0, 0);
+        }
+        else
+        {
+            ledgerLine.transform.localPosition -= new Vector3(flipXOffset, 0, 0);
+        }
     }
 
     public void flip()
@@ -117,8 +125,7 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
             flat.localPosition = new Vector3(flat.localPosition.x / 2, flat.localPosition.y, flat.localPosition.z);
             sharp.localPosition = new Vector3(sharp.localPosition.x / 2, sharp.localPosition.y, sharp.localPosition.z);
         }
-
-        isFlipped = !isFlipped;
+        
         transform.localScale *= -1;
         flat.localScale *= -1;
         sharp.localScale *= -1;
@@ -126,6 +133,7 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
         sharp.localPosition *= -1;
 
         flipAllLedgerLines();
+        isFlipped = !isFlipped;
     }
 
     public void changeColor(Color color, int changeOnlyFlatOrSharp = 0)

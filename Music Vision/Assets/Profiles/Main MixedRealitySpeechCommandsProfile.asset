@@ -205,3 +205,17 @@ MonoBehaviour:
       id: 0
       description: None
       axisConstraint: 0
+  - localizationKey: 
+    keyword: Major
+    keyCode: 43
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Minor
+    keyCode: 45
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0

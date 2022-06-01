@@ -243,6 +243,44 @@ public abstract class Tutorial
         return runner.StartCoroutine(waitForNoteInputCoroutine(notes, goalPostions, goalFlatOrSharp, taskPromptText, showSkipPrompt));
     }
 
+    private IEnumerator waitForMajorMinorInputCoroutine(bool majorExpected, string taskPromptText, bool showSkipPrompt)
+    {
+        runner.resetSkip();
+        runner.resetRepeat();
+        runner.resetMajorMinor();
+        if (showSkipPrompt) { runner.displayTextPrompt("Say confirm when you are done or skip to reveal the answer"); }
+        runner.displayTaskPrompt(taskPromptText);
+
+        while (true)
+        {
+            if (runner.waitForSkip())
+            {
+                correctAnswer = false;
+                runner.hideTaskPrompt();
+                initRepeat();
+                yield break;
+            }
+
+            if (runner.waitForRepeat())
+            {
+                yield return repeat();
+            }
+
+            if (runner.waitForMajorMinor())
+            {
+                if(majorExpected == runner.MMValue) { correctAnswer = true; } else { correctAnswer = false; }
+                runner.hideTaskPrompt();
+                initRepeat();
+                yield break;
+            }
+            yield return null;
+        }
+    }
+    protected Coroutine waitForMajorMinorInput(bool majorExpected, string taskPromptText, bool showSkipPrompt = true)
+    {
+        return runner.StartCoroutine(waitForMajorMinorInputCoroutine(majorExpected, taskPromptText, showSkipPrompt));
+    }
+
     private IEnumerator waitForContinueCoroutine(bool showPrompt)
     {
         runner.resetContinue();

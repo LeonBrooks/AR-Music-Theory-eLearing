@@ -142,7 +142,7 @@ public class tScales : Tutorial
         instantiateTooltip(n8.transform, new Vector3(25, 35, 0), "8");
         t2 = instantiateTooltip(n7.transform, new Vector3(-3, -35, 0), "semitone step", new Vector3(0.9f, 0.9f, 0.9f));
         t2.activateSecondLine(n8.gameObject);
-        yield return waitForContinue();*/
+        yield return waitForContinue();
 
         yield return speakAndWait("Now moving on to minor scales things work very similarly. " +
             "The only difference is that they have their semitone steps between the second and third as well as the fifth and sixth note.");
@@ -217,6 +217,33 @@ public class tScales : Tutorial
         n3.makeFlat();
         n6.makeFlat();
         n7.makeFlat();
+        yield return waitForContinue();*/
+
+        mc.resetAllKeys();
+        sheet.clearAllNotes();
+        yield return speakAndWait("Now for the first execise, look at this scale.");
+        sheet.drawNote(Key.A3, 0, 0);
+        sheet.drawNote(Key.B3, 0, 1);
+        sheet.drawNote(Key.C4, 0, 2);
+        sheet.drawNote(Key.D4, 0, 3);
+        sheet.drawNote(Key.E4, 0, 4);
+        sheet.drawNote(Key.F4, 0, 5);
+        sheet.drawNote(Key.G4, 0, 6);
+        sheet.drawNote(Key.A4, 0, 7);
+        km.changeColor(Color.Blue, Key.A3.ToString());
+        km.changeColor(Color.Blue, Key.B3.ToString());
+        km.changeColor(Color.Blue, Key.C4.ToString());
+        km.changeColor(Color.Blue, Key.D4.ToString());
+        km.changeColor(Color.Blue, Key.E4.ToString());
+        km.changeColor(Color.Blue, Key.F4.ToString());
+        km.changeColor(Color.Blue, Key.G4.ToString());
+        km.changeColor(Color.Blue, Key.A4.ToString());
+        yield return new WaitForSeconds(1);
+        yield return speakAndWait("Is it major or minor? Say the answer out loud.");
+        yield return waitForMajorMinorInput(false, "Is the scale major or minor. Say the answer out loud.");
+        if (correctAnswer) { yield return speakAndWait("Correct, that is a minor scale"); }
+        else { yield return speakAndWait("No, this is a minor scale. It has the semitone steps between" +
+            " the second and third as well as the fifth an sixth note."); }
         yield return waitForContinue();
     }
 }

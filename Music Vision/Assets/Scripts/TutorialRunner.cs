@@ -15,11 +15,13 @@ public class TutorialRunner : MonoBehaviour
     private GameObject exitDialogPrefab;
 
     public string nameInput { get; private set; } = "";
+    public bool MMValue { get; private set; } = false;
 
     private int runningTutorial = -1;
     private bool continueInput = false;
     private bool confirmInput = false;
     private bool skipInput = false;
+    private bool MMInput = false;
     private bool exitDialogOpen = false;
     private bool repeatInput;
 
@@ -125,6 +127,16 @@ public class TutorialRunner : MonoBehaviour
         else { return false; }
     }
 
+    public bool waitForMajorMinor()
+    {
+        if (MMInput)
+        {
+            MMInput = false;
+            return true;
+        }
+        else { return false; }
+    }
+
     public void displayTextPrompt(string text)
     {
         textPrompt.GetComponentInChildren<TextMeshProUGUI>().text = text;
@@ -182,6 +194,12 @@ public class TutorialRunner : MonoBehaviour
         confirmInput = true;
     }
 
+    public void majorMinorInputEntered(bool value)
+    {
+        MMInput = true;
+        MMValue = value;
+    }
+
     public void exitInputEntered()
     {
         if (!isRunning || exitDialogOpen) { return; }
@@ -221,5 +239,10 @@ public class TutorialRunner : MonoBehaviour
     public void resetConfirm()
     {
         confirmInput = false;
+    }
+
+    public void resetMajorMinor()
+    {
+        MMInput = false;
     }
 }
