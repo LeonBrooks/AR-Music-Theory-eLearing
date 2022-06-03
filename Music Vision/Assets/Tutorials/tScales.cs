@@ -10,7 +10,7 @@ public class tScales : Tutorial
         Tooltip t1, t2;
         deacWaitTime = 1f;
         defaultTooltipScale = new Vector3(0.7f, 0.7f, 0.7f);
-        /*yield return speakAndWait("Welcome to the fourth tutorial. As we covered all of the most important basics in the" +
+        yield return speakAndWait("Welcome to the fourth tutorial. As we covered all of the most important basics in the" +
             "last three tutorials, this time we can take a first look at simple concepts of harmony. " +
             "Harmony is the idea of analyzing how different tones sound together. Over time this has of course led to rules and guidelines being" +
             "set up to better formalize what one experiences when listening or making music." +
@@ -50,14 +50,14 @@ public class tScales : Tutorial
         yield return speakAndWait("The first example you just heard was a C major scale while the second was a C minor scale. " +
             "As you could hear, although being a bit similar one could say that they both convey different moods. " +
             "So let's unpack what is happening here and use the C major scale as an example.");
-        Note n1 = sheet.drawNote(Key.C4, 0, 0);
-        Note n2 = sheet.drawNote(Key.D4, 0, 1);
-        Note n3 = sheet.drawNote(Key.E4, 0, 2);
-        Note n4 = sheet.drawNote(Key.F4, 0, 3);
-        Note n5 = sheet.drawNote(Key.G4, 0, 4);
-        Note n6 = sheet.drawNote(Key.A4, 0, 5);
-        Note n7 = sheet.drawNote(Key.B4, 0, 6);
-        Note n8 = sheet.drawNote(Key.C5, 0, 7);
+        n1 = sheet.drawNote(Key.C4, 0, 0);
+        n2 = sheet.drawNote(Key.D4, 0, 1);
+        n3 = sheet.drawNote(Key.E4, 0, 2);
+        n4 = sheet.drawNote(Key.F4, 0, 3);
+        n5 = sheet.drawNote(Key.G4, 0, 4);
+        n6 = sheet.drawNote(Key.A4, 0, 5);
+        n7 = sheet.drawNote(Key.B4, 0, 6);
+        n8 = sheet.drawNote(Key.C5, 0, 7);
         yield return waitForContinue();
 
         yield return speakAndWait("First, what even is a scale? A scale is a collections of notes in some way ordered by their pitch." +
@@ -74,11 +74,11 @@ public class tScales : Tutorial
         n8.changeColor(Color.Red);
         instantiateTooltip(n3.transform, new Vector3(-25,35,0), "3");
         instantiateTooltip(n4.transform, new Vector3(25, 35, 0), "4");
-        Tooltip t1 = instantiateTooltip(n3.transform, new Vector3(30,-20, 0), "semitone step", new Vector3(0.9f, 0.9f, 0.9f));
+        t1 = instantiateTooltip(n3.transform, new Vector3(30,-20, 0), "semitone step", new Vector3(0.9f, 0.9f, 0.9f));
         t1.activateSecondLine(n4.gameObject);
         instantiateTooltip(n7.transform, new Vector3(-25, 35, 0), "7");
         instantiateTooltip(n8.transform, new Vector3(25, 35, 0), "8");
-        Tooltip t2 = instantiateTooltip(n7.transform, new Vector3(-3, -20, 0), "semitone step", new Vector3(0.9f, 0.9f, 0.9f));
+        t2 = instantiateTooltip(n7.transform, new Vector3(-3, -20, 0), "semitone step", new Vector3(0.9f, 0.9f, 0.9f));
         t2.activateSecondLine(n8.gameObject);
         yield return hitKey(Key.C4, draw: false, wait: true);
         yield return hitKey(Key.D4, draw: false, wait: true);
@@ -217,7 +217,7 @@ public class tScales : Tutorial
         n3.makeFlat();
         n6.makeFlat();
         n7.makeFlat();
-        yield return waitForContinue();*/
+        yield return waitForContinue();
 
         mc.resetAllKeys();
         sheet.clearAllNotes();
@@ -245,5 +245,164 @@ public class tScales : Tutorial
         else { yield return speakAndWait("No, this is a minor scale. It has the semitone steps between" +
             " the second and third as well as the fifth an sixth note."); }
         yield return waitForContinue();
+        mc.resetAllKeys();
+        sheet.clearAllNotes();
+        yield return speakAndWait("Ok for this execise, look at this E minor scale.");
+        mc.linger = true;
+        yield return hitKey(Key.E3, fix: true, wait: true);
+        yield return hitKey(Key.G3, fix: true, wait: true);
+        yield return hitKey(Key.A3, fix: true, wait: true);
+        yield return hitKey(Key.B3, fix: true, wait: true);
+        yield return hitKey(Key.D4, fix: true, wait: true);
+        yield return hitKey(Key.E4, fix: true, wait: true);
+        mc.linger = false;
+        yield return speakAndWait("It has two notes missing. Press and hold both of the missing keys simultaneously.");
+        yield return waitForKey(Key.FS3, "Press and hold both missing keys. (E minor)", otherKeys: Key.C4);
+        if (correctAnswer) { yield return speakAndWait("Yes, those are the correct Keys."); }
+        else 
+        { 
+
+            yield return speakAndWait("The correct keys would have been F sharp and C.");
+            mc.linger = true;
+            yield return hitKey(Key.E3, fix: true, wait: true);
+            yield return hitKey(Key.FS3, Color.Green, wait: true);
+            yield return hitKey(Key.G3, fix: true, wait: true);
+            yield return hitKey(Key.A3, fix: true, wait: true);
+            yield return hitKey(Key.B3, fix: true, wait: true);
+            yield return hitKey(Key.C4, Color.Green, wait: true);
+            yield return hitKey(Key.D4, fix: true, wait: true);
+            yield return hitKey(Key.E4, fix: true, wait: true);
+            mc.linger = false;
+            yield return waitForContinue();
+        }
+        mc.resetAllKeys();
+        sheet.clearAllNotes();
+        yield return speakAndWait("Let's take a look at a major example now");
+        mc.linger = true;
+        yield return hitKey(Key.A3, fix: true, wait: true);
+        yield return hitKey(Key.B3, fix: true, wait: true);
+        yield return hitKey(Key.D4, fix: true, wait: true);
+        yield return hitKey(Key.E4, fix: true, wait: true);
+        yield return hitKey(Key.A4, fix: true, wait: true);
+        mc.linger = false;
+        yield return speakAndWait("This time there are three notes missing instead. Can you find out which ones fit this a major scale");
+        yield return waitForKey(Key.CS4, "Press and hold all three missing keys. (A major)", otherKeys: new Key[] { Key.FS4, Key.GS4 });
+        if (correctAnswer) { yield return speakAndWait("Yes, those are the correct Keys."); }
+        else
+        {
+            mc.linger = true;
+            yield return speakAndWait("The correct keys would have been C sahrp, F sharp and G sharp.");
+            yield return hitKey(Key.A3, fix: true, wait: true);
+            yield return hitKey(Key.B3, fix: true, wait: true);
+            yield return hitKey(Key.CS4, Color.Green, wait: true);
+            yield return hitKey(Key.D4, fix: true, wait: true);
+            yield return hitKey(Key.E4, fix: true, wait: true);
+            yield return hitKey(Key.FS4, Color.Green, wait: true);
+            yield return hitKey(Key.GS4, Color.Green, wait: true);
+            yield return hitKey(Key.A4, fix: true, wait: true);
+            mc.linger = false;
+        }
+        yield return waitForContinue();
+        mc.resetAllKeys();
+        sheet.clearAllNotes();
+        yield return speakAndWait("Ok, for the final exercise we will use this E flat major scale.");
+        n1 = sheet.drawNote(Key.E4, -1, 0);
+        yield return hitKey(Key.DS4, draw: false, wait: true);
+        n2 = sheet.drawNote(Key.F4, 0, 1, interactive: true);
+        yield return hitKey(Key.F4, draw: false, wait: true);
+        n3 = sheet.drawNote(Key.G4, 0, 2, interactive: true);
+        yield return hitKey(Key.G4, draw: false, wait: true);
+        n4 = sheet.drawNote(Key.A4, -1, 3, interactive: true);
+        yield return hitKey(Key.GS4, draw: false, wait: true);
+        n5 = sheet.drawNote(Key.B4, -1, 4, interactive: true);
+        yield return hitKey(Key.AS4, draw: false, wait: true);
+        n6 = sheet.drawNote(Key.C5, 0, 5, interactive: true);
+        yield return hitKey(Key.C5, draw: false, wait: true);
+        n7 = sheet.drawNote(Key.D5, 0, 6, interactive: true);
+        yield return hitKey(Key.D5, draw: false, wait: true);
+        n8 = sheet.drawNote(Key.E5, -1, 7);
+        yield return hitKey(Key.DS5, draw: false, resetColor: true, wait: true);
+        yield return speakAndWait("Can you turn it into an E flat minor scale by adjusting the notes?" +
+            "This one is really tricky so dont worrry if you get it wrong.");
+        yield return waitForNoteInput(new Note[] { n1, n2, n3, n4, n5, n6, n7, n8 }, 
+            new Key[] {Key.E4, Key.F4, Key.G4, Key.A4, Key.B4, Key.C5, Key.D5, Key.E5}, new int[] {-1,0,-1,-1,-1,-1,-1,-1},
+            "Adjust the notes to get an E flat minor scale. Say confirm when you are done.");
+        if (correctAnswer) { yield return speakAndWait("Good job, you got everything right."); }
+        else
+        {
+
+            yield return speakAndWait("That wasn't easy. The correct answer would have looked like this:");
+            mc.resetAllKeys();
+            sheet.clearAllNotes();
+
+            sheet.drawNote(Key.E4, -1, 0);
+            yield return hitKey(Key.DS4, draw: false, wait: true);
+            sheet.drawNote(Key.F4, 0, 1);
+            yield return hitKey(Key.F4, draw: false, wait: true);
+            sheet.drawNote(Key.G4, -1, 2);
+            yield return hitKey(Key.FS4, draw: false, wait: true);
+            sheet.drawNote(Key.A4, -1, 3);
+            yield return hitKey(Key.GS4, draw: false, wait: true);
+            sheet.drawNote(Key.B4, -1, 4);
+            yield return hitKey(Key.AS4, draw: false, wait: true);
+            sheet.drawNote(Key.C5, -1, 5);
+            yield return hitKey(Key.B4, draw: false, wait: true);
+            sheet.drawNote(Key.D5, -1, 6);
+            yield return hitKey(Key.CS5, draw: false, wait: true);
+            sheet.drawNote(Key.E5, -1, 7);
+            yield return hitKey(Key.DS5, draw: false, wait: true);
+        }
+        yield return waitForContinue();
+
+        mc.resetAllKeys();
+        sheet.clearAllNotes();
+        yield return speakAndWait("Ok, before we finish this tutorial there are still a few important side notes you should know about." +
+            "As mentioned earlier it is important to keep in mind that a pice of music can be written in a certain key. " +
+            "For example if someone were to say this piece is in G major it would mean that generally the piece almost exclusively uses notes from that scale.");
+        yield return waitForContinue();
+        yield return speakAndWait("Another good thing to know is that the minor key has two variations know as melodic minor and harmonic minor, " +
+            "that have additional half tone steps besides the ones we look at. " +
+            "Therefore the base version of the minor key we discussed is also known as natural minor.");
+        yield return waitForContinue();
+        yield return speakAndWait("Do you remember when we discusses intervals a few tutorials ago. " +
+            "Those were the names given to different distances between two notes. " +
+            "Some of the intervals also have minor versions and for that reason the baisc ones we looked at are also known as major intervals." +
+            "For example if we look at a major third:");
+        hitKey(Key.C4);
+        yield return hitKey(Key.E4, wait: true);
+        yield return speakAndWait("A minor interval is always reduced by one semitone. So we would get a minor third by turning E into E flat.");
+        mc.drawAsSharp = false;
+        hitKey(Key.C4);
+        yield return hitKey(Key.DS4, Color.Red, wait: true);
+        yield return waitForContinue();
+        yield return speakAndWait("Major and minor thirds will be especially important for the next tutorial." +
+            "Ok finally, the last bit of information which might come in handy is that a minor scale which uses the same accidentals a a major scale" +
+            " is alwys a minor third below the major one. For example if we look at the scales with no accidentals, the minor version is A major.");
+        mc.resetAllKeys();
+        mc.linger = true;
+        yield return hitKey(Key.A3, Color.Green, wait: true);
+        yield return hitKey(Key.B3, Color.Green, wait: true);
+        yield return hitKey(Key.C4, Color.Green, wait: true);
+        yield return hitKey(Key.D4, Color.Green, wait: true);
+        yield return hitKey(Key.E4, Color.Green, wait: true);
+        yield return hitKey(Key.F4, Color.Green, wait: true);
+        yield return hitKey(Key.G4, Color.Green, wait: true);
+        yield return hitKey(Key.A4, Color.Green, wait: true);
+        yield return speakAndWait("If we now look at C major aswell:");
+        mc.resetAllKeys();
+        km.changeColor(Color.Green, Key.A3.ToString());
+        yield return hitKey(Key.C4, wait: true);
+        yield return hitKey(Key.D4, wait: true);
+        yield return hitKey(Key.E4, wait: true);
+        yield return hitKey(Key.F4, wait: true);
+        yield return hitKey(Key.G4, wait: true);
+        yield return hitKey(Key.A4, wait: true);
+        yield return hitKey(Key.B4, wait: true);
+        yield return hitKey(Key.C5, wait: true);
+        yield return speakAndWait("You can see that A minor is a minor thid below C major. This rule applies to each major" +
+            " and minor scale that use the same accidentals. These pairs of scales are also known as relative keys.");
+        yield return waitForContinue();
+        yield return speakAndWait("Ok, now this finally wraps up the fourth tutorial. In the next one we will take a look at chords");
+        yield return nextTutorialOrExit(4);
     }
 }

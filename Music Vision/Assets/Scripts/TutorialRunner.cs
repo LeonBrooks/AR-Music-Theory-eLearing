@@ -34,6 +34,7 @@ public class TutorialRunner : MonoBehaviour
         tutorials.Add(new tNotation());
         tutorials.Add(new tAccidentals());
         tutorials.Add(new tScales());
+        tutorials.Add(new tChords());
     }
 
     private void startTutorial(int index)
