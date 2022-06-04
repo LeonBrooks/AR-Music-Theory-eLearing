@@ -170,6 +170,11 @@ public class TutorialRunner : MonoBehaviour
         taskPrompt.SetActive(false);
     }
 
+    public bool taskPromptActive()
+    {
+        return taskPrompt.activeSelf ? true : false;
+    }
+
     public void continueInputEntered()
     {
         continueInput = true;

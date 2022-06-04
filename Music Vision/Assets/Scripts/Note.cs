@@ -231,7 +231,7 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
 
     public void OnPointerDragged(MixedRealityPointerEventData eventData)
     {
-        if (!isInteractive || !MusicController.instance.inputEnabled) { return; }
+        if (!isInteractive || !MusicController.instance.noteInputEnabled) { return; }
         Vector3 pointerPos = eventData.Pointer.Position;
         float deltaY = pointerPos.y - basePosY.y;
         float deltaX = pointerPos.x - basePosX.x;
@@ -269,7 +269,7 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
 
     public void OnPointerUp(MixedRealityPointerEventData eventData)
     {
-        if (!isInteractive || !MusicController.instance.inputEnabled) { return; }
+        if (!isInteractive || !MusicController.instance.noteInputEnabled) { return; }
         MusicController.instance.noteDeactivated(key + flatOrSharp, false, false);
     }
 

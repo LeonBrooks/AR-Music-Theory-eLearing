@@ -22,7 +22,8 @@ public class MusicController : MonoBehaviour
     private KeyManager keyManager;
     private SheetMusic sheet;
 
-    public bool inputEnabled;
+    public bool keyInputEnabled;
+    public bool noteInputEnabled;
     public bool drawUserInput;
     public bool linger;
     public bool drawAsSharp;
@@ -71,7 +72,7 @@ public class MusicController : MonoBehaviour
         Key k;
         if (Enum.TryParse<Key>(key, true, out k))
         {
-            if (inputEnabled && !fixedKeys.Contains(k))
+            if (keyInputEnabled && !fixedKeys.Contains(k))
             {
                 noteActivated(k);
             }
@@ -134,7 +135,7 @@ public class MusicController : MonoBehaviour
         Key k;
         if (Enum.TryParse<Key>(key, true, out k))
         {
-            if (inputEnabled && !fixedKeys.Contains(k))
+            if (keyInputEnabled && !fixedKeys.Contains(k))
             {
                 noteDeactivated(k, !linger);
             }
@@ -187,7 +188,8 @@ public class MusicController : MonoBehaviour
     public void initializeTutorialMode ()
     {
         resetAllKeys();
-        inputEnabled = false;
+        keyInputEnabled = false;
+        noteInputEnabled = false;
         drawUserInput = true;
         linger = false;
         drawAsSharp = true;
@@ -198,7 +200,8 @@ public class MusicController : MonoBehaviour
     public void initializeFreeMode()
     {
         resetAllKeys();
-        inputEnabled = true;
+        keyInputEnabled = true;
+        noteInputEnabled = true;
         drawUserInput = true;
         linger = false;
         drawAsSharp = true;

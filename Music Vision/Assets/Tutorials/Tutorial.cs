@@ -95,7 +95,7 @@ public abstract class Tutorial
         bool pressed = false;
         runner.resetSkip();
         runner.resetRepeat();
-        mc.inputEnabled = true;
+        mc.keyInputEnabled = true;
         if (showSkipPrompt) { runner.displayTextPrompt("Say skip to reveal the answer"); }
         runner.displayTaskPrompt(taskPromptText);
 
@@ -103,7 +103,7 @@ public abstract class Tutorial
         {
             if(runner.waitForSkip()) 
             { 
-                mc.inputEnabled = resetUserInput ? false : true;
+                mc.keyInputEnabled = resetUserInput ? false : true;
                 correctAnswer = false;
                 runner.hideTaskPrompt();
                 initRepeat();
@@ -120,7 +120,7 @@ public abstract class Tutorial
             { 
                 if(pressed)
                 {
-                    mc.inputEnabled = resetUserInput ? false : true;
+                    mc.keyInputEnabled = resetUserInput ? false : true;
                     correctAnswer = true;
                     runner.hideTaskPrompt();
                     initRepeat();
@@ -197,13 +197,14 @@ public abstract class Tutorial
         runner.resetConfirm();
         if (showSkipPrompt) { runner.displayTextPrompt("Say confirm when you are done or skip to reveal the answer"); }
         runner.displayTaskPrompt(taskPromptText);
-        mc.inputEnabled = true;
+        mc.noteInputEnabled = true;
 
         while (true)
         {
             if (runner.waitForSkip())
             {
                 correctAnswer = false;
+                mc.noteInputEnabled = false;
                 runner.hideTaskPrompt();
                 initRepeat();
                 yield break;
@@ -216,7 +217,7 @@ public abstract class Tutorial
 
             if (runner.waitForConfirm())
             {
-                mc.inputEnabled = false;
+                mc.noteInputEnabled = false;
                 for (int i = 0; i < goalPostions.Length; i++)
                 {
                     if(!Array.Exists(notes, n => n.key == goalPostions[i] && n.flatOrSharp == goalFlatOrSharp[i]))
@@ -310,7 +311,7 @@ public abstract class Tutorial
 
     private IEnumerator nextTutorialOrExitCoroutine(int successor)
     {
-        TTS.speakText("If you want to go on to the next tutorial say continue. If you want to quit inestead, say exit.");
+        TTS.speakText("If you want to go on to the next tutorial say continue. If you want to quit instead, say exit.");
         runner.displayTaskPrompt("Say exit to quit");
         yield return waitForContinue();
         runner.switchTutorial(successor);
@@ -346,6 +347,7 @@ public abstract class Tutorial
     private IEnumerator repeatCoroutine()
     {
         runner.hideTaskPrompt();
+        bool activateTaskPrompt = runner.taskPromptActive();
         runner.hideTextPrompt();
         if (TTS.isSpeaking()) { TTS.stopTTS(); }
         TTS.speakText(repeatText);
@@ -359,7 +361,7 @@ public abstract class Tutorial
             else { hitKey(d.key, d.color, draw: false, addToRepeat: false); }
         }
         runner.displayTaskPrompt();
-        runner.displayTextPrompt();
+        if(activateTaskPrompt) { runner.displayTaskPrompt(); }
     }
     private Coroutine repeat()
     {
