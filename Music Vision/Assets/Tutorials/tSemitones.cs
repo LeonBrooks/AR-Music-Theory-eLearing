@@ -6,15 +6,15 @@ public class tSemitones : Tutorial
 {
     public override IEnumerator tutorial()
     {
-        yield return speakAndWait("Hello. Welcome to the first tutorial. Here we will cover one of the basic concepts of classical music theory: The semitone." +
-            "The smitone is the smallest unit in classical music theory and bulids the foundation to understanding more complex concepts." +
-            "The sheet music won't be relevant for this tutorial so you can ignore it for now." +
+        yield return speakAndWait("Hello. Welcome to the first tutorial. Here we will cover one of the basic concepts of classical music theory: The semitone. " +
+            "The semitone is the smallest unit in classical music theory and builds the foundation to understanding more complex concepts. " +
+            "The sheet music won't be relevant for this tutorial so you can ignore it for now. " +
             "Take a look at the keyboard and say continue when you are ready to move on. " +
             "Also you can always say repeat to hear the previous text again or exit to quit the tutorial");
         yield return waitForContinue();
 
 
-        yield return speakAndWait("Every key on the keyboard is excatly one semitone away from the next." +
+        yield return speakAndWait("Every key on the keyboard is exactly one semitone away from the next. " +
             "The distance between these keys is one semitone step.");
         hitKey(Key.C4, Color.Blue);
         yield return hitKey(Key.CS4, Color.Blue, wait: true);
@@ -32,7 +32,7 @@ public class tSemitones : Tutorial
         yield return waitForContinue();
 
         mc.resetAllKeys();
-        yield return speakAndWait("Two semitone steps make up a make up a whole tone step. Here are some examples for whole tone steps.");
+        yield return speakAndWait("Two semitone steps make up a whole tone step. Here are some examples for whole tone steps.");
         hitKey(Key.C4, Color.Blue);
         yield return hitKey(Key.D4, Color.Blue, wait: true);
         yield return new WaitForSeconds(0.2f);
@@ -45,7 +45,7 @@ public class tSemitones : Tutorial
         yield return waitForContinue();
 
         mc.resetAllKeys();
-        yield return speakAndWait("As you can see, semitones are not directly connected to black or whithe keys on a keyboard." +
+        yield return speakAndWait("As you can see, semitones are not directly connected to black or white keys on a keyboard. " +
             "Sometimes a semitone step can be between two white keys, like here.");
         hitKey(Key.E4, Color.Blue);
         yield return hitKey(Key.F4, Color.Blue, wait: true);
@@ -53,14 +53,15 @@ public class tSemitones : Tutorial
         yield return speakAndWait("And sometimes it can be between a black and a white key, like here.");
         hitKey(Key.G4, Color.Green);
         yield return hitKey(Key.GS4, Color.Green, wait: true);
+        yield return waitForContinue();
 
 
-        yield return speakAndWait("Now you are probably wondering why the keyboard is set up that way." +
+        yield return speakAndWait("Now you are probably wondering why the keyboard is set up that way. " +
             "The short and somewhat simplified answer is that the keyboard evolved over a long period of time " +
-            "and was adapted to fit the need of more complex music." +
-            "It started out with only white keys to accompany simple church choire music. As music got more complex the need for extra tones" +
-            "in between the existing ones was realized and over time more and more black keys were added in." +
-            "As the keyboard works quite well for most western music and it is widely spread it has become the current standard." +
+            "and was adapted to fit the need of more complex music. " +
+            "It started out with only white keys to accompany simple church choire music. As music got more complex the need for extra tones " +
+            "in between the existing ones was realized and over time more and more black keys were added in. " +
+            "As the keyboard works quite well for most western music and it is widely spread it has become the current standard. " +
             "In theory however there is no reason why a keyboard couldn't be set up differently, " +
             "especially when looking at music from different cultures that didn't evolve from European classical music.");
 

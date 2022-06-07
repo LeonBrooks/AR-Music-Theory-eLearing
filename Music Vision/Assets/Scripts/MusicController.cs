@@ -63,8 +63,12 @@ public class MusicController : MonoBehaviour
             stoppers = new Coroutine[48];
             activeNotes = new List<Note>(new Note[49]);
             fixedKeys = new HashSet<Key>();
-            initializeFreeMode();
         }
+    }
+
+    private void Start()
+    {
+        initializeFreeMode();
     }
 
     public bool keyPressed(string key)

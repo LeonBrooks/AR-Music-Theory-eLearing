@@ -30,7 +30,7 @@ public class SheetMusic : MonoBehaviour
         basePosX = -3.5f;
         staffOffset = 0.957f;
         maxOffset = 8;
-        allNotes = new List<Note>(); 
+        allNotes = new List<Note>();         
     }
 
     public void clearAllNotes()

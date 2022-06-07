@@ -2454,7 +2454,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defautPiano: {fileID: 11400000, guid: 00634dd29cc006747a8f1ef0be4b4430, type: 2}
   defaultPlayColor: 2
-  inputEnabled: 1
+  keyInputEnabled: 0
+  noteInputEnabled: 0
   drawUserInput: 0
   linger: 0
   drawAsSharp: 0
@@ -2745,7 +2746,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -268}
+  m_AnchoredPosition: {x: 0, y: -600}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1485394534
@@ -3689,7 +3690,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 1
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1660947329
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!1 &2053716671

@@ -340,14 +340,14 @@ public abstract class Tutorial
     {
         if(TTS.isSpeaking()) { TTS.stopTTS(); }
         TTS.speakText(text);
-        if(addToRepeat) { repeatText += text; }
+        if(addToRepeat) { repeatText += " " + text; }
         return new WaitWhile(() => TTS.isSpeaking());
     }
 
     private IEnumerator repeatCoroutine()
     {
-        runner.hideTaskPrompt();
         bool activateTaskPrompt = runner.taskPromptActive();
+        runner.hideTaskPrompt();
         runner.hideTextPrompt();
         if (TTS.isSpeaking()) { TTS.stopTTS(); }
         TTS.speakText(repeatText);
@@ -360,7 +360,7 @@ public abstract class Tutorial
             }
             else { hitKey(d.key, d.color, draw: false, addToRepeat: false); }
         }
-        runner.displayTaskPrompt();
+        runner.displayTextPrompt();
         if(activateTaskPrompt) { runner.displayTaskPrompt(); }
     }
     private Coroutine repeat()
