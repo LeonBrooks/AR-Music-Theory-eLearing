@@ -69,6 +69,8 @@ public class MusicController : MonoBehaviour
     private void Start()
     {
         initializeFreeMode();
+        sheet.drawNote(Key.G5,0,0, interactive: true);
+        sheet.drawNote(Key.G4, 0, 1, interactive: true);
     }
 
     public bool keyPressed(string key)

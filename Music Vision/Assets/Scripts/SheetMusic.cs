@@ -240,5 +240,6 @@ public class SheetMusic : MonoBehaviour
             l.transform.localPosition += new Vector3(basePosX + n.offset * noteDistX, lpos, 0);
             n.addLedgerLine(l);
         }
+        //if (n.isFlipped) { n.flipAllLedgerLines(); }
     }
 }

@@ -16,6 +16,12 @@ public class InteractionHandler : MonoBehaviour
         transform.localScale = new Vector3(baseScale.x * d.NewValue, baseScale.y * d.NewValue, baseScale.z * d.NewValue);
     }
 
+    public void setScaleWithMin(SliderEventData d)
+    {
+        Vector3 minScale = baseScale / 2;
+        transform.localScale = new Vector3(minScale.x + minScale.x * d.NewValue, minScale.y + minScale.y * d.NewValue, minScale.z + minScale.z * d.NewValue);
+    }
+
     public void setYRotation(SliderEventData d)
     {
         transform.localRotation = Quaternion.Euler(0, 360f * d.NewValue, 0);
