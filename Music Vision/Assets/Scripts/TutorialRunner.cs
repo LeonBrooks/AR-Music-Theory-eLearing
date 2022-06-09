@@ -10,9 +10,13 @@ public class TutorialRunner : MonoBehaviour
     [SerializeField]
     private GameObject textPrompt;
     [SerializeField]
+    private GameObject exitDialogPrefab;
     private GameObject taskPrompt;
     [SerializeField]
-    private GameObject exitDialogPrefab;
+    private GameObject screenTaskPrompt;
+    [SerializeField]
+    private GameObject keyboardTaskPrompt;
+
 
     public string nameInput { get; private set; } = "";
     public bool MMValue { get; private set; } = false;
@@ -35,6 +39,7 @@ public class TutorialRunner : MonoBehaviour
         tutorials.Add(new tAccidentals());
         tutorials.Add(new tScales());
         tutorials.Add(new tChords());
+        taskPrompt = screenTaskPrompt;
     }
 
     private void startTutorial(int index)
@@ -154,9 +159,25 @@ public class TutorialRunner : MonoBehaviour
         textPrompt.SetActive(false);
     }
 
+    public void useScreenTaskPrompt()
+    {
+        taskPrompt = screenTaskPrompt;
+    }
+
+    public void useKeyboardTaskPrompt()
+    {
+        taskPrompt = keyboardTaskPrompt;
+    }
+
     public void displayTaskPrompt(string text)
     {
-        taskPrompt.GetComponentInChildren<TextMeshProUGUI>().text = text;
+        if(taskPrompt.GetComponentInChildren<TextMeshProUGUI>() == null)
+        {
+            taskPrompt.GetComponentInChildren<TextMeshPro>().text = text;
+        } else
+        {
+            taskPrompt.GetComponentInChildren<TextMeshProUGUI>().text = text;
+        }
         taskPrompt.SetActive(true);
     }
 

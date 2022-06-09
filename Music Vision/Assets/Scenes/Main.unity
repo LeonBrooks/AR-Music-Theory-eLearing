@@ -618,8 +618,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textPrompt: {fileID: 934017119}
-  taskPrompt: {fileID: 1880730270}
   exitDialogPrefab: {fileID: 5412326808007545907, guid: 5e17b3dcc6d491f4bb1856add249d796, type: 3}
+  screenTaskPrompt: {fileID: 1880730270}
+  keyboardTaskPrompt: {fileID: 1620118163}
 --- !u!4 &1636307
 Transform:
   m_ObjectHideFlags: 0
@@ -3448,6 +3449,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ef654312d26a6743af904631a9c1b8e, type: 3}
+--- !u!1 &1620118163 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3094718707856150221, guid: 70893cbe86c7f364482c445a59069a5a, type: 3}
+  m_PrefabInstance: {fileID: 2106610801}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1636057542
 PrefabInstance:
   m_ObjectHideFlags: 0
