@@ -6,6 +6,7 @@ public class tScales : Tutorial
 {
     public override IEnumerator tutorial()
     {
+        runner.useKeyboardTaskPrompt();
         Note n1,n2,n3,n4,n5,n6,n7, n8;
         Tooltip t1, t2, t3;
         deacWaitTime = 1f;
@@ -425,6 +426,6 @@ public class tScales : Tutorial
             " and minor scale that use the same accidentals. These pairs of scales are also known as relative keys.");
         yield return waitForContinue();
         yield return speakAndWait("Ok, now this finally wraps up the fourth tutorial. In the next one we will take a look at chords");
-        yield return nextTutorialOrExit(4);
+        yield return nextTutorialOrExit(5);
     }
 }

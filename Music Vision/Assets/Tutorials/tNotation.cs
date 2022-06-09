@@ -394,6 +394,6 @@ public class tNotation : Tutorial
             "while the bottom staff is written in the bass cleff with notes for the left hand.");
         yield return waitForContinue();
         yield return speakAndWait("That concludes the second tutorial.");
-        yield return nextTutorialOrExit(2);
+        yield return nextTutorialOrExit(3);
     }
 }

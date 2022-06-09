@@ -181,6 +181,6 @@ public class tAccidentals : Tutorial
         yield return waitForContinue();
 
         yield return speakAndWait("And we have reached the end of yet another tutorial. The next one will be the first more advanced music theory concept.");
-        yield return nextTutorialOrExit(3);
+        yield return nextTutorialOrExit(4);
     }
 }

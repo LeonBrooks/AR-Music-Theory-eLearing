@@ -6,7 +6,7 @@ public class tSemitones : Tutorial
 {
     public override IEnumerator tutorial()
     {
-        /*yield return speakAndWait("Hello. Welcome to the first tutorial. Here we will cover one of the basic concepts of classical music theory: The semitone. " +
+        yield return speakAndWait("Hello. Welcome to the first tutorial. Here we will cover one of the basic concepts of classical music theory: The semitone. " +
             "The semitone is the smallest unit in classical music theory and builds the foundation to understanding more complex concepts. " +
             "The sheet music won't be relevant for this tutorial so you can ignore it for now. " +
             "Take a look at the keyboard and say continue when you are ready to move on. " +
@@ -65,14 +65,14 @@ public class tSemitones : Tutorial
             "In theory however there is no reason why a keyboard couldn't be set up differently, " +
             "especially when looking at music from different cultures that didn't evolve from European classical music.");
 
-        yield return waitForContinue();*/
+        yield return waitForContinue();
 
-        runner.useKeyboardTaskPrompt();
         mc.resetAllKeys();
         yield return speakAndWait("Now let's move on to some simple exercises. Given is this tone.");
         yield return hitKey(Key.D4, Color.Green, fix: true, wait: true);
 
-        yield return speakAndWait("Now press and hold the key one semitone above. You can always say skip to reveal the answer");
+        yield return speakAndWait("Now press and hold the key one semitone above. You can always say skip to reveal the answer. " +
+            "If you want to hear the task again, you can say repeat. You can also read the task at the bottom of the screen.");
         yield return waitForKey(Key.DS4, "press and hold the key one semitone above");
         mc.resetAllKeys();
         if (!correctAnswer) { yield return speakAndWait("The correct answer would have been this:"); }
@@ -82,7 +82,6 @@ public class tSemitones : Tutorial
 
         yield return waitForContinue();
 
-        runner.useScreenTaskPrompt();
         mc.resetAllKeys();
         yield return speakAndWait("Now for this tone");
         yield return hitKey(Key.E4, Color.Green, fix: true, wait: true);
@@ -114,6 +113,6 @@ public class tSemitones : Tutorial
         mc.resetAllKeys();
         yield return speakAndWait("This concludes the first tutorial");
 
-        yield return nextTutorialOrExit(1);
+        yield return nextTutorialOrExit(2);
     }
 }

@@ -34,12 +34,14 @@ public class TutorialRunner : MonoBehaviour
     void Start()
     {
         tutorials = new List<Tutorial>();
+        tutorials.Add(new tControls());
         tutorials.Add(new tSemitones());
         tutorials.Add(new tNotation());
         tutorials.Add(new tAccidentals());
         tutorials.Add(new tScales());
         tutorials.Add(new tChords());
         taskPrompt = screenTaskPrompt;
+        switchTutorial(0);
     }
 
     private void startTutorial(int index)
@@ -72,6 +74,7 @@ public class TutorialRunner : MonoBehaviour
         MusicController.instance.initializeTutorialMode();
         if (isRunning)
         {
+            tutorials[runningTutorial].exitCleanup();
             StopAllCoroutines();
             TTS.stopTTS();
             resetContinue();

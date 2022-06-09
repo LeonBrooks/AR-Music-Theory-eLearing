@@ -6,6 +6,7 @@ public class tChords : Tutorial
 {
     public override IEnumerator tutorial()
     {
+        runner.useKeyboardTaskPrompt();
         List<Note> c1, c2;
         Tooltip t1, t2, t3, t4;
         yield return speakAndWait("Welcome to the fifth tutorial. Last time we took a look at what scales are and how they differ in major and minor key. " +
@@ -214,6 +215,6 @@ public class tChords : Tutorial
         mc.resetAllKeys();
         sheet.clearAllNotes();
         yield return speakAndWait("That concludes this tutorial. It is the last one for now. You can say skip to repeat it or exit to leave.");
-        yield return nextTutorialOrExit(4);
+        yield return nextTutorialOrExit(5);
     }
 }

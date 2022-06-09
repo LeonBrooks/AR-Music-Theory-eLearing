@@ -52,6 +52,7 @@ public abstract class Tutorial
     public Coroutine startTutorial(TutorialRunner runner)
     {
         this.runner = runner;
+        runner.useScreenTaskPrompt();
         return runner.StartCoroutine(tutorial());
     }
 
@@ -363,7 +364,7 @@ public abstract class Tutorial
         runner.displayTextPrompt();
         if(activateTaskPrompt) { runner.displayTaskPrompt(); }
     }
-    private Coroutine repeat()
+    protected Coroutine repeat()
     {
         return runner.StartCoroutine(repeatCoroutine());
     }
