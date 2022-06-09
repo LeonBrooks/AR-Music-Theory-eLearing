@@ -13,11 +13,15 @@ public class KeyManager : MonoBehaviour
 {
     public Material[] materials = new Material[5];
     private List<GameObject> nonDefaultKeys;
+    private int surfaceOffset;
+    public float normalOffset;
 
     // Start is called before the first frame update
     void Awake()
     {
         nonDefaultKeys = new List<GameObject>();
+        surfaceOffset = 0;
+        normalOffset = 0.02f;
     }
 
     public void changeColor(Color color, string key)
@@ -121,4 +125,47 @@ public class KeyManager : MonoBehaviour
         key.GetComponentInChildren<Renderer>().material = mat;
     }
 
+    public void surfaceOffsetNeutral() 
+    {
+        if(surfaceOffset == 0) { return; }
+        else if(surfaceOffset == 1)
+        {
+            surfaceOffset = 0;
+            transform.position -= transform.up * normalOffset;
+        } else if(surfaceOffset == -1)
+        {
+            surfaceOffset = 0;
+            transform.position += transform.up * normalOffset;
+        }
+    }
+
+    public void surfaceOffsetHigh()
+    {
+        if (surfaceOffset == 1) { return; }
+        else if (surfaceOffset == 0)
+        {
+            surfaceOffset = 1;
+            transform.position += transform.up * normalOffset;
+        }
+        else if (surfaceOffset == -1)
+        {
+            surfaceOffset = 1;
+            transform.position += 2 * transform.up * normalOffset;
+        }
+    }
+
+    public void surfaceOffsetLow()
+    {
+        if (surfaceOffset == -1) { return; }
+        else if (surfaceOffset == 0)
+        {
+            surfaceOffset = -1;
+            transform.position -= transform.up * normalOffset;
+        }
+        else if (surfaceOffset == 1)
+        {
+            surfaceOffset = -1;
+            transform.position -= 2 *transform.up * normalOffset;
+        }
+    }
 }
