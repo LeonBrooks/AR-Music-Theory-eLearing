@@ -32,7 +32,7 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
         basePosX = Vector3.zero;
         basePosY = Vector3.zero;
 
-        thresholdX = 0.035f;
+        thresholdX = 0.015f;
         thresholdY = 0.025f;
         flatOrSharp = 0;
         key = Key.C4;
@@ -48,6 +48,7 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
 
     public void makeSharp(bool propagateToMC = false)
     {
+        if(flatOrSharp == 1) { return; }
         if(propagateToMC) { MusicController.instance.noteDeactivated(key + flatOrSharp, draw: false); }
         gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = true;
@@ -57,6 +58,7 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
 
     public void makeFlat(bool propagateToMC = false)
     {
+        if (flatOrSharp == -1) { return; }
         if (propagateToMC) { MusicController.instance.noteDeactivated(key + flatOrSharp, draw: false); }
         gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = true;
         gameObject.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
@@ -66,6 +68,7 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
 
     public void makeNeutral(bool propagateToMC = false)
     {
+        if (flatOrSharp == 0) { return; }
         if (propagateToMC) { MusicController.instance.noteDeactivated(key + flatOrSharp, draw: false); }
         gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
@@ -255,15 +258,15 @@ public class Note : MonoBehaviour, IMixedRealityPointerHandler
 
         if(deltaX > thresholdX)
         {
-            if(flatOrSharp != 1) { makeSharp(true); }
+            makeSharp(true);
         }
         else if(deltaX < -thresholdX)
         {
-            if(flatOrSharp != -1) { makeFlat(true); }
+            makeFlat(true);
         }
         else
         {
-            if (flatOrSharp != 0) { makeNeutral(true); }
+            makeNeutral(true);
         }
     }
 

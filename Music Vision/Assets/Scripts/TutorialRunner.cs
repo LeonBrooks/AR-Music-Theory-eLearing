@@ -239,7 +239,8 @@ public class TutorialRunner : MonoBehaviour
         {
             exitDialogOpen = true;
             dialog.OnClosed += (DialogResult res) => {
-                if(res.Result == DialogButtonType.Yes) { exitTutorial(); exitDialogOpen = false; }
+                if(res.Result == DialogButtonType.Yes) { exitTutorial(); }
+                exitDialogOpen = false;
             };
         }
         
