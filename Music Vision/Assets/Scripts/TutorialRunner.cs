@@ -9,7 +9,6 @@ public class TutorialRunner : MonoBehaviour
     private List<Tutorial> tutorials;
     [SerializeField]
     private GameObject textPrompt;
-    [SerializeField]
     private GameObject exitDialogPrefab;
     private GameObject taskPrompt;
     [SerializeField]
@@ -31,6 +30,12 @@ public class TutorialRunner : MonoBehaviour
 
     public bool isRunning { get; private set; }
 
+    void Awake()
+    {
+        exitDialogPrefab = Resources.Load("DialogPrefab") as GameObject;
+        taskPrompt = screenTaskPrompt;
+    }
+
     void Start()
     {
         tutorials = new List<Tutorial>();
@@ -40,7 +45,6 @@ public class TutorialRunner : MonoBehaviour
         tutorials.Add(new tAccidentals());
         tutorials.Add(new tScales());
         tutorials.Add(new tChords());
-        taskPrompt = screenTaskPrompt;
         switchTutorial(0);
     }
 

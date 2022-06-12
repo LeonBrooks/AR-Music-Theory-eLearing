@@ -97,8 +97,8 @@ public class tControls : Tutorial
         yield return speakAndWait("If you need to move the music sheet or replace the keyboard at any point you can alwas do that over the hand menu. " +
             "You can also press the second button to bring up a another menu. You can use that one to adjust how deep the keyboard sits in the table.");
         yield return waitForContinue();
-        yield return speakAndWait("Finally you can use the last button on the hand menu to bring up the tutorial selection. That concludes this tutorial. " +
-            "Say exit out loud to quit it.");
+        yield return speakAndWait("Finally you can use the fourth button on the hand menu to bring up the tutorial selection and the last button to quit the app. " +
+            "That concludes this tutorial. Say exit out loud to quit it.");
         runner.resetRepeat();
         runner.displayTextPrompt("Say exit to quit");
         while (true)

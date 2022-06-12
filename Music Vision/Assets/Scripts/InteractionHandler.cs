@@ -6,9 +6,13 @@ using Microsoft.MixedReality.Toolkit.UI;
 public class InteractionHandler : MonoBehaviour
 {
     private Vector3 baseScale;
+    private static bool quitDiaologOpen;
+    private static GameObject dialogPrefab;
     void Awake()
     {
         baseScale = 2 * transform.localScale;
+        quitDiaologOpen = false;
+        dialogPrefab = Resources.Load("DialogPrefab") as GameObject;
     }
 
     public void setScale(SliderEventData d)
@@ -30,5 +34,20 @@ public class InteractionHandler : MonoBehaviour
     public void toggleIsActive()
     {
         gameObject.SetActive(!gameObject.activeSelf);
+    }
+
+    public static void quitApp()
+    {
+        if (quitDiaologOpen) { return; }
+        Dialog dialog = Dialog.Open(dialogPrefab, DialogButtonType.Yes | DialogButtonType.No,
+                                    "Quit Music Vision", "Are you sure you want to quit the application?", true);
+        if (dialog != null)
+        {
+            quitDiaologOpen = true;
+            dialog.OnClosed += (DialogResult res) => {
+                if (res.Result == DialogButtonType.Yes) { Application.Quit(); }
+                quitDiaologOpen = false;
+            };
+        }
     }
 }

@@ -12,7 +12,7 @@ public class tChords : Tutorial
         yield return speakAndWait("Welcome to the fifth tutorial. Last time we took a look at what scales are and how they differ in major and minor key. " +
             "In the beginning we talked about harmony and that it is a concept focused on analyzing the relationship between tones. " +
             "Besideds scales and keys, chords are another foundation of how harmony appears in music. A chord is a group of notes which is played simultaneously. " +
-            "In sheet music the are usually written as a large note with multiple heads like this:");
+            "In sheet music they are usually written as a large note with multiple heads like this:");
         c1 = sheet.drawChord(0, notes: new (Key,int)[]{ (Key.C4, 0), (Key.E4, 0), (Key.G4, 0)} );
         hitKey(Key.C4, draw: false);
         hitKey(Key.E4, draw: false);
@@ -73,7 +73,7 @@ public class tChords : Tutorial
         sheet.clearAllNotes();
         clearTooltips();
         yield return speakAndWait("There are many more different and complexer types of chords which we will not cover here. Although there is one more concept " +
-            "known as inversion which we will talk about. If we have a based chord, for example E minor:");        
+            "known as inversion which we will talk about. If we have a base chord, for example E minor:");        
         c1 = sheet.drawChord(0, notes: new (Key, int)[] { (Key.E4, 0), (Key.G4, 0), (Key.B4, 0) });
         instantiateTooltip(c1[0].transform, new Vector3(30, 20, 0), "E");
         t3 = instantiateTooltip(sheet.gameObject.transform, new Vector3(-3.5f, 0, 0), "E minor chord", new Vector3(0.03f, 0.03f, 0.03f));
