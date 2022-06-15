@@ -57,13 +57,13 @@ public class tControls : Tutorial
         keyboarPlacer.SetActive(true);
         mc.drawUserInput = false;
         yield return new WaitForSeconds(1);
-        yield return speakAndWait("Look at a wall and place it there by using the pinch gesture to press the check mark button. Say continue when you are done.");
+        yield return speakAndWait("Look at a wall and place it there by using the pinch gesture to press the check mark button. Say continue when the next menu opens.");
         yield return waitForContinue();
-        yield return speakAndWait("On the next menu, we could adjust the rotation and size of the keyboard. Just press the check mark for now.");
+        yield return speakAndWait("On this menu, we could adjust the rotation and size of the keyboard. Just press the check mark for now.");
         yield return waitForContinue();
         yield return speakAndWait("A keyboard on a wall isn't very helpful, so let's fix that.");
         handMenue.SetActive(true);
-        yield return speakAndWait("Turn one of your hands palm up. As you can see a menu appears.");
+        yield return speakAndWait("Turn one of your hands palm up and make a fist. As you can see a menu appears.");
         yield return waitForContinue();
         yield return speakAndWait("Press the top most button by touching it with your other hand. " +
             "Then look at a flat surface close to you, like a table. Place the keyboard there but don't skip the second menu this time. " +

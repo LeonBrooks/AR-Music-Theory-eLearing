@@ -394,7 +394,7 @@ public class tScales : Tutorial
         yield return waitForContinue();
         yield return speakAndWait("Major and minor thirds will be especially important for the next tutorial. " +
             "Ok finally, the last bit of information which might come in handy is that a minor scale which uses the same accidentals as a major scale," +
-            " is alwys a minor third below the major one. For example if we look at the scales with no accidentals, the minor version is A minor.");
+            " is always a minor third below the major one. For example if we look at the scales with no accidentals, the minor version is A minor.");
         mc.resetAllKeys();
         sheet.clearAllNotes();
         mc.drawAsSharp = false;
