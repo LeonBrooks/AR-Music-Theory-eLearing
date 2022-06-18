@@ -301,7 +301,7 @@ public class tScales : Tutorial
         else
         {
             mc.linger = true;
-            yield return speakAndWait("The correct keys would have been C shsrp, F sharp and G sharp.");
+            yield return speakAndWait("The correct keys would have been C sharp, F sharp and G sharp.");
             yield return hitKey(Key.A3, fix: true, wait: true);
             yield return hitKey(Key.B3, fix: true, wait: true);
             yield return hitKey(Key.CS4, Color.Green, wait: true);
