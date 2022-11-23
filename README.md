@@ -1,4 +1,7 @@
 # Music Vision
+
+![alt text](Thesis Related Data/Hololens Screenshots/Tutorial Ex4.jpg)
+
 The development of this application was the focus of my bachelor's thesis. It is an e-learning app prototype that tries to create a more immersive approach to the teaching of music theory by targeting the augmented reality platform [Hololens 2][H2]. It was developed in the [Unity3D][Unity] game engine using the [Microsoft Mixed Reality Toolkit][MRTK] (Version 2).
 
 The `Music Vision` directory contains the Unity project while the LaTex source code for the thesis together with results from a user study and other related material can be found in the `Thesis Related Data` directory. `Wings 3D Piano Key Models ` contains the project files for the 3D models of the piano keys which I had to create myself.
@@ -8,7 +11,7 @@ The application can be deployed by [building it in Unity][UDeploy] first and the
 
 <table>
 <tr><th> Control Commands </th><th> Note Commands </th></tr>
-<tr><td> </table>
+<tr><td>
 
 Voic Command | Key              
 :---: | :---:
